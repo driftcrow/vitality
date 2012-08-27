@@ -22,10 +22,11 @@ define([
 
                showcases: function (){
                    // this.reset();
-                   app.useLayout("main");
+                   // app.useLayout("main");
                    app.layout.setViews({
                        ".showcase": new Showcase.Views.List()
                    });
+                   app.useLayout("main").render();
                },
 
                initialize: function(){

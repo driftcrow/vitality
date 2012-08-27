@@ -6,6 +6,18 @@ define([
        function(app, Backbone, Cake){
 
            var Showcase = app.module ();
+
+           Showcase.Model = Backbone.Model.extend({
+               validate: function(attrs){
+
+               },
+               defaults:{
+                   "name": "",
+                   "descript": "",
+                   "pic": ""
+               }
+           });
+
            Showcase.Collection = Backbone.Collection.extend ({
                url:"/api/showcases",
                cache: true,
