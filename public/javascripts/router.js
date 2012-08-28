@@ -12,7 +12,8 @@ define([
            var Router = Backbone.Router.extend({
                routes: {
                    "": "index",
-                   "admin/showcases": 'showcases'
+                   "admin/showcase": 'showcase',
+                   "admin/showcase/:id/edit": 'editshowcase'
                },
 
                index: function() {
@@ -20,25 +21,23 @@ define([
                    // app.useLayout("main").render;
                },
 
-               showcases: function (){
-                   // this.reset();
+               editshowcase: function (){
+                   // this.layout.reset();
                    // app.useLayout("main");
                    app.layout.setViews({
-                       ".showcase": new Showcase.Views.List()
+                       ".content-box-content": new Showcase.Views.Edit()
                    });
-                   app.useLayout("main").render();
+                   // app.useLayout("main").render();
+               },
+               showcase: function(){
+                   app.layout.setViews({
+                       ".content-box-content": new Showcase.Views.List()
+                   });
                },
 
                initialize: function(){
-                   this.showcases = new Showcase.Collection();
-                   this.showcases.add({ name: "Ginger Kid"});
 
                    app.useLayout("main");
-                   app.layout.setViews({
-                       ".showcases": new Showcase.Views.List({
-                           collection: this.showcase
-                       })
-                   });
                }
            });
 

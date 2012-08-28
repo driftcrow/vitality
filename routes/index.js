@@ -11,6 +11,9 @@ module.exports = function (app){
     app.get ('/', site.index);
 
     // admin use module
+    app.get('/admin*', function(req, res){
+        res.render('admin', {title: 'Admin' });
+    });
 
     // app.get ('/admin/login', sign.login);
     // app.post ('/admin/login', sign.login);

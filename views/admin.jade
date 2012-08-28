@@ -1,0 +1,196 @@
+extends layout
+
+block content
+      #sidebar
+        #sidebar-wrapper
+          //
+             Sidebar with logo and menu
+          h1#sidebar-title
+            a(href='#') Vitality
+          //
+             Logo (221px wide)
+          a(href='/')
+            img#logo(src='images/logo.png', alt='Vitality Admin logo')
+          //
+             Sidebar Profile links
+          #profile-links
+            | Hello,
+            a(href='#', title='Edit your profile') 865171
+            | , you have
+            a(href='#messages', rel='modal', title='3 Messages') 3 Messages
+            br
+            br
+            a(href='#', title='View the Site') View the Site
+            | |
+            a(href='#', title='退出') 退出
+          ul#main-nav
+            //
+               Accordion Menu
+            li
+              a.nav-top-item.no-submenu(href='')
+                //
+                   Add the class "no-submenu" to menu items with no sub menu
+                | 信息板
+            li
+              a.nav-top-item(href='#')  展示厅
+              ul
+                li
+                  a(href='#admin/showcase') Create a new Page
+                li
+                  a(href='#/admin/showcase/1/edit') Manage Pages
+            li
+              a.nav-top-item(href='#')  专栏
+              ul
+                li
+                  a(href='#') Upload Images
+                li
+                  a(href='#') Manage Galleries
+                li
+                  a(href='#') Manage Albums
+                li
+                  a(href='#') Gallery Settings
+            li
+              a.nav-top-item.current(href='#')
+                //
+                   Add the class "current" to current menu item
+                | 页面
+              ul
+                li
+                  a(href='#') Write a new Article
+                li
+                  a.current(href='#') Manage Articles
+                //
+                   Add class "current" to sub menu items also
+                li
+                  a(href='#') Manage Comments
+                li
+                  a(href='#') Manage Categories
+            li
+              a.nav-top-item(href='#')  Events Calendar
+              ul
+                li
+                  a(href='#') Calendar Overview
+                li
+                  a(href='#') Add a new Event
+                li
+                  a(href='#') Calendar Settings
+            li
+              a.nav-top-item(href='#')  系统
+              ul
+                li
+                  a(href='#') 设置
+                li
+                  a(href='#') 用户
+                li
+                  a(href='#') 日志
+          //
+             End #main-nav
+          #messages(style='display: none;')
+            //
+               Messages are shown when a link with these attributes are clicked: href="#messages" rel="modal"
+            h3 3 Messages
+            p
+              strong 17th May 2009
+              | by Admin
+              br
+              | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue.
+              small
+                a.remove-link(href='#', title='Remove message') Remove
+            p
+              strong 2nd May 2009
+              | by Jane Doe
+              br
+              | Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.
+              small
+                a.remove-link(href='#', title='Remove message') Remove
+            p
+              strong 25th April 2009
+              | by Admin
+              br
+              | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue.
+              small
+                a.remove-link(href='#', title='Remove message') Remove
+            form(action='#', method='post')
+              h4 New Message
+              fieldset
+                textarea.textarea(name='textfield', cols='79', rows='5')
+              fieldset
+                select.small-input(name='dropdown')
+                  option(value='option1') Send to...
+                  option(value='option2') Everyone
+                  option(value='option3') Admin
+                  option(value='option4') Jane Doe
+                input.button(type='submit', value='Send')
+          //
+             End #messages
+      //
+         End #sidebar
+      #main-content
+        //
+           Main Content Section with everything
+        noscript
+          //
+             Show a notification if the user has disabled javascript
+          .notification.error.png_bg
+            div
+              | Javascript is disabled or is not supported by your browser. Please
+              a(href='http://browsehappy.com/', title='Upgrade to a better browser') upgrade
+              | your browser or
+              a(href='http://www.google.com/support/bin/answer.py?answer=23852', title='Enable Javascript in your browser') enable
+              | Javascript to navigate the interface properly.
+              | Download From
+              a(href='http://www.exet.tk') exet.tk
+        //
+           Page Head
+
+        h2 Welcome
+          strong Vitality
+
+        p#page-intro What would you like to do?
+        ul.shortcut-buttons-set
+          li
+            a.shortcut-button(href='#')
+              span
+                img(src='images/icons/pencil_48.png', alt='icon')
+                br
+                | Write an Article
+          li
+            a.shortcut-button(href='#')
+              span
+                img(src='images/icons/paper_content_pencil_48.png', alt='icon')
+                br
+                | Create Page
+          li
+            a.shortcut-button(href='#')
+              span
+                img(src='images/icons/image_add_48.png', alt='icon')
+                br
+                | Upload an Image
+          li
+            a.shortcut-button(href='#')
+              span
+                img(src='images/icons/clock_48.png', alt='icon')
+                br
+                | Add an Event
+          li
+            a.shortcut-button(href='#messages', rel='modal')
+              span
+                img(src='images/icons/comment_48.png', alt='icon')
+                br
+                | Open Modal
+        //
+           End .shortcut-buttons-set
+        .clear
+
+        #main
+
+        .clear
+
+        #footer
+          small
+            //
+               Remove this notice or replace it with whatever you want
+            | © Copyright 2012 怀化地税 | Developed by
+            a(href='mailto:liubin@0745.hunan-l.tax.cn')|  Liubin
+            |   |
+            a(href='#') Top

@@ -8,19 +8,19 @@ define([
            var Showcase = app.module ();
 
            Showcase.Model = Backbone.Model.extend({
-               validate: function(attrs){
+               // validate: function(attrs){
 
-               },
-               defaults:{
-                   "name": "",
-                   "descript": "",
-                   "pic": ""
-               }
+               // },
+               // defaults:{
+               //     "name": "",
+               //     "descript": "",
+               //     "pic": ""
+               // }
            });
 
            Showcase.Collection = Backbone.Collection.extend ({
                url:"/api/showcases",
-               cache: true,
+               // cache: true,
 
                initialize: function(){
 
@@ -29,23 +29,34 @@ define([
 
            Showcase.Views.Item = Backbone.View.extend({
                template: "showcase/item",
-               tagName: "li",
+               tagName: "p",
 
                initialize: function(){
                    // this.model.off(null, null, this);
                }
            });
 
+           Showcase.Views.Edit = Backbone.View.extend({
+               template: "showcase/edit",
+               tagName: "div",
+
+               beforeRender: function(){
+
+               }
+           });
+
+
            Showcase.Views.List = Backbone.View.extend({
                template: "showcase/list",
-               tagName: "ul",
+               tagName: "div",
 
                beforeRender: function(){
                    this.collection = new Showcase.Collection();
-                   this.collection.add({ name: "Ginger Kid"});
+                   console.log(this.collection);
+                   this.collection.push({ name: "liubin"});
 
+                   // console.log(this.collection);
                    this.collection.each(function(showcase){
-                       console.log(showcase);
                        this.insertView( new Showcase.Views.Item({
                            serialize: {model: showcase}
                        }));
