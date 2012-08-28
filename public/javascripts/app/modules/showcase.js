@@ -53,14 +53,19 @@ define([
                beforeRender: function(){
                    this.collection = new Showcase.Collection();
                    console.log(this.collection);
-                   this.collection.push({ name: "liubin"});
+                   this.collection.fetch({
+                       success: _.bind(function(collection){
+                           collection.each(function(showcase){
+                               console.log(showcase);
+                               console.log(this);
 
-                   // console.log(this.collection);
-                   this.collection.each(function(showcase){
-                       this.insertView( new Showcase.Views.Item({
-                           serialize: {model: showcase}
-                       }));
-                   },this);
+
+                               this.insertView( new Showcase.Views.Item({
+                                   serialize: {model: showcase}
+                               }));
+                           },this);
+                       },this)
+                   });
                },
 
                events: {
