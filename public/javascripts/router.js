@@ -12,8 +12,8 @@ define([
            var Router = Backbone.Router.extend({
                routes: {
                    "": "index",
-                   "admin/showcase": 'showcase',
-                   "admin/showcase/:id/edit": 'editshowcase'
+                   "admin/showcases": 'showcases',
+                   "admin/showcases/:id/edit": 'editshowcases'
                },
 
                index: function() {
@@ -21,7 +21,7 @@ define([
                    // app.useLayout("main").render;
                },
 
-               editshowcase: function (){
+               editshowcases: function (){
                    // this.layout.reset();
                    // app.useLayout("main");
                    app.layout.setViews({
@@ -29,7 +29,7 @@ define([
                    });
                    // app.useLayout("main").render();
                },
-               showcase: function(){
+               showcases: function(){
                    app.layout.setViews({
                        ".content-box-content": new Showcase.Views.List()
                    });
