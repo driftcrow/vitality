@@ -9,10 +9,10 @@ mongoose.connect(config.db, function (err) {
 });
 
 // models
-require('./cake');
-require('./topic');
-require('./showcase');
+// require('./cake');
+// require('./topic');
+// require('./showcase');
 
-exports.Showcase = mongoose.model('showcase');
-exports.Cake = mongoose.model('cake');
-exports.Topic = mongoose.model('topic');
+exports.Showcase = require('./showcase');
+// exports.Cake = mongoose.model('cake');
+// exports.Topic = mongoose.model('topic');

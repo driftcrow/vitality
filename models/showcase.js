@@ -1,14 +1,18 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId;
 
 var ShowcaseSchema = new Schema({
-  name: { type: String },
-  order: { type: Number, default: 1 },
-  description: { type: String },
-  author_id: { type: ObjectId },
-  cake_count: { type: Number, default: 0 },
-  collect_count: { type: Number, default: 0 },
-  create_at: { type: Date, default: Date.now }
+    title: { type: String },
+    order: { type: Number, default: 1 },
+    description: { type: String },
+    images: [],
+    author_id: { type: ObjectId },
+    cake_count: { type: Number, default: 0 },
+    collect_count: { type: Number, default: 0 },
+    create_at: { type: Date, default: Date.now }
 });
 
-mongoose.model('showcase', ShowcaseSchema);
+var Showcase = mongoose.model('showcase', ShowcaseSchema);
+
+module.exports = Showcase;
