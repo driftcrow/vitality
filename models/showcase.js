@@ -6,8 +6,10 @@ var ShowcaseSchema = new Schema({
     title: { type: String },
     order: { type: Number, default: 1 },
     description: { type: String },
-    images: [],
-    author_id: { type: ObjectId },
+    cover: { type: String },
+    author_id: { type: String },
+    share_with: [ObjectId],
+    cooperator: [ObjectId],
     cake_count: { type: Number, default: 0 },
     collect_count: { type: Number, default: 0 },
     create_at: { type: Date, default: Date.now }

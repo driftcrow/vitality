@@ -35,6 +35,7 @@ module.exports = function (app){
         });
         showcase.save(function( err){
             if(!err){
+
                 return res.send('created');
             } else {
                 return console.log(err);

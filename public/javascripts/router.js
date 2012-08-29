@@ -13,7 +13,7 @@ define([
                routes: {
                    "": "index",
                    "admin/showcases": 'showcases',
-                   "admin/showcases/:id/edit": 'editshowcases'
+                   "admin/showcases/add": 'editshowcases'
                },
 
                index: function() {
@@ -36,7 +36,7 @@ define([
                },
 
                initialize: function(){
-
+                   _.bindAll(this ,'insertView','showcases','index','editshowcases');
                    app.useLayout("main");
                }
            });

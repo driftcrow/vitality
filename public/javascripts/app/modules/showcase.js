@@ -8,14 +8,16 @@ define([
            var Showcase = app.module ();
 
            Showcase.Model = Backbone.Model.extend({
+               url:"/api/showcases",
                // validate: function(attrs){
 
                // },
-               // defaults:{
-               //     "name": "",
-               //     "descript": "",
-               //     "pic": ""
-               // }
+               defaults:{
+                   "title": "",
+                   "description": "",
+                   "author_id": "",
+                   "cover": "images/cover/default.jpg"
+               }
            });
 
            Showcase.Collection = Backbone.Collection.extend ({
@@ -38,10 +40,32 @@ define([
 
            Showcase.Views.Edit = Backbone.View.extend({
                template: "showcase/edit",
-               tagName: "div",
+               el:"form",
+
+               events:{
+                   "click .save": "save",
+                   "submit form": "save"
+               },
+
+               save: function(){
+                   console.log('save');
+                   this.model.save({
+                       title: this.$('[name=title]').val()
+                   }, {
+                       success:function(model, resp){
+                           console.log('good');
+                       },
+                       error: function(err){
+                           console.log(err);
+                       }
+
+                   },this);
+                   return false;
+               },
 
                beforeRender: function(){
-
+                   var showcase = new Showcase.Model();
+                   this.model = showcase;
                }
            });
 
@@ -53,22 +77,28 @@ define([
                beforeRender: function(){
                    this.collection = new Showcase.Collection();
                    console.log(this.collection);
+
+                   var self = this;
                    this.collection.fetch({
-                       success: _.bind(function(collection){
+                       success: function(collection){
                            collection.each(function(showcase){
                                console.log(showcase);
-                               console.log(this);
 
-
-                               this.insertView( new Showcase.Views.Item({
+                               console.log('this: '+ this);
+                               self.insertView( new Showcase.Views.Item({
                                    serialize: {model: showcase}
                                }));
-                           },this);
-                       },this)
+                           });
+                       }
                    });
+
                },
 
                events: {
+
+               },
+
+               initialize: function(){
 
                }
 
