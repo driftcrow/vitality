@@ -69,6 +69,7 @@ define([
                        }
 
                    },this);
+                   app.router.navigate("#admin/showcases",{trigger:true});
                    return false;
                },
 
@@ -85,15 +86,12 @@ define([
 
                beforeRender: function(){
                    this.collection = new Showcase.Collection();
-                   console.log(this.collection);
 
                    var self = this;
                    this.collection.fetch({
                        success: function(collection){
                            collection.each(function(showcase){
-                               console.log(showcase);
 
-                               console.log('this: '+ this);
                                self.insertView( new Showcase.Views.Item({
                                    serialize: {model: showcase}
                                }));

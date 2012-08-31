@@ -1,4 +1,15 @@
 
-* Backbone don't monitor url change and trigger event
-  main.js register click event maybe cause.
-* complete CRUD operate 
+
+* TODO 
+** TODO Backbone don't monitor url change and trigger event
+   main.js register click event maybe cause.
+** complete CRUD operate 
+
+
+
+* Emacs configuration:
+
+* TODO :
+** Project manager not config
+** js2-mode not comfortable ,consist change to js3-mode,problem is swank-js whether support it...
+>>>>>>> origin/master
