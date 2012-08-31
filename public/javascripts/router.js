@@ -4,9 +4,11 @@ define([
 
     // Module
     "modules/showcase"
+    // "modules/menu"
+
 ],
 
-       function(app, Showcase) {
+       function(app, Showcase, Menu) {
 
            // Defining the application router, you can attach sub routers here.
            var Router = Backbone.Router.extend({
@@ -25,18 +27,28 @@ define([
                    // this.layout.reset();
                    // app.useLayout("main");
                    app.layout.setViews({
-                       ".content-box-content": new Showcase.Views.Edit()
+                       ".content-box-content": new Showcase.Views.Edit(
+
+                       )
                    });
-                   // app.useLayout("main").render();
+                   app.useLayout("main").render();
                },
                showcases: function(){
                    app.layout.setViews({
                        ".content-box-content": new Showcase.Views.List()
                    });
+                   app.useLayout("main").render();
+
+               },
+
+               reset: function(){
+
+                   app.active =false;
                },
 
                initialize: function(){
-                   _.bindAll(this ,'insertView','showcases','index','editshowcases');
+                   this.showcases = new Showcase.collection();
+
                    app.useLayout("main");
                }
            });

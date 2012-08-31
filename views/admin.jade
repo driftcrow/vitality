@@ -27,24 +27,24 @@ block content
             //
                Accordion Menu
             li
-              a.nav-top-item.no-submenu(href='')
+              a.nav-top-item.no-submenu(href='/admin')
                 //
                    Add the class "no-submenu" to menu items with no sub menu
                 | 信息板
             li
-              a.nav-top-item(href='#')  展示厅
+              a.nav-top-item(href='admin/showcases')  展示厅
               ul
                 li
-                  a(href='#admin/showcases') Create a new Page
+                  a(href='admin/showcases/add') 创建
                 li
-                  a(href='#/admin/showcases/1/edit') Manage Pages
+                  a(href='admin/showcases/manager') 管理
             li
-              a.nav-top-item(href='#')  专栏
+              a.nav-top-item(href='admin/showcases/add', id="btn-showcase")  专栏
               ul
                 li
-                  a(href='#') Upload Images
+                  a(href='admin/showcases/1/edit') Upload Images
                 li
-                  a(href='#') Manage Galleries
+                  a(href='/admin/showcases') Manage Galleries
                 li
                   a(href='#') Manage Albums
                 li

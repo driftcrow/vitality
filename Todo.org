@@ -1,0 +1,15 @@
+
+
+
+
+
+
+
+
+
+
+* Emacs configuration:
+
+* TODO :
+** Project manager not config
+** js2-mode not comfortable ,consist change to js3-mode,problem is swank-js whether support it...
