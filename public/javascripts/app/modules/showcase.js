@@ -25,7 +25,7 @@ define([
                // cache: true,
 
                initialize: function(){
-
+                   // this.model = model;
                }
            });
 
@@ -35,7 +35,16 @@ define([
 
                initialize: function(){
                    // this.model.off(null, null, this);
+               },
+
+               events: {
+                   "click ": "edit"
+               },
+
+               edit: function(){
+                   console.log("edit"+ this.model);
                }
+
            });
 
            Showcase.Views.Edit = Backbone.View.extend({
@@ -88,7 +97,7 @@ define([
                                self.insertView( new Showcase.Views.Item({
                                    serialize: {model: showcase}
                                }));
-                           });
+                           },this);
                        }
                    });
 

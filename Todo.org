@@ -1,0 +1,4 @@
+
+* Backbone don't monitor url change and trigger event
+  main.js register click event maybe cause.
+* complete CRUD operate 

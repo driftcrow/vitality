@@ -36,7 +36,7 @@ define([
                },
 
                initialize: function(){
-                   _.bindAll(this ,'insertView','showcases','index','editshowcases');
+
                    app.useLayout("main");
                }
            });
