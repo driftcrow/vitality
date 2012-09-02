@@ -44,7 +44,7 @@ module.exports = function (app){
         return res.send(showcase);
     });
     app.get('/api/showcases/:id', function(req,res){
-        return Models.Showcases.findById( req.params.id, function(err, showcase){
+        return Models.Showcase.findById( req.params.id, function(err, showcase){
             if(!err){
                 return res.send(showcase);
             } else {
@@ -53,10 +53,12 @@ module.exports = function (app){
         });
     });
     app.put('/api/showcases/:id', function(req, res){
-        return Models.Showcases.findById(req.params.id, function(err, showcases){
-            showcases.title = req.body.title;
-            showcases.description = req.body.description;
-            return showcases.save(function(err){
+        console.log(req.params.id);
+        console.log(req.params);
+        return Models.Showcase.findById(req.params.id, function(err, showcase){
+            showcase.title = req.body.title;
+            showcase.description = req.body.description;
+            return showcase.save(function(err){
                 if (!err){
                     console.log('updated');
                 } else {

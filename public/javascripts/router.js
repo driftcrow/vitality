@@ -14,40 +14,62 @@ define([
            var Router = Backbone.Router.extend({
                routes: {
                    "": "index",
-                   "admin/showcases": 'showcases',
-                   "admin/showcases/add": 'editshowcases'
+                   "admin/showcases": 'listshowcase',
+                   "admin/showcases/add": 'addshowcase',
+                   "admin/showcases/:id/edit": 'editshowcase'
                },
+
+               views: {},
 
                index: function() {
                    // this.reset();
                    // app.useLayout("main").render;
                },
 
-               editshowcases: function (){
-                   // this.layout.reset();
-                   // app.useLayout("main");
-                   app.layout.setViews({
-                       ".content-box-content": new Showcase.Views.Edit(
+               addshowcase: function (){
+                   this.views.editshowcases.model = new Showcase.Model();
+                   app.layout.setView(".content-box-content", this.views.editshowcases);
+                   this.views.editshowcases.render();
 
-                       )
-                   });
-                   app.useLayout("main").render();
                },
-               showcases: function(){
-                   app.layout.setViews({
-                       ".content-box-content": new Showcase.Views.List()
-                   });
-                   app.useLayout("main").render();
+               editshowcase: function (){
+                   // this.reset();
+                   this.views.editshowcases.model = app.model;
+                   app.layout.setView(".content-box-content", this.views.editshowcases);
+                   this.views.editshowcases.render();
+
+               },
+
+               listshowcase: function(e){
+
+                   app.layout.setView(".content-box-content", this.views.showcases);
+                   // this.reset();
+                   this.showcases.fetch();
+                   this.views.showcases.render();
+
 
                },
 
                reset: function(){
+                   if(this.showcases.length){
+                       this.showcases.reset();
+                   }
 
-                   app.active =false;
                },
 
                initialize: function(){
-                   this.showcases = new Showcase.collection();
+                   _.bindAll(this, 'showcases');
+
+
+                   this.showcases = new Showcase.Collection();
+                   this.views.showcases = new Showcase.Views.List({
+                       collection: this.showcases
+                   });
+
+                   this.views.editshowcases = new Showcase.Views.Edit({
+
+                   });
+
 
                    app.useLayout("main");
                }

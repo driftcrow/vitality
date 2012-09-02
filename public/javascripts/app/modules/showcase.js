@@ -8,15 +8,19 @@ define([
            var Showcase = app.module ();
 
            Showcase.Model = Backbone.Model.extend({
-               url:"/api/showcases",
                // validate: function(attrs){
-
+               idAttribute: "_id",
+               url:"/api/showcases",
                // },
                defaults:{
                    "title": "",
                    "description": "",
                    "author_id": "",
                    "cover": "images/cover/default.jpg"
+               },
+
+               initialize:function(){
+
                }
            });
 
@@ -31,10 +35,15 @@ define([
 
            Showcase.Views.Item = Backbone.View.extend({
                template: "showcase/item",
-               tagName: "p",
+               tagName: "li",
 
                initialize: function(){
-                   // this.model.off(null, null, this);
+                   this.model.on("change",this.render,this);
+                   // console.log(this.render());
+               },
+
+               serialize: function(){
+                   return {model: this.model };
                },
 
                events: {
@@ -42,24 +51,33 @@ define([
                },
 
                edit: function(){
-                   console.log("edit"+ this.model);
+                   app.model = this.model;
+                   app.router.navigate("admin/showcases/"+this.model.get("_id")+"/edit",true);
                }
 
            });
 
            Showcase.Views.Edit = Backbone.View.extend({
                template: "showcase/edit",
-               el:"form",
 
                events:{
                    "click .save": "save",
                    "submit form": "save"
                },
 
-               save: function(){
-                   console.log('save');
+               serialize: function(){
+                   return {model: this.model };
+               },
+
+               save: function(e){
+                   e.preventDefault();
+
+                   if (!this.model.isNew()) this.model.url = "/api/showcases/"+this.model.get("_id");
+                   console.log('save url:'+this.model.get("url"));
                    this.model.save({
-                       title: this.$('[name=title]').val()
+                       title: this.$('[name=title]').val(),
+                       description: this.$('[name=description]').val(),
+                       cover: this.$('[name=cover]').val()
                    }, {
                        success:function(model, resp){
                            console.log('good');
@@ -69,36 +87,39 @@ define([
                        }
 
                    },this);
-                   app.router.navigate("#admin/showcases",{trigger:true});
-                   return false;
+                   app.router.navigate("admin/showcases",{trigger:true});
+               },
+
+               cleanup: function() {
+                   this.model.off(null, null, this);
                },
 
                beforeRender: function(){
-                   var showcase = new Showcase.Model();
-                   this.model = showcase;
+                   console.log("start render form");
+               },
+
+               initialize:function(){
+
                }
            });
 
 
            Showcase.Views.List = Backbone.View.extend({
                template: "showcase/list",
-               tagName: "div",
+               tagName: "ul",
+
+               serialize: function(){
+                   return {collection: this.collection};
+               },
 
                beforeRender: function(){
-                   this.collection = new Showcase.Collection();
 
-                   var self = this;
-                   this.collection.fetch({
-                       success: function(collection){
-                           collection.each(function(showcase){
-
-                               self.insertView( new Showcase.Views.Item({
-                                   serialize: {model: showcase}
-                               }));
-                           },this);
-                       }
-                   });
-
+                   this.collection.each(function(showcase){
+                       showcase.id = showcase.get("_id");
+                       this.insertView( new Showcase.Views.Item({
+                           model: showcase
+                       }));
+                   },this);
                },
 
                events: {
@@ -106,8 +127,13 @@ define([
                },
 
                initialize: function(){
+                   this.collection.on("reset", this.render ,this);
 
+                   // this.collection.on("fetch",function(){
+                   //     this.$("ul").parent().html("<img src='images/spinner.gif'");
+                   // },this);
                }
+
 
            });
 
