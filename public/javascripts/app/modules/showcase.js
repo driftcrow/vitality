@@ -8,13 +8,18 @@ define([
            var Showcase = app.module ();
 
            Showcase.Model = Backbone.Model.extend({
-               // validate: function(attrs){
+               validate: function(attrs){
+                   if(attrs.title){
+                       return "标题不能为空！";
+                   }
+                   if(attrs.description){
+                       return "can't be empty!";
+                   }
+               },
                idAttribute: "_id",
                url:"/api/showcases",
-               // },
+
                defaults:{
-                   "title": "",
-                   "description": "",
                    "author_id": "",
                    "cover": "images/cover/default.jpg"
                },
@@ -35,9 +40,10 @@ define([
 
            Showcase.Views.Item = Backbone.View.extend({
                template: "showcase/item",
-               tagName: "li",
+               className:"pin",
 
                initialize: function(){
+                   console.log(this.model);
                    this.model.on("change",this.render,this);
                    // console.log(this.render());
                },
@@ -81,13 +87,14 @@ define([
                    }, {
                        success:function(model, resp){
                            console.log('good');
+                           app.router.navigate("admin/showcases",{trigger:true});
                        },
                        error: function(err){
                            console.log(err);
                        }
 
                    },this);
-                   app.router.navigate("admin/showcases",{trigger:true});
+
                },
 
                cleanup: function() {
@@ -106,7 +113,7 @@ define([
 
            Showcase.Views.List = Backbone.View.extend({
                template: "showcase/list",
-               tagName: "ul",
+               id: "wrapper",
 
                serialize: function(){
                    return {collection: this.collection};
@@ -116,7 +123,7 @@ define([
 
                    this.collection.each(function(showcase){
                        showcase.id = showcase.get("_id");
-                       this.insertView( new Showcase.Views.Item({
+                       this.insertView( "#columns",new Showcase.Views.Item({
                            model: showcase
                        }));
                    },this);

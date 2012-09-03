@@ -1,14 +1,16 @@
 
 
 * TODO 
-** TODO Backbone don't monitor url change and trigger event
+** DONE Backbone don't monitor url change and trigger event
    main.js register click event maybe cause.
 ** complete CRUD operate 
 
 
 
 * Problem 
-** template default empty value displayed with "/"(change to handbar?)
+** DONE template default empty value displayed with "/"(change to handbar?)
+template compile can't recognize <input /> but <input></input>
+
 
 * Emacs configuration:
 

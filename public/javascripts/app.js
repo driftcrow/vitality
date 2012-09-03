@@ -3,12 +3,12 @@ define([
   "jquery",
   "lodash",
   "backbone",
-
+    "handlebars",
   // Plugins.
   "plugins/backbone.layoutmanager"
 ],
 
-function($, _, Backbone) {
+       function($, _, Backbone, Handlebars) {
 
   // Provide a global location to place configuration settings and module
   // creation.
@@ -16,7 +16,7 @@ function($, _, Backbone) {
     // The root path to run the application.
     root: "/"
   };
-
+console.log(Handlebars);
   // Localize or create a new JavaScript Template object.
   var JST = window.JST = window.JST || {};
 
@@ -29,6 +29,27 @@ function($, _, Backbone) {
       layout: "javascripts/app/templates/layouts/",
       template: "javascripts/app/templates/"
     },
+
+    // fetch: function(path) {
+    //   // Initialize done for use in async-mode
+    //   var done;
+
+    //   // Concatenate the file extension.
+    //   path = path + ".html";
+
+    //   // If cached, use the compiled template.
+    //   if (JST[path]) {
+    //     return JST[path];
+    //   } else {
+    //     // Put fetch into `async-mode`.
+    //     done = this.async();
+
+    //     // Seek out the template asynchronously.
+    //     return $.ajax({ url: app.root + path }).then(function(contents) {
+    //       done(JST[path] = _.template(contents));
+    //     });
+    //   }
+    // }
 
     fetch: function(path) {
       // Initialize done for use in async-mode
@@ -46,7 +67,7 @@ function($, _, Backbone) {
 
         // Seek out the template asynchronously.
         return $.ajax({ url: app.root + path }).then(function(contents) {
-          done(JST[path] = _.template(contents));
+            done(JST[path] = Handlebars.compile(contents));
         });
       }
     }

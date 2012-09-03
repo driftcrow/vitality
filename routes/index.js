@@ -31,7 +31,9 @@ module.exports = function (app){
         console.log(req.body);
         showcase = new Models.Showcase({
             title: req.body.title,
-            description: req.body.description
+            description: req.body.description,
+            cover: req.body.cover
+
         });
         showcase.save(function( err){
             if(!err){
@@ -58,6 +60,8 @@ module.exports = function (app){
         return Models.Showcase.findById(req.params.id, function(err, showcase){
             showcase.title = req.body.title;
             showcase.description = req.body.description;
+            showcase.cover = req.body.cover;
+
             return showcase.save(function(err){
                 if (!err){
                     console.log('updated');
