@@ -1,2 +1,16 @@
-<img src={{model.attributes.cover}} />
-<span>{{model.attributes.title}}</span>
+<div class="thumbnail-div">
+  <div style="background-image:url({{model.attributes.cover}});background-size:100% 100%">
+    <img class="thumbnail-shadow" src="images/thumbnail-shadow.png" alt="bottom"/>
+    <span>{{model.attributes.title}}</span>
+    <div class="sections-overlay">
+      <a href="#">
+        <img class="zoom" src="images/zoom.png" alt="title"/>
+      </a>
+      <a class="readmore" href="#">
+          read more
+      </a>
+    </div>
+  </div>
+</div>
+
+

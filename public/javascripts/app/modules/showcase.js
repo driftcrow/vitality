@@ -40,20 +40,38 @@ define([
 
            Showcase.Views.Item = Backbone.View.extend({
                template: "showcase/item",
-               className:"thumb-item",
+               className:"thumbnail-wrap",
+
+               hoverin:function(){
+                   console.log("on hover in");
+                   console.log(this);
+                   console.log(this.$('.sections-overlay'));
+                   this.$('.sections-overlay').animate({
+                           opacity: 1,
+                           "left": "-=40px"
+                       },500);
+               },
+
+               hoverout:function(){
+                   console.log("on hover out");
+               },
 
                initialize: function(){
                    console.log(this.model);
                    this.model.on("change",this.render,this);
                    // console.log(this.render());
+
                },
+
 
                serialize: function(){
                    return {model: this.model };
                },
 
                events: {
-                   "click ": "edit"
+                   "click ": "edit",
+                   "mouseenter": "hoverin",
+                   "mouseleave": "hoverout"
                },
 
                edit: function(){
@@ -113,7 +131,6 @@ define([
 
            Showcase.Views.List = Backbone.View.extend({
                template: "showcase/list",
-               id:"wrapper",
 
                serialize: function(){
                    return {collection: this.collection};
@@ -123,7 +140,7 @@ define([
 
                    this.collection.each(function(showcase){
                        showcase.id = showcase.get("_id");
-                       this.insertView("#thumb-list", new Showcase.Views.Item({
+                       this.insertView( new Showcase.Views.Item({
                            model: showcase
                        }));
                    },this);
