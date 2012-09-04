@@ -9,10 +9,10 @@ define([
 
            Showcase.Model = Backbone.Model.extend({
                validate: function(attrs){
-                   if(attrs.title){
+                   if(!attrs.title){
                        return "标题不能为空！";
                    }
-                   if(attrs.description){
+                   if(!attrs.description){
                        return "can't be empty!";
                    }
                },
@@ -40,7 +40,7 @@ define([
 
            Showcase.Views.Item = Backbone.View.extend({
                template: "showcase/item",
-               className:"pin",
+               className:"thumb-item",
 
                initialize: function(){
                    console.log(this.model);
@@ -79,7 +79,7 @@ define([
                    e.preventDefault();
 
                    if (!this.model.isNew()) this.model.url = "/api/showcases/"+this.model.get("_id");
-                   console.log('save url:'+this.model.get("url"));
+                   console.log('save url:'+this.model.url);
                    this.model.save({
                        title: this.$('[name=title]').val(),
                        description: this.$('[name=description]').val(),
@@ -113,7 +113,7 @@ define([
 
            Showcase.Views.List = Backbone.View.extend({
                template: "showcase/list",
-               id: "wrapper",
+               id:"wrapper",
 
                serialize: function(){
                    return {collection: this.collection};
@@ -123,7 +123,7 @@ define([
 
                    this.collection.each(function(showcase){
                        showcase.id = showcase.get("_id");
-                       this.insertView( "#columns",new Showcase.Views.Item({
+                       this.insertView("#thumb-list", new Showcase.Views.Item({
                            model: showcase
                        }));
                    },this);
