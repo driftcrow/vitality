@@ -46,10 +46,20 @@ define([
                    console.log("on hover in");
                    console.log(this);
                    console.log(this.$('.sections-overlay'));
-                   this.$('.sections-overlay').animate({
-                           opacity: 1,
-                           "left": "-=40px"
-                       },500);
+
+                   this.$el.animate({
+                      "margin-top": "-=10px"
+                   },'fast');
+
+                   this.$('div.sections-overlay').css("visibility", "visible");
+
+                   this.$('div.sections-overlay').animate({
+                       opacity: 1
+                       ,'background-position-x': "0px"
+                       , 'background-position-y': "0px"
+                       , 'background-size': "245px"
+                   },1000);
+
                },
 
                hoverout:function(){

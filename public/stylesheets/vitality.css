@@ -15,9 +15,10 @@
      -moz-background-clip: border;
      -moz-background-inline-policy: continuous;
      -moz-background-origin: padding;
-     background: transparent url(images/thumbnail-overlay.png) no-repeat scroll -40px -300px;
+     background: transparent url(/images/thumbnail-overlay.png) no-repeat scroll -40px -300px;
+
      float: left;
-     margin-top: -33px;
+     margin-top: -35px;
  }
  .thumbnail-div .sections-overlay .zoom { margin: 60px 0 0 61px }
  .thumbnail-div div {
@@ -30,17 +31,18 @@
     width: 100%;
 }
 .sections-overlay {
-    background-image: url(images/readmore-bg.png);
+    background-image: url(/images/readmore-bg.png);
     opacity: 0;
     visibility: hidden;
     background-position: 0px -167px;
 }
- .sections-overlay .zoom {
+
+.sections-overlay .zoom {
      border: medium none;
      margin: 165px 0 0 312px;
  }
 .readmore {
-    background-image: url(images/readmore-bg.png);
+    background-image: url(/images/readmore-bg.png);
     color: #FFFFFF;
     display: block;
     float: right;
