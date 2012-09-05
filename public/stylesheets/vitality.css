@@ -16,6 +16,7 @@
      -moz-background-inline-policy: continuous;
      -moz-background-origin: padding;
      background: transparent url(/images/thumbnail-overlay.png) no-repeat scroll -40px -300px;
+
      height:206px;
      float: left;
      margin-top: -35px;
