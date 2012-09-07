@@ -43,9 +43,6 @@ define([
                className:"thumbnail-wrap",
 
                hoverin:function(){
-                   console.log("on hover in");
-                   console.log(this);
-                   console.log(this.$('.sections-overlay'));
 
                    this.$el.animate({
                       "margin-top": "-=10px"
@@ -63,13 +60,22 @@ define([
                },
 
                hoverout:function(){
-                   console.log("on hover out");
+                   this.$el.animate({
+                      "margin-top": "+=10px"
+                   },'fast');
+
+                   this.$('div.sections-overlay').animate({
+                       opacity: 1
+                       ,'background-position-x': "-40px"
+                       , 'background-position-y': "-300px"
+                       , 'background-size': "0px"
+                   },1000);
+                   this.$('div.sections-overlay').css("visibility", "hidden");
                },
 
                initialize: function(){
                    console.log(this.model);
                    this.model.on("change",this.render,this);
-                   // console.log(this.render());
 
                },
 
