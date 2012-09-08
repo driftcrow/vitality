@@ -17,9 +17,9 @@
      -moz-background-origin: padding;
      background: transparent url(../images/thumbnail-overlay.png) no-repeat scroll -40px -300px;
 
-     height:206px;
+     height:217px;
      float: left;
-     margin-top: -35px;
+     margin-top: -60px;         /*Fixit:why first element margin-top lower than follower*/
  }
  .thumbnail-div .sections-overlay .zoom { margin: 60px 0 0 61px }
  .thumbnail-div div {
@@ -42,12 +42,21 @@
      border: medium none;
      margin: 165px 0 0 312px;
  }
-.readmore {
+.thumbnail-toolbar {
     background-image: url(../images/readmore-bg.png);
     color: #FFFFFF;
-    display: block;
+    /* display: block; */
     float: right;
     font-size: 10px;
-    margin: 17px 0 0 40px;
-    padding: 5px 10px;
+
+}
+
+.delete {
+    margin: 70px 0 0 40px;
+
+}
+
+.edit {
+    margin: 47px 0 0 40px;
+    /* padding: 5px 10px; */
 }

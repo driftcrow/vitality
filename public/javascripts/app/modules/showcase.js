@@ -43,23 +43,26 @@ define([
                className:"thumbnail-wrap",
 
                hoverin:function(){
+                   app.model = this.model;
 
                    this.$el.animate({
                       "margin-top": "-=10px"
                    },'fast');
+                   // this.$('img.thumbnail-shadow').css("visibility", "hidden");
 
                    this.$('div.sections-overlay').css("visibility", "visible");
 
                    this.$('div.sections-overlay').animate({
                        opacity: 1
                        ,'background-position-x': "0px"
-                       , 'background-position-y': "0px"
-                       , 'background-size': "250px"
+                       , 'background-position-y': "-33px"
+                       , 'background-size': "300px"
                    },1000);
 
                },
 
                hoverout:function(){
+                   app.model = null;
                    this.$el.animate({
                       "margin-top": "+=10px"
                    },'fast');
@@ -85,7 +88,7 @@ define([
                },
 
                events: {
-                   "click ": "edit",
+                   // "click ": "edit",
                    "mouseenter": "hoverin",
                    "mouseleave": "hoverout"
                },

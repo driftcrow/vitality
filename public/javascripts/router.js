@@ -16,7 +16,8 @@ define([
                    "": "index",
                    "admin/showcases": 'listshowcase',
                    "admin/showcases/add": 'addshowcase',
-                   "admin/showcases/:id/edit": 'editshowcase'
+                   "admin/showcases/:id/edit": 'editshowcase',
+                   "admin/showcases/:id/delete": 'deleteshowcase'
                },
 
                views: {},
@@ -37,11 +38,15 @@ define([
                    this.views.editshowcases.model = app.model;
                    app.layout.setView(".content-box-content", this.views.editshowcases);
                    this.views.editshowcases.render();
+               },
 
+               deleteshowcase: function (){
+
+                   app.layout.setView(".content-box-content", this.views.editshowcases);
+                   this.views.editshowcases.render();
                },
 
                listshowcase: function(e){
-
                    app.layout.setView(".content-box-content", this.views.showcases);
                    // this.reset();
                    this.showcases.fetch();
