@@ -6,6 +6,7 @@ var cake = require ('./cake');
 var topic = require ('./topic');
 var static = require ('./static');
 var Models = require('../models');
+var djz = require('./djz');
 
 module.exports = function (app){
     app.get ('/', site.index);
@@ -82,13 +83,10 @@ module.exports = function (app){
     // app.post ('/admin/login', sign.login);
 
 
-    // //showcase
-    // app.get ('/admin/showcases', showcase.index);
-    // app.get ('/admin/showcase/:id', showcase.list_cake);
-    // app.get ('/admin/showcase/:id/edit', showcase.edit);
-    // app.get ('/admin/showcase/:id/delete', showcase.delete);
-    // app.get ('/admin/showcase/add', showcase.add);
+    // DJZ module
+    app.post('/api/djz/login', function(req, res){
 
+    });
     // // cakes
     // app.get ('/admin/cake/:id', cake.list_topic);
     // app.get ('/admin/cake/:id/edit', cake.edit);
@@ -104,4 +102,4 @@ module.exports = function (app){
     // static
     app.get ('/about', static.about);
     app.get ('/faq', static.faq);
-}
+};

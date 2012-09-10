@@ -19,7 +19,7 @@
 
      height:217px;
      float: left;
-     margin-top: -60px;         /*Fixit:why first element margin-top lower than follower*/
+     margin-top: -46px;         /*Fixit:why first element margin-top lower than follower*/
  }
  .thumbnail-div .sections-overlay .zoom { margin: 60px 0 0 61px }
  .thumbnail-div div {

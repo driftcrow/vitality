@@ -11,6 +11,7 @@
 ** DONE template default empty value displayed with "/"(change to handbar?)
 template compile can't recognize <input /> but <input></input>
 
+html language write error
 
 * Emacs configuration:
 
