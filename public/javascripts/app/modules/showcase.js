@@ -25,6 +25,7 @@ define([
                },
 
                initialize:function(){
+                   // if (!this.isNew()) this.url = "/api/showcases/"+this.get("_id");
 
                }
            });
@@ -96,6 +97,17 @@ define([
                edit: function(){
                    app.model = this.model;
                    app.router.navigate("admin/showcases/"+this.model.get("_id")+"/edit",true);
+               },
+
+               delete: function(){
+                   if (confirm("确认删除！")){
+                       app.model = this.model;
+                       this.model.destroy({
+                           success: function(model,response){
+                               app.router.navigate("admin/showcases",true);
+                           }
+                       });
+                   }
                }
 
            });

@@ -41,9 +41,14 @@ define([
                },
 
                deleteshowcase: function (){
-
-                   app.layout.setView(".content-box-content", this.views.editshowcases);
-                   this.views.editshowcases.render();
+                   if (confirm("确认删除！")){
+                       app.model.url = "/api/showcases/"+app.model.get("_id");
+                       app.model.destroy({
+                           success: function(model,response){
+                               app.router.navigate("admin/showcases",true);
+                           }
+                       });
+                   }
                },
 
                listshowcase: function(e){

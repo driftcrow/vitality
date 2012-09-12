@@ -15,7 +15,7 @@ module.exports = function (app){
     app.get('/api',function(req,res){
         res.send('API is running');
     });
-
+    // list
     app.get('/api/showcases', function(req, res){
         return Models.Showcase.find(function( err, showcases){
             if(!err){
@@ -25,7 +25,7 @@ module.exports = function (app){
             }
         });
     });
-
+    // create new
     app.post('/api/showcases', function(req, res){
         var showcase;
         console.log("POST: ");
@@ -46,6 +46,7 @@ module.exports = function (app){
         });
         return res.send(showcase);
     });
+    //get info
     app.get('/api/showcases/:id', function(req,res){
         return Models.Showcase.findById( req.params.id, function(err, showcase){
             if(!err){
@@ -55,6 +56,7 @@ module.exports = function (app){
             }
         });
     });
+    // update
     app.put('/api/showcases/:id', function(req, res){
         console.log(req.params.id);
         console.log(req.params);
@@ -70,6 +72,20 @@ module.exports = function (app){
                     console.log(err);
                 }
                 return res.send(showcase);
+            });
+        });
+    });
+
+    // delete id
+    app.delete('/api/showcases/:id',function(req,res){
+        return Models.Showcase.findById( req.params.id, function(err, showcase){
+            return showcase.remove(function(err){
+                if(!err){
+                    console.log('removed');
+                    return res.send('');
+                } else {
+                     console.log(err);
+                }
             });
         });
     });
