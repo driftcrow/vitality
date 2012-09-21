@@ -5,9 +5,9 @@ define([
 ],
        function(app, Backbone){
 
-           var Cake = app.module ();
+           var Post = app.module ();
 
-           Cake.Model = Backbone.Model.extend({
+           Post.Model = Backbone.Model.extend({
                validate: function(attrs){
                    if(!attrs.title){
                        return "标题不能为空！";
@@ -17,7 +17,7 @@ define([
                    }
                },
                idAttribute: "_id",
-               url:"/api/cakes",
+               url:"/api/posts",
 
                defaults:{
                    "author_id": "",
@@ -25,13 +25,13 @@ define([
                },
 
                initialize:function(){
-                   // if (!this.isNew()) this.url = "/api/cakes/"+this.get("_id");
+                   // if (!this.isNew()) this.url = "/api/posts/"+this.get("_id");
 
                }
            });
 
-           Cake.Collection = Backbone.Collection.extend ({
-               url:"/api/cakes",
+           Post.Collection = Backbone.Collection.extend ({
+               url:"/api/posts",
                // cache: true,
 
                initialize: function(){
@@ -39,8 +39,8 @@ define([
                }
            });
 
-           Cake.Views.Item = Backbone.View.extend({
-               template: "cake/item",
+           Post.Views.Item = Backbone.View.extend({
+               template: "post/item",
                className:"thumbnail-wrap",
 
                hoverin:function(){
@@ -96,7 +96,7 @@ define([
 
                edit: function(){
                    app.model = this.model;
-                   app.router.navigate("admin/cakes/"+this.model.get("_id")+"/edit",true);
+                   app.router.navigate("admin/posts/"+this.model.get("_id")+"/edit",true);
                },
 
                delete: function(){
@@ -104,7 +104,7 @@ define([
                        app.model = this.model;
                        this.model.destroy({
                            success: function(model,response){
-                               app.router.navigate("admin/cakes",true);
+                               app.router.navigate("admin/posts",true);
                            }
                        });
                    }
@@ -112,8 +112,8 @@ define([
 
            });
 
-           Cake.Views.Edit = Backbone.View.extend({
-               template: "cake/edit",
+           Post.Views.Edit = Backbone.View.extend({
+               template: "post/edit",
 
                events:{
                    "click .save": "save",
@@ -127,7 +127,7 @@ define([
                save: function(e){
                    e.preventDefault();
 
-                   if (!this.model.isNew()) this.model.url = "/api/cakes/"+this.model.get("_id");
+                   if (!this.model.isNew()) this.model.url = "/api/posts/"+this.model.get("_id");
                    console.log('save url:'+this.model.url);
                    this.model.save({
                        title: this.$('[name=title]').val(),
@@ -136,7 +136,7 @@ define([
                    }, {
                        success:function(model, resp){
                            console.log('good');
-                           app.router.navigate("admin/cakes",{trigger:true});
+                           app.router.navigate("admin/posts",{trigger:true});
                        },
                        error: function(err){
                            console.log(err);
@@ -160,8 +160,8 @@ define([
            });
 
 
-           Cake.Views.List = Backbone.View.extend({
-               template: "cake/list",
+           Post.Views.List = Backbone.View.extend({
+               template: "post/list",
 
                serialize: function(){
                    return {collection: this.collection};
@@ -169,10 +169,10 @@ define([
 
                beforeRender: function(){
 
-                   this.collection.each(function(cake){
-                       cake.id = cake.get("_id");
-                       this.insertView( new Cake.Views.Item({
-                           model: cake
+                   this.collection.each(function(post){
+                       post.id = post.get("_id");
+                       this.insertView( new Post.Views.Item({
+                           model: post
                        }));
                    },this);
                },
@@ -192,5 +192,5 @@ define([
 
            });
 
-           return Cake;
+           return Post;
        });

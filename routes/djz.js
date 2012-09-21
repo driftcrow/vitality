@@ -15,12 +15,13 @@ var options = {
 
 
 exports.login = function(name, passwd){
-    var body = 'userName='+name+'&password='+passwd+';';
-    var req = http.request(options, function(res){
-        res.setEncoding('utf8');
-        res.on('data',function(chunk){
-            console.log(chunk);
-        });
-    });
-    req.end(body);
+    // var body = 'userName='+name+'&password='+passwd+';';
+    // var req = http.request(options, function(res){
+    //     res.setEncoding('utf8');
+    //     res.on('data',function(chunk){
+    //         console.log(chunk);
+    //     });
+    // });
+ //   req.end(body);
+    return("login");
 };

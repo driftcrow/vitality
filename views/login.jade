@@ -1,0 +1,50 @@
+!!! 5
+html(xmlns='http://www.w3.org/1999/xhtml')
+head
+  meta(http-equiv='Content-Type', content='text/html; charset=iso-8859-1')
+  title title
+  //
+                           CSS
+  //
+     Reset Stylesheet
+  link(rel='stylesheet', href='/stylesheets/reset.css', type='text/css', media='screen')
+  //
+     Main Stylesheet
+  link(rel='stylesheet', href='/stylesheets/style.css', type='text/css', media='screen')
+  //
+     Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid
+  link(rel='stylesheet', href='/stylesheets/invalid.css', type='text/css', media='screen')
+  //
+                           Javascripts
+body#login
+  #login-wrapper.png_bg
+      #login-top
+        h1= title
+        //
+           Logo (221px width)
+        a(href='/')
+          img#logo(src='images/logo.png', alt='Site logo')
+      //
+         End #logn-top
+      #login-content
+        form(action='login',method='post')
+          // .notification.information.png_bg
+          //   div  Just click "Sign In". No password needed.
+          p
+            label 帐号
+            input.text-input(type='text',name='username')
+          .clear
+          p
+            label 密码
+            input.text-input(type='password',name='passwd')
+          .clear
+          // p#remember-password
+          //   input(type='checkbox')
+          //   | Remember me
+          .clear
+          p
+            input.button(type='submit', value='登陆')
+      //
+         End #login-content
+    //
+       End #login-wrapper

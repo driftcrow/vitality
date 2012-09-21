@@ -6,7 +6,7 @@ var path = require('path');
 
 exports.config = {
     debug: true,
-    name: 'vitality',
+    sitename: 'vitality',
     description: 'exhibition media',
     version: '0.0.1',
 
