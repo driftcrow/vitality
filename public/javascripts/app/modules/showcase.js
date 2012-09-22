@@ -58,7 +58,7 @@ define([
                        ,'background-position-x': "0px"
                        , 'background-position-y': "-33px"
                        , 'background-size': "300px"
-                   },1000);
+                   },800);
 
                },
 

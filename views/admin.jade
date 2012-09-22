@@ -22,7 +22,7 @@ block content
             br
             a(href='#', title='View the Site') View the Site
             | |
-            a(href='#', title='退出') 退出
+            a(href='logout',data-bypass, title='退出') 退出
           ul#main-nav
             //
                Accordion Menu
@@ -39,16 +39,12 @@ block content
                 li
                   a(href='admin/showcases/manager') 管理
             li
-              a.nav-top-item(href='admin/showcases/add', id="btn-showcase")  专栏
+              a.nav-top-item(href='admin/cakes')  专栏
               ul
                 li
-                  a(href='admin/showcases/1/edit') Upload Images
+                  a(href='admin/cakes/add') 创建
                 li
-                  a(href='/admin/showcases') Manage Galleries
-                li
-                  a(href='#') Manage Albums
-                li
-                  a(href='#') Gallery Settings
+                  a(href='admin/cakes') 管理
             li
               a.nav-top-item.current(href='#')
                 //
@@ -56,24 +52,14 @@ block content
                 | 页面
               ul
                 li
-                  a(href='#') Write a new Article
+                  a(href='admin/posts/add') 创建
                 li
-                  a.current(href='#') Manage Articles
-                //
-                   Add class "current" to sub menu items also
-                li
-                  a(href='#') Manage Comments
-                li
-                  a(href='#') Manage Categories
+                  a.current(href='admin/posts') 管理
             li
-              a.nav-top-item(href='#')  Events Calendar
+              a.nav-top-item(href='#')  资源
               ul
                 li
-                  a(href='#') Calendar Overview
-                li
-                  a(href='#') Add a new Event
-                li
-                  a(href='#') Calendar Settings
+                  a(href='#') 管理
             li
               a.nav-top-item(href='#')  系统
               ul

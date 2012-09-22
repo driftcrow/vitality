@@ -22,9 +22,16 @@ exports.login = function(req,res){
         if(cookie){
             res.cookie('username',username);
             // res.cookie(cookie);
-            res.redirect('/admin/showcases');
+            res.redirect('admin/index');
         } else {
             res.redirect('/login');
         }
     };
+};
+
+
+exports.logout = function(req,res){
+    res.clearCookie('username'); // FIX:also clear djz session
+    console.log("clear cookie");
+    res.redirect('/login');
 };

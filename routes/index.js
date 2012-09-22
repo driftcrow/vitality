@@ -1,4 +1,4 @@
-
+var config = require('../config').config;
 var sign = require ('./sign');
 var site = require ('./site');
 var showcase = require ('./showcase');
@@ -12,6 +12,7 @@ module.exports = function (app){
     app.get ('/', site.index);
     app.get ('/login', site.login);
     app.post ('/login', site.login);
+    app.get ('/logout', site.logout);
     // API routing
     app.get('/api',function(req,res){
         res.send('API is running');
@@ -94,10 +95,6 @@ module.exports = function (app){
     //     });
     // });
 
-    // admin use module
-    app.get('/admin*', function(req, res){
-        res.render('admin', {title: 'Admin' });
-    });
 
     // app.get ('/admin/login', sign.login);
     // app.post ('/admin/login', sign.login);
@@ -122,4 +119,12 @@ module.exports = function (app){
     // static
     app.get ('/about', static.about);
     app.get ('/faq', static.faq);
+
+    // default route by backbone
+    app.get('/admin/*', function(req, res){
+        res.render('admin', {title: config.sitename });
+    });
+    // app.get('/*', function(req, res){
+    //     res.render('admin', {title: config.sitename });
+    // });
 };
