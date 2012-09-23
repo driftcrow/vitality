@@ -1,14 +1,15 @@
 define([
     // Application.
-    "app",
+    "app"
 
     // Module
-    "modules/showcase"
+    ,"modules/site"
+    ,"modules/showcase"
     // "modules/menu"
 
 ],
 
-       function(app, Showcase, Menu) {
+       function(app,Site, Showcase, Menu) {
 
            // Defining the application router, you can attach sub routers here.
            var Router = Backbone.Router.extend({
@@ -18,15 +19,40 @@ define([
                    "admin/showcases/add": 'addshowcase',
                    "admin/showcases/:id/edit": 'editshowcase',
                    "admin/showcases/:id/delete": 'deleteshowcase'
+                   ,"login": 'login'
+                   ,"logout": 'logout'
+                   ,"showcases": 'showcases'
                },
 
                views: {},
 
                index: function() {
-                   // this.reset();
-                   // app.useLayout("main").render;
+                   app.useLayout("site").render();
+
                },
 
+               //login
+               login: function(){
+                   app.useLayout("site");
+                   app.layout.setView(".main", this.views.login);
+                   this.views.login.render();
+
+               },
+
+               logout: function(){
+                   // $.removeCookie('username',{path: '/'});
+                   $.cookie('username', null,{path: '/'});
+                   window.location = '/login';
+               },
+
+               showcases: function(){
+                   app.useLayout("site");
+                   app.layout.setView(".main", this.views.showcasespv);
+                   this.showcases.fetch();
+                   this.views.showcasespv.render();
+               },
+
+               // showchase
                addshowcase: function (){
                    this.views.editshowcases.model = new Showcase.Model();
                    app.layout.setView(".content-box-content", this.views.editshowcases);
@@ -70,9 +96,13 @@ define([
                initialize: function(){
                    _.bindAll(this, 'showcases');
 
+                   this.views.login = new Site.Views.Login();
 
                    this.showcases = new Showcase.Collection();
                    this.views.showcases = new Showcase.Views.List({
+                       collection: this.showcases
+                   });
+                   this.views.showcasespv = new Showcase.Views.ListPv({
                        collection: this.showcases
                    });
 

@@ -9,7 +9,7 @@ block content
             a(href='#') Vitality
           //
              Logo (221px wide)
-          a(href='/')
+          a(href='/',data-bypass)
             img#logo(src='images/logo.png', alt='Vitality Admin logo')
           //
              Sidebar Profile links
@@ -22,7 +22,7 @@ block content
             br
             a(href='#', title='View the Site') View the Site
             | |
-            a(href='logout',data-bypass, title='退出') 退出
+            a(href='logout', title='退出') 退出
           ul#main-nav
             //
                Accordion Menu
@@ -184,7 +184,7 @@ block content
 
         .clear
 
-        #footer
+        #footer.admin
           small
             //
                Remove this notice or replace it with whatever you want

@@ -1,8 +1,248 @@
 extends layout
 
-block content
-  P
-    a(href= "admin/showcases",data-bypass) to admin
+block head
+  link(rel='stylesheet', href='stylesheets/preview.css', type='text/css')
+  link(rel='stylesheet', href='stylesheets/coda-slider.css', type='text/css', media='screen', title='no title')
 
-  P
-    a(href= "/") go back
+block content
+    #slider
+      #header_wrapper
+        #header
+          a(href='#home')
+            img(src='images/logo.png', alt='Wall Shelf')
+      #menu_wrapper
+        #menu
+          ul.navigation
+            li
+              a.selected(href='/',data-bypass)
+                | 首页
+                span.ui_icon.home
+            li
+              a(href='showcases')
+                | 展示
+                span.ui_icon.gallery
+            li
+              a(href='#aboutus')
+                | 关于
+                span.ui_icon.aboutus
+            li
+              a(href='')
+                | 
+                span.
+            li
+              a(href='login')
+                | 登陆
+                span.ui_icon.contactus
+      #content_wrapper
+        #content
+          .scroll
+            .scrollContainer
+              #home.panel
+                .col_550.float_l
+                  h1 Introducing Wall Shelf Template
+                  p
+                    em
+                      | Nullam at erat ipsum, quis tincidunt mauris. Nunc sit amet sapien eget eros iaculis hendrerit quis a enim. You may validate
+                      a(href='http://sc.chinaz.com/moban', rel='nofollow') XHTML
+                      | &
+                      a(href='http://sc.chinaz.com/moban', rel='nofollow') 站长素材
+                      | .
+                  p
+                    | Wall Shelf is a
+                    a(href='http://sc.chinaz.com/', target='_parent') sc.chinaz.com
+                    | is provided by
+                    a(href='http://sc.chinaz.com/', target='_parent') chinaz.com
+                    | website. Feel free to download, adapt and apply this template for your websites. Credits go to
+                    a(href='http://sc.chinaz.com/moban', target='_blank') social.me
+                    | and
+                    a(href='http://www.wefunction.com', target='_blank') WeFunction
+                    | for icons used in this template.
+                  .cleaner_h30
+                  h2 Our Services
+                  img.image_wrapper.image_fl(src='images/templatemo_image_01.jpg', alt='image 01')
+                  p
+                    | Vivamus scelerisque consectetur nunc, nec vehicula lorem fermentum eu. Cras sodales arcu est, ac vulputate quam. Maecenas non turpis ipsum, viverra posuere sem. Ut vestibulum dictum tellus, ac lacinia lacus blandit eu.
+                  .btn_more
+                    a(href='#services') Read more
+                .col_300.float_r
+                  h2 Hire Us
+                  p
+                    em
+                      | Donec ac eros ac nunc blandit hendrerit. Vestibulum tincidunt, odio at ultricies sollicitudin.
+                  p
+                    | Mauris ligula tortor, congue laoreet rutrum eget, suscipit nec augue hendrerit velit adipiscing eget.
+                  .btn_more
+                    a(href='#aboutus') Read more
+                  .cleaner_h30
+                  h2 Featured Design
+                  img.image_wrapper(src='images/templatemo_image_02.jpg', alt='image 02')
+                  .btn_more
+                    a(href='#gallery') Read more
+              //
+                 end of home 
+              #aboutus.panel
+                h1 About Us
+                .image_wrapper.image_fl
+                  img(src='images/templatemo_image_03.jpg', alt='image 3')
+                p
+                  em
+                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in lectus turpis. Vivamus cursus tortor quis leo ullamcorper auctor quis tincidunt metus.
+                p(align='justify')
+                  | Vestibulum vitae lectus a leo commodo egestas. Sed et ligula mauris. Donec interdum iaculis eros, sed porttitor justo ornare ac. Suspendisse ultrices arcu auctor sapien malesuada dictum.
+                  a(href='#') Vivamus non ante
+                  | sit amet ligula dignissim blandit ut sit amet purus. Sed tristique euismod lectus sed scelerisque. Curabitur convallis fringilla ante, eget eleifend magna iaculis eget. Praesent at nunc tellus. Sed sed auctor odio. Maecenas ut mauris eu ligula placerat tempor vel ac augue. Integer fermentum, ante eget sodales lacinia, nisl diam semper elit, non hendrerit nunc urna vitae erat. Etiam vel nisi risus.
+                p
+                  | Vestibulum tempus porttitor ipsum, ut dictum metus molestie eu. Donec interdum, mi ut facilisis posuere, neque sapien lacinia urna, nec hendrerit dolor arcu sed justo. Aenean rhoncus porttitor dolor non posuere. Nulla eu mi id tellus vehicula pellentesque et vitae magna.
+                .cleaner_h30
+                ul#social_box
+                  li
+                    a(href='#')
+                      img(src='images/facebook.png', alt='facebook')
+                  li
+                    a(href='#')
+                      img(src='images/twitter.png', alt='twitter')
+                  li
+                    a(href='#')
+                      img(src='images/linkedin.png', alt='linkin')
+                  li
+                    a(href='#')
+                      img(src='images/technorati.png', alt='technorati')
+                  li
+                    a(href='#')
+                      img(src='images/myspace.png', alt='myspace')
+              #services.panel
+                .col_380.float_l
+                  h1 Service Overview
+                  img.image_wrapper.image_fl(src='images/templatemo_image_04.jpg', alt='image 04')
+                  p(align='justify')
+                    | Sed eu libero quis neque laoreet cursus. Aliquam sit amet odio vitae dui blandit elementum. Ut eu dolor nunc. Nam in nunc sed mi adipiscing lacinia suscipit eget tortor. Vivamus lacinia lectus in velit aliquet ac placerat magna euismod. Fusce elit metus, elementum nec consequat a, interdum vitae est.
+                  p(align='justify')
+                    | Integer eget nibh eu libero cursus ultricies. Nam ac eros erat. Integer varius pulvinar molestie.
+                    a(href='#') Vestibulum pellentesque
+                    | felis eget nibh pulvinar accumsan. Etiam non urna at ipsum condimentum tempus at eu mauris. Vivamus eget ante augue. Phasellus ut sapien tellus, placerat cursus augue.
+                .col_380.float_r
+                  h1 Specialized Services
+                  p
+                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in lectus turpis. Credit goes to
+                    a(href='http://sc.chinaz.com/moban', target='_blank') Onebit icons
+                    | for icons.
+                  ul.service_list
+                    li
+                      a.service_one(href='#') Sed nec eros egestas nisl
+                    li
+                      a.service_two(href='#') Morbi sed nulla ac est cursus
+                    li
+                      a.service_three(href='#') Curabitur ullamcorper nibh
+                    li
+                      a.service_four(href='#') Pellentesque adipiscing
+                    li
+                      a.service_five(href='#') Vestibulum urna purus
+              #gallery.panel
+                h1 Our Gallery
+                #gallery_container
+                  .gallery_box
+                    a(href='http://sc.chinaz.com/', target='_parent')
+                      img(src='images/gallery/image_01.jpg', alt='1')
+                    h4 Project Title 1
+                    p
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec ligula vitae ipsum blandit condimentum. Nam fringilla luctus mauris, non ornare turpis lobortin.
+                    .btn_more
+                      a(href='#')
+                        | Visit
+                        span »
+                    .cleaner
+                  .gallery_box
+                    a(href='http://sc.chinaz.com/', target='_parent')
+                      img(src='images/gallery/image_02.jpg', alt='2')
+                    h4 Project Title 2
+                    p
+                      | Donec ac eros ac nunc blandit hendrerit. Vestibulum tincidunt, odio at ultricies sollicitudin, ante felis luctus justo, non venenatis quam mauris non tortor.
+                    .btn_more
+                      a(href='#')
+                        | Visit
+                        span »
+                    .cleaner
+                  .gallery_box
+                    a(href='http://sc.chinaz.com/', target='_parent')
+                      img(src='images/gallery/image_03.jpg', alt='3')
+                    h4 Project Title 3
+                    p
+                      | Mauris ligula tortor, congue laoreet rutrum eget, suscipit nec augue. In congue consectetur est, sit amet hendrerit velit adipiscing eget.
+                    .btn_more
+                      a(href='#')
+                        | Visit
+                        span »
+                    .cleaner
+                  .gallery_box
+                    img(src='images/gallery/image_04.jpg', alt='4')
+                    h4 Project Title 4
+                    p
+                      | Curabitur iaculis, erat pharetra porttitor sollicitudin, turpis lectus placerat arcu, ac mattis eros sem ut metus. Nunc congue iaculis lectus in interdum.
+                    .btn_more
+                      a(href='#')
+                        | Visit
+                        span »
+                    .cleaner
+                  .gallery_box
+                    img(src='images/gallery/image_05.jpg', alt='5')
+                    h4 Project Title 5
+                    p
+                      | Curabitur iaculis enim dolor. Sed quis augue ligula. Quisque aliquet egestas felis, in egestas turpis sodales et. In ac diam ut orci viverra bibendum.
+                    .btn_more
+                      a(href='#')
+                        | Visit
+                        span »
+                    .cleaner
+                  .gallery_box
+                    img(src='images/gallery/image_06.jpg', alt='6')
+                    h4 Project Title 6
+                    p
+                      | Sed in viverra nulla. Duis rutrum vehicula ligula, non tempor nunc congue et. Nunc sit amet tortor nulla, ut eleifend enim sed condimentum tellus vestibulum in.
+                    .btn_more
+                      a(href='#')
+                        | Visit
+                        span »
+                    .cleaner
+                  .cleaner
+              #contactus.panel
+                h1 Contact Us
+                .cleaner_h10
+                .col_380.float_l
+                  #contact_form
+                    form(method='post', name='contact', action='#')
+                      label(for='author') Name:
+                      input#author.required.input_field(type='text', name='author')
+                      label(for='email') Email:
+                      input#email.validate-email.required.input_field(type='text', name='email')
+                      label(for='text') Message:
+                      textarea#text.required(name='text', rows='0', cols='0')
+                      br
+                      input#submit.submit_button(type='submit', name='submit', value='Send')
+                      input#reset.submit_button(type='reset', name='reset', value='Reset')
+                .col_380.float_r
+                  h4 Mailing Address
+                  | 770-990 Quisque odio quam,
+                  br
+                  | Pulvinar sit amet convallis eget, 10660
+                  br
+                  | Venenatis ut turpis
+                  br
+                  br
+                  | Tel: 010-050-1100
+                  br
+                  | Fax: 010-050-2200
+          //
+             end of scroll 
+        //
+           end of content 
+      //
+         end of content_wrapper 
+      #footer
+        | Copyright © 2048
+        a(href='#') Your Company Name
+        | |
+        a(href='http://sc.chinaz.com/moban', target='_parent') http://sc.chinaz.com/
+        | by
+        a(href='http://sc.chinaz.com/', target='_parent') 站长素材
+    //
+       end of slider 

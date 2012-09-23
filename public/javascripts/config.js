@@ -17,7 +17,7 @@ require.config({
         templates: "app/templates",
 
         // Libraries.
-        jquery: "libs/jquery",
+        jquery: "libs/jquery-1.8.2.min",
         lodash: "libs/lodash",
         backbone: "libs/backbone",
         handlebars: "libs/handlebars-1.0.0.beta.6"
@@ -34,7 +34,8 @@ require.config({
             exports: 'Handlebars'
         },
         // Backbone.LayoutManager depends on Backbone.
-        "plugins/backbone.layoutmanager": ["backbone"]
+        "plugins/backbone.layoutmanager": ["backbone"],
+        "plugins/jquerypp.custom": ["jquery"]
     }
 
 });

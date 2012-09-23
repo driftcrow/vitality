@@ -1,0 +1,47 @@
+extends layout
+
+block head
+  link(rel='stylesheet', href='stylesheets/site.css', type='text/css')
+  link(rel='stylesheet', href='stylesheets/coda-slider.css', type='text/css', media='screen', title='no title')
+
+block content
+    #slider
+      #header_wrapper
+        #header
+          a(href='#home')
+            img(src='images/logo.png', alt='Wall Shelf')
+      #menu_wrapper
+        #menu
+          ul.navigation
+            li
+              a.selected(href='/',data-bypass)
+                | 首页
+                span.ui_icon.home
+            li
+              a(href='showcases')
+                | 展示厅
+                span.ui_icon.gallery
+            li
+              a(href='#aboutus')
+                | 关于
+                span.ui_icon.aboutus
+            li
+              a(href='')
+                | 
+                span.
+            li
+              a(href='login')
+                | 登陆
+                span.ui_icon.contactus
+      #content_wrapper
+        #content
+          .scroll
+            .scrollContainer        
+
+               #main(role="main")
+          
+      #footer.site
+        | © Copyright 2012 怀化地税 | Developed by
+        a(href='mailto:liubin@0745.hunan-l.tax.cn')|  Liubin
+        |   |
+        a(href='#') Top

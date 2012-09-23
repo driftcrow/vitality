@@ -1,37 +1,21 @@
-
-/*
- * GET home page.
- */
 var config = require('../config').config;
 var djz =require('./djz');
 
-exports.index = function(req, res){
-    res.render('index', {title: config.sitename });
-};
-
-exports.login = function(req,res){
-
-    if(req.method=="GET"){
-        res.render('login',{title: config.sitename, layout: false });
-    } else{
+module.exports = function(app){
+    app.post('/api/login',function(req,res){
         var username = req.param('username')
         ,passwd = req.param('passwd');
+        console.log(req.body);
         console.log(username);
-        var cookie=djz.login(username, passwd);
+        var cookie=djz.login(username, passwd); // FIXME:asyc mode
         console.log(cookie);
         if(cookie){
-            res.cookie('username',username);
+            res.send({'username':username});
             // res.cookie(cookie);
-            res.redirect('admin/index');
+            // res.redirect('admin/index');
         } else {
-            res.redirect('/login');
+            // res.redirect('/login');
+            res.send('');
         }
-    };
-};
-
-
-exports.logout = function(req,res){
-    res.clearCookie('username'); // FIX:also clear djz session
-    console.log("clear cookie");
-    res.redirect('/login');
+    });
 };

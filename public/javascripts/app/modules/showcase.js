@@ -111,6 +111,68 @@ define([
                }
 
            });
+           // just for preview
+         Showcase.Views.ItemPv = Backbone.View.extend({
+               template: "showcase/item",
+               className:"thumbnail-wrap",
+
+               hoverin:function(){
+                   app.model = this.model;
+
+                   this.$el.animate({
+                      "margin-top": "-=10px"
+                   },'fast');
+                   // this.$('img.thumbnail-shadow').css("visibility", "hidden");
+
+                   this.$('div.sections-overlay').css("visibility", "visible");
+
+                   this.$('div.sections-overlay').animate({
+                       opacity: 1
+                       ,'background-position-x': "0px"
+                       , 'background-position-y': "-33px"
+                       , 'background-size': "300px"
+                   },800);
+
+               },
+
+               hoverout:function(){
+                   app.model = null;
+                   this.$el.animate({
+                      "margin-top": "+=10px"
+                   },'fast');
+
+                   this.$('div.sections-overlay').animate({
+                       opacity: 1
+                       ,'background-position-x': "-40px"
+                       , 'background-position-y': "-300px"
+                       , 'background-size': "0px"
+                   },1000);
+                   this.$('div.sections-overlay').css("visibility", "hidden");
+               },
+
+               initialize: function(){
+                   console.log(this.model);
+                   this.model.on("change",this.render,this);
+
+               },
+
+
+               serialize: function(){
+                   return {model: this.model };
+               },
+
+               events: {
+                   "click ": "preview"
+
+               },
+
+             preview: function(){
+                 app.model = this.model;
+                 app.router.navigate("/showcases/"+this.model.get("_id"),true);
+             },
+
+
+           });
 
            Showcase.Views.Edit = Backbone.View.extend({
                template: "showcase/edit",
@@ -172,6 +234,38 @@ define([
                    this.collection.each(function(showcase){
                        showcase.id = showcase.get("_id");
                        this.insertView( new Showcase.Views.Item({
+                           model: showcase
+                       }));
+                   },this);
+               },
+
+               events: {
+
+               },
+
+               initialize: function(){
+                   this.collection.on("reset", this.render ,this);
+
+                   // this.collection.on("fetch",function(){
+                   //     this.$("ul").parent().html("<img src='images/spinner.gif'");
+                   // },this);
+               }
+
+
+           });
+
+           Showcase.Views.ListPv = Backbone.View.extend({
+               template: "showcase/list",
+
+               serialize: function(){
+                   return {collection: this.collection};
+               },
+
+               beforeRender: function(){
+
+                   this.collection.each(function(showcase){
+                       showcase.id = showcase.get("_id");
+                       this.insertView( new Showcase.Views.ItemPv({
                            model: showcase
                        }));
                    },this);
