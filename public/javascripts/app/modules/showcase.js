@@ -1,9 +1,9 @@
 define([
     "app",
-    "backbone",
-    "modules/cake"
+    "backbone"
+    ,"plugins/jquerypp.custom"
 ],
-       function(app, Backbone, Cake){
+       function(app, Backbone){
 
            var Showcase = app.module ();
 
@@ -78,7 +78,6 @@ define([
                },
 
                initialize: function(){
-                   console.log(this.model);
                    this.model.on("change",this.render,this);
 
                },
@@ -90,11 +89,14 @@ define([
 
                events: {
                    // "click ": "edit",
-                   "mouseenter": "hoverin",
-                   "mouseleave": "hoverout"
+                   // "mouseenter": "hoverin",
+                   // "mouseleave": "hoverout"
+                   "hoverenter": "hoverin"
+                   ,"hoverleave": "hoverout"
+
                },
 
-               edit: function(){
+               Edit: function(){
                    app.model = this.model;
                    app.router.navigate("admin/showcases/"+this.model.get("_id")+"/edit",true);
                },
@@ -151,7 +153,6 @@ define([
                },
 
                initialize: function(){
-                   console.log(this.model);
                    this.model.on("change",this.render,this);
 
                },
@@ -209,7 +210,7 @@ define([
                },
 
                cleanup: function() {
-                   this.model.off(null, null, this);
+                   // this.model.off(null, null, this);
                },
 
                beforeRender: function(){

@@ -2,6 +2,7 @@ define([
     "app",
     "backbone"
     // ,"modules/post"
+    ,"plugins/jquerypp.custom"
 ],
        function(app, Backbone){
 
@@ -89,9 +90,9 @@ define([
                },
 
                events: {
+                   "hoverenter": "hoverin"
+                   ,"hoverleave": "hoverout"
                    // "click ": "edit",
-                   "mouseenter": "hoverin",
-                   "mouseleave": "hoverout"
                },
 
                edit: function(){

@@ -1,0 +1,23 @@
+<div class="thumbnail-div">
+  <div style="background-image:url({{model.attributes.cover}});background-size:100% 100%">
+    <img class="thumbnail-shadow" src="images/thumbnail-shadow.png" alt="bottom"/>
+    <span class="title">{{model.attributes.title}}</span>
+    <div class="sections-overlay">
+      <a href="#">
+        <img class="zoom" src="images/zoom.png" alt="title"/>
+        <span>预览</span>
+      </a>
+      <a class="thumbnail-toolbar delete" href="admin/cakes/{{model.attributes._id}}/delete">
+        删除
+      </a>
+      <a class="thumbnail-toolbar edit" href="admin/cakes/{{model.attributes._id}}/edit">
+        编辑
+      </a>
+      <a class="thumbnail-toolbar contain" href="admin/cakes/{{model.attributes._id}}/edit">
+        内容
+      </a>
+    </div>
+  </div>
+</div>
+
+
