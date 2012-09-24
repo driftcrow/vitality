@@ -5,7 +5,8 @@ define([
     "backbone",
     "handlebars",
     // Plugins.
-    "plugins/backbone.layoutmanager"
+    "plugins/backbone.layoutmanager",
+    "plugins/handlebars.helper"
 ],
 
        function($, _, Backbone, Handlebars) {

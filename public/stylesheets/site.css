@@ -68,3 +68,74 @@ em { color: #bea68e; }
 .col_300 { width: 300px; }
 .col_380 { width: 380px; }
 
+/********************************      Login Page      ********************************/
+
+body#login {
+                color: #fff;
+                /* background: #222 url('../images/bg-login.gif'); */
+				}
+				
+#login-wrapper {
+                /* background: url('../images/bg-login-top.png') top left repeat-x; */
+				}
+
+#login-wrapper #login-top {
+				width: 100%;
+				padding: 80px 0 50px 0;
+				text-align: center;
+				}
+				
+#login-wrapper #login-content {
+				text-align: right;
+				width: 300px;
+				margin: 0 auto;
+				}
+				
+#login-wrapper #login-content label {
+				color: #fff;
+				font-weight: normal;
+				font-size: 14px;
+				font-family: Helvetica, Arial, sans-serif;
+				float: left;
+				width: 100px;
+				padding: 0;
+				}
+				
+#login-wrapper #login-content .input_field {
+				width: 240px;
+				float: right;
+				margin: 0 0 20px 0;
+				border: 0;
+				background: #fff;
+				}
+
+#login-wrapper #login-content .submit_button { 
+  color: #FFFFFF; 
+  font-size: 14px;
+  margin: 50px 20px 0px 0px;
+  padding: 5px 15px; 
+  background: #121e25;
+  border: 1px solid #000; 
+}
+
+				
+#login-wrapper #login-content p {
+				padding: 0;
+				}
+				
+#login-wrapper #login-content p#remember-password {
+				float: right;
+				}
+				
+#login-wrapper #login-content p#remember-password input {
+				float: none;
+				width: auto;
+				border: 0;
+				background: none;
+				margin: 0 10px 0 0;
+				}
+				
+#login-wrapper #login-content p .button {
+				width: auto;
+				margin-top: 20px;
+				}

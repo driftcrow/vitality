@@ -35,7 +35,8 @@ require.config({
         },
         // Backbone.LayoutManager depends on Backbone.
         "plugins/backbone.layoutmanager": ["backbone"],
-        "plugins/jquerypp.custom": ["jquery"]
+        "plugins/jquerypp.custom": ["jquery"],
+        "plugins/handlebars.helper": ["handlebars"]
     }
 
 });
