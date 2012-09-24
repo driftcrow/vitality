@@ -1,5 +1,12 @@
 extends layout
 
+block head
+    link(rel='stylesheet', href='stylesheets/reset.css')
+    link(rel='stylesheet', href='stylesheets/style.css')
+    link(rel='stylesheet', href='stylesheets/invalid.css')
+    link(rel='stylesheet', href='stylesheets/vitality.css')
+
+
 block content
       #sidebar
         #sidebar-wrapper
@@ -46,15 +53,15 @@ block content
                 li
                   a(href='admin/cakes') 管理
             li
-              a.nav-top-item.current(href='#')
+              a.nav-top-item.current(href='admin/topics')
                 //
                    Add the class "current" to current menu item
                 | 页面
               ul
                 li
-                  a(href='admin/posts/add') 创建
+                  a(href='admin/topics/add') 创建
                 li
-                  a.current(href='admin/posts') 管理
+                  a.current(href='admin/topics') 管理
             li
               a.nav-top-item(href='#')  资源
               ul
@@ -96,7 +103,7 @@ block content
               | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue.
               small
                 a.remove-link(href='#', title='Remove message') Remove
-            form(action='#', method='post')
+            form(action='#', method='topic')
               h4 New Message
               fieldset
                 textarea.textarea(name='textfield', cols='79', rows='5')

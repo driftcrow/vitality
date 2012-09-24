@@ -15,5 +15,6 @@ mongoose.connect(config.db, function (err) {
 
 exports.Showcase = require('./showcase');
 exports.Cake  = require('./cake');
+exports.Topic  = require('./topic');
 
 // exports.Topic = mongoose.model('topic');

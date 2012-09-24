@@ -1,0 +1,29 @@
+<form >
+  <fieldset>
+    <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
+    <p>
+      <label>名称</label>
+      <input class="text-input small-input" type="text" id="title"  name="title" value="{{model.attributes.title}}" ></input>
+      <span class="input-notification success png_bg">Successful message</span>
+      <!-- Classes for input-notification: success, error, information, attention -->
+      <br />
+      <small>输入创建展示项目的名称</small> </p>
+    <p>
+      <label>图片</label>
+      <input class="text-input large-input" type="text"
+             id="large-input" name="images" value="{{model.attributes.imgages}}" ></input>
+      <a class="button" href="admin/cakes" value="浏览" />
+    </p>
+    <p>
+      <label>内容</label>
+      <textarea class="text-input textarea wysiwyg" id="textarea"
+      name="content" cols="79" rows="15" value="{{model.attributes.content}}"></textarea>
+    </p>
+    <p>
+      <input class="button save" type="submit" value="提交" />
+    </p>
+  </fieldset>
+  <div class="clear"></div>
+  <!-- End .clear -->
+
+</form>

@@ -6,11 +6,12 @@ define([
     ,"modules/site"
     ,"modules/showcase"
     ,"modules/cake"
+    ,"modules/topic"
     // "modules/menu"
 
 ],
 
-       function(app,Site, Showcase, Cake) {
+       function(app,Site, Showcase, Cake, Topic) {
 
            // Defining the application router, you can attach sub routers here.
            var Router = Backbone.Router.extend({
@@ -23,7 +24,11 @@ define([
                    "admin/cakes": 'listcake',
                    "admin/cakes/add": 'addcake',
                    "admin/cakes/:id/edit": 'editcake',
-                   "admin/cakes/:id/delete": 'deletecake'
+                   "admin/cakes/:id/delete": 'deletecake',
+                   "admin/topics": 'listtopic',
+                   "admin/topics/add": 'addtopic',
+                   "admin/topics/:id/edit": 'edittopic',
+                   "admin/topics/:id/delete": 'deletetopic'
                    ,"login": 'login'
                    ,"logout": 'logout'
                    ,"showcases": 'showcases'
@@ -124,6 +129,39 @@ define([
 
 
                },
+               // topic
+               addtopic: function (){
+                   this.views.edittopics.model = new Topic.Model();
+                   app.layout.setView(".content-box-content", this.views.edittopics);
+                   this.views.edittopics.render();
+
+               },
+               edittopic: function (){
+                   // this.reset();
+                   this.views.edittopics.model = app.model;
+                   app.layout.setView(".content-box-content", this.views.edittopics);
+                   this.views.edittopics.render();
+               },
+
+               deletetopic: function (){
+                   if (confirm("确认删除！")){
+                       app.model.url = "/api/topics/"+app.model.get("_id");
+                       app.model.destroy({
+                           success: function(model,response){
+                               app.router.navigate("admin/topics",true);
+                           }
+                       });
+                   }
+               },
+
+               listtopic: function(e){
+                   app.layout.setView(".content-box-content", this.views.topics);
+                   // this.reset();
+                   this.topics.fetch();
+                   this.views.topics.render();
+
+
+               },
 
                reset: function(){
                    if(this.showcases.length){
@@ -159,6 +197,19 @@ define([
                    // });
 
                    this.views.editcakes = new Cake.Views.Edit({
+
+                   });
+
+                   // topic
+                   this.topics = new Topic.Collection();
+                   this.views.topics = new Topic.Views.List({
+                       collection: this.topics
+                   });
+                   // this.views.topicspv = new Topic.Views.ListPv({
+                   //     collection: this.topics
+                   // });
+
+                   this.views.edittopics = new Topic.Views.Edit({
 
                    });
 
