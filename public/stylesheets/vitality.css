@@ -81,3 +81,7 @@
 
 
 /* site template  related */
+.redactor_toolbar li {
+	background: none !important;
+	padding: 3px 1px !important;
+}

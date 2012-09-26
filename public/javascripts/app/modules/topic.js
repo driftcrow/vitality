@@ -1,11 +1,12 @@
 define([
+    "jquery",
     "app",
     "backbone",
     "redactor"
     ,"plugins/jquerypp.custom"
     ,"plugins/redactor.zh_cn"
 ],
-       function(app, Backbone){
+       function($,app, Backbone){
 
            var Topic = app.module ();
 
@@ -51,9 +52,20 @@ define([
                serialize: function(){
                    return {model: this.model };
                },
+               hoverin:function(){
+                   app.model = this.model;
+
+               },
+
+               hoverout:function(){
+                   app.model = null;
+
+               },
 
                events: {
                    // "click ": "edit",
+                   "hoverenter": "hoverin"
+                   ,"hoverleave": "hoverout"
 
                },
 
@@ -109,14 +121,17 @@ define([
                },
 
                cleanup: function() {
-                   this.model.off(null, null, this);
+                   // this.model.off(null, null, this);
                },
 
-               beforeRender: function(){
+               afterRender: function(){
+                   $('.wysiwyg').redactor({
+                       lang: 'zh_cn',
+                       buttons: ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|', 'unorderedlist', 'orderedlist', 'outdent', 'indent', '|', 'image', 'table', 'link', '|', 'fontcolor', 'backcolor', '|', 'alignleft', 'aligncenter', 'alignright', 'justify', '|', 'horizontalrule']
+                   });
                },
 
                initialize:function(){
-
                }
            });
 
