@@ -4,7 +4,7 @@
   <td><a href="#" title="title">{{trimS model.attributes.title 0 30 }}</a></td>
   <td>{{trimS model.attributes.content 0 60}}</td>
   <td>{{model.attributes.author_id}}</td>
-  <td>{{model.attributes.create_at}}</td> <!-- FIX: date become string type -->
+  <td>{{trimS model.attributes.create_at 0 10 1}}</td> <!-- FIX: date become string type -->
   <td>
     <!-- Icons -->
     <a href="#" title="Edit"><img src="images/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete"><img src="images/icons/cross.png" alt="Delete" /></a> <a href="#" title="Edit Meta"><img src="images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
