@@ -141,6 +141,7 @@ define([
                    this.views.edittopics.model = app.model;
                    app.layout.setView(".content-box-content", this.views.edittopics);
                    this.views.edittopics.render();
+                   $('.wysiwyg').redactor();
                },
 
                deletetopic: function (){

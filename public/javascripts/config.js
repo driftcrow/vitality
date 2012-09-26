@@ -20,7 +20,8 @@ require.config({
         jquery: "libs/jquery-1.8.2.min",
         lodash: "libs/lodash",
         backbone: "libs/backbone",
-        handlebars: "libs/handlebars-1.0.0.beta.6"
+        handlebars: "libs/handlebars-1.0.0.beta.6",
+        redactor: "libs/redactor.min"
     },
 
     shim: {
@@ -36,7 +37,8 @@ require.config({
         // Backbone.LayoutManager depends on Backbone.
         "plugins/backbone.layoutmanager": ["backbone"],
         "plugins/jquerypp.custom": ["jquery"],
-        "plugins/handlebars.helper": ["handlebars"]
+        "plugins/handlebars.helper": ["handlebars"],
+        "plugins/redactor.zh_cn": ["redactor"]
     }
 
 });

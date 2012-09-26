@@ -32,6 +32,7 @@ module.exports = function (app){
     cake(app);
     topic(app);
 
+
    // static
     app.get ('/about', static.about);
     app.get ('/faq', static.faq);

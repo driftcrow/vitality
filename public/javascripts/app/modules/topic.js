@@ -1,7 +1,9 @@
 define([
     "app",
-    "backbone"
+    "backbone",
+    "redactor"
     ,"plugins/jquerypp.custom"
+    ,"plugins/redactor.zh_cn"
 ],
        function(app, Backbone){
 
@@ -111,7 +113,6 @@ define([
                },
 
                beforeRender: function(){
-
                },
 
                initialize:function(){
