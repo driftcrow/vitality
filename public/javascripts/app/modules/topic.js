@@ -106,7 +106,7 @@ define([
                    this.model.save({
                        title: this.$('[name=title]').val(),
                        content: this.$('[name=content]').val(),
-                       update_at: date.now()
+                       update_at: Date.now()
                    }, {
                        success:function(model, resp){
                            console.log('good');
