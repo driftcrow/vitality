@@ -23,7 +23,14 @@ Handlebars.registerHelper('trimS', function(passedString, start, length , nprefi
     return new Handlebars.SafeString(theString);
 });
 
-
+Handlebars.registerHelper("getimgsrc", function(htmlstr) {
+    var reg=/<img.+?src=('|")?([^'"]+)('|")?(?:\s+|>)/gim;
+    var arr = [];
+    while(tem=reg.exec(htmlstr)){
+        arr.push(tem[2]);
+    }
+    return arr;
+});
 Handlebars.registerHelper("debug", function(optionalValue) {
     console.log("\nCurrent Context");
     console.log("====================");

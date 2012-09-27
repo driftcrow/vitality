@@ -20,7 +20,6 @@ module.exports = function(app){
         topic = new Models.Topic({
             title: req.body.title,
             content: req.body.content,
-            images: req.body.images
         });
         topic.save(function( err){
             if(!err){

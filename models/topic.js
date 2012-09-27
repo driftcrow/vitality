@@ -5,7 +5,6 @@ var ObjectId = Schema.ObjectId;
 var TopicSchema = new Schema({
     title: { type: String },
     content: { type: String },
-    images: { type: String },
     author_id: { type: String },
     top: { type: Boolean, default: false },
     reply_count: { type: Number, default: 0 },

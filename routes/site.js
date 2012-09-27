@@ -24,13 +24,16 @@ module.exports = function(app){
     });
 
     app.post('/upload/image', function(req, res, next){
-        var file = req.files && req.files.userfile;
+        // var file = req.files && req.files.userfile;
+        var file = req.files.file ;
+        console.log(file);
         if (!file) {
             res.send({ status: 'failed', message: 'no file' });
             return;
         }
-        var uid = req.session.username;
+        var uid = req.cookies.username;
         var userDir = path.join(config.upload_dir, uid);
+        console.log(userDir);
         ndir.mkdir(userDir, function (err) {
             if (err) {
                 return next(err);
@@ -40,12 +43,15 @@ module.exports = function(app){
             if (savepath.indexOf(path.resolve(userDir)) !== 0) {
                 return res.send({status: 'forbidden'});
             }
+
+            console.log(file.path);
+            console.log(savepath);
             fs.rename(file.path, savepath, function (err) {
                 if (err) {
                     return next(err);
                 }
                 var url = '/upload/' + uid + '/' + encodeURIComponent(filename);
-                res.send({ status: 'success', url: url });
+                res.send({ status: 'success', filelink: url });
             });
         });
     });

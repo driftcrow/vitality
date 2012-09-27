@@ -21,8 +21,8 @@ define([
                url:"/api/topics",
 
                defaults:{
-                   "author_id": $.cookie('username'),
-                   "images": ""
+                   "author_id": $.cookie('username')
+
                },
 
                initialize:function(){
@@ -105,8 +105,8 @@ define([
                    console.log('save url:'+this.model.url);
                    this.model.save({
                        title: this.$('[name=title]').val(),
-                       images: this.$('[name=images]').val(),
-                       content: this.$('[name=content]').val()
+                       content: this.$('[name=content]').val(),
+                       update_at: date.now()
                    }, {
                        success:function(model, resp){
                            console.log('good');
@@ -127,7 +127,8 @@ define([
                afterRender: function(){
                    $('.wysiwyg').redactor({
                        lang: 'zh_cn',
-                       buttons: ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|', 'unorderedlist', 'orderedlist', 'outdent', 'indent', '|', 'image', 'table', 'link', '|', 'fontcolor', 'backcolor', '|', 'alignleft', 'aligncenter', 'alignright', 'justify', '|', 'horizontalrule']
+                       buttons: ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|', 'unorderedlist', 'orderedlist', 'outdent', 'indent', '|', 'image', 'table', 'link', '|', 'fontcolor', 'backcolor', '|', 'alignleft', 'aligncenter', 'alignright', 'justify', '|', 'horizontalrule'],
+                       imageUpload: '/upload/image'
                    });
                },
 
