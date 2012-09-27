@@ -51,7 +51,7 @@ module.exports = function(app){
                     return next(err);
                 }
                 var url = '/upload/' + uid + '/' + encodeURIComponent(filename);
-                res.send({ status: 'success', filelink: url });
+                res.send({ status: 'success', "filelink": url });
             });
         });
     });
