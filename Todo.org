@@ -6,6 +6,9 @@
 ** DONE complete CRUD operate 
 
 
+** flip layout
+** category relation with cake and topic
+** image upload should complete callback and choose setting
 
 * Problem 
 ** DONE template default empty value displayed with "/"(change to handbar?)

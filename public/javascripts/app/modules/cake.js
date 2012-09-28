@@ -1,8 +1,10 @@
 define([
     "app",
-    "backbone"
+    "backbone",
+    "redactor",
     // ,"modules/post"
     ,"plugins/jquerypp.custom"
+    ,"plugins/redactor.zh_cn"
 ],
        function(app, Backbone){
 
@@ -118,9 +120,14 @@ define([
 
                events:{
                    "click .save": "save",
-                   "submit form": "save"
+                   "submit form": "save",
+                   "click .upload-image": "uploadimage"
                },
 
+               uploadimage: function(e){
+                   // e.preventDefault();
+                   $('.redactor_btn_image').click();
+               },
                serialize: function(){
                    return {model: this.model };
                },
@@ -152,7 +159,20 @@ define([
                },
 
                beforeRender: function(){
-                   console.log("start render form");
+               },
+
+               afterRender: function(){
+                   $('.upload-image').redactor({
+                       lang: 'zh_cn',
+                       airButtons: ['image'],
+                       air:true,
+                       imageUpload: '/upload/image',
+                       imageUploadCallback: function(obj,json){
+                           console.log('obj:'+obj);
+                           console.log('json:'+json);
+                       }
+
+                   });
                },
 
                initialize:function(){
