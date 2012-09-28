@@ -38,7 +38,8 @@ require.config({
         "plugins/backbone.layoutmanager": ["backbone"],
         "plugins/jquerypp.custom": ["jquery"],
         "plugins/handlebars.helper": ["handlebars"],
-        "plugins/redactor.zh_cn": ["redactor"]
+        "plugins/redactor.zh_cn": ["redactor"],
+        "plugins/chosen.jquery.min": ["jquery"]
     }
 
 });

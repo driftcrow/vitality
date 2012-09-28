@@ -1,9 +1,11 @@
 define([
     "app",
-    "backbone"
+    "backbone",
+    "./cake"
     ,"plugins/jquerypp.custom"
+    ,"plugins/chosen.jquery.min"
 ],
-       function(app, Backbone){
+       function(app, Backbone, Cake){
 
            var Showcase = app.module ();
 
@@ -214,7 +216,11 @@ define([
                },
 
                beforeRender: function(){
-                   console.log("start render form");
+                   this.setView("#select-cake", new Cake.Views.SelectList);
+               },
+
+               afterRender: function(){
+                   $('.chzn-select').chosen();
                },
 
                initialize:function(){

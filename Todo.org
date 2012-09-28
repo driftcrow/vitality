@@ -5,16 +5,20 @@
    main.js register click event maybe cause.
 ** DONE complete CRUD operate 
 
-
 ** flip layout
 ** category relation with cake and topic
 ** image upload should complete callback and choose setting
+
+** add forever and auto refresh bundle
+
 
 * Problem 
 ** DONE template default empty value displayed with "/"(change to handbar?)
 template compile can't recognize <input /> but <input></input>
 
 html language write error
+
+
 
 
 

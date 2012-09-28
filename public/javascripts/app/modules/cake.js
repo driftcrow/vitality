@@ -4,6 +4,7 @@ define([
     "redactor",
     // ,"modules/post"
     ,"plugins/jquerypp.custom"
+
     ,"plugins/redactor.zh_cn"
 ],
        function(app, Backbone){
@@ -125,7 +126,6 @@ define([
                },
 
                uploadimage: function(e){
-                   // e.preventDefault();
                    $('.redactor_btn_image').click();
                },
                serialize: function(){
@@ -173,6 +173,7 @@ define([
                        }
 
                    });
+
                },
 
                initialize:function(){
@@ -180,6 +181,52 @@ define([
                }
            });
 
+
+           Cake.Views.SelectItem = Backbone.View.extend({
+               template: "cake/selectitem",
+               tagName: "option",
+
+               initialize: function(){
+                   console.log(this.model);
+                   // this.model.on("change",this.render,this);
+
+               },
+
+
+               serialize: function(){
+                   return {model: this.model };
+               },
+
+
+           });
+
+           Cake.Views.SelectList = Backbone.View.extend({
+               template: "cake/selectlist",
+               el:$("#select-cake"),
+               serialize: function(){
+                   return {collection: this.collection};
+               },
+
+               beforeRender: function(){
+                   // console.log('before insert:'+this.el.innerHTML);
+                   this.collection.each(function(cake){
+                       cake.id = cake.get("_id");
+
+                       this.insertView("#select-item", new Cake.Views.SelectItem({
+                           model: cake
+                       }));
+                   },this);
+                   // console.log('after insert:'+this.model());
+
+               },
+
+               initialize: function(){
+                   this.collection = new Cake.Collection();
+
+                   this.collection.fetch();
+               }
+
+           });
 
            Cake.Views.List = Backbone.View.extend({
                template: "cake/list",

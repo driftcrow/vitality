@@ -1,87 +1,82 @@
+
+/* thumbnail effect */
 .thumbnail-wrap {
-    float: left;
-    height: 226px;
-    margin: 20px;
-    width: 201px;
+  float: left;
+  height: 226px;
+  margin: 20px;
+  width: 201px;
 }
 .thumbnail-div {
-    background-color: #313131;
-    float: left;
-    height: 221px;
-    padding: 5px 0 0 5px;
-    width: 196px;
+  background-color: #313131;
+  float: left;
+  height: 221px;
+  padding: 5px 0 0 5px;
+  width: 196px;
 }
-.title {
-    background-image: url(../images/readmore-bg.png);
-    color: #FFFFFF;
-    /* display: block; */
-    /* float: left; */
-    font-size: 14px;
-    /* margin-top:200px; */
+.thumbnail-div .title {
+  background-image: url(../images/readmore-bg.png);
+  color: #FFFFFF;
+  /* display: block; */
+  /* float: left; */
+  font-size: 14px;
+/* margin-top:200px; */
 
 }
- .thumbnail-div .sections-overlay {
-     -moz-background-clip: border;
-     -moz-background-inline-policy: continuous;
-     -moz-background-origin: padding;
-     background: transparent url(../images/thumbnail-overlay.png) no-repeat scroll -40px -300px;
+.thumbnail-div .sections-overlay {
+  -moz-background-clip: border;
+  -moz-background-inline-policy: continuous;
+  -moz-background-origin: padding;
+  background: transparent url(../images/thumbnail-overlay.png) no-repeat scroll -40px -300px;
 
-     height:217px;
-     float: left;
-     margin-top: -46px;         /*Fixit:why first element margin-top lower than follower*/
- }
- .thumbnail-div .sections-overlay .zoom { margin: 60px 0 0 61px }
- .thumbnail-div div {
-     height: 216px;
-     width: 191px;
- }
+  height:217px;
+  float: left;
+  margin-top: -46px;         /*Fixit:why first element margin-top lower than follower*/
+}
+.thumbnail-div .sections-overlay .zoom { margin: 60px 0 0 61px }
+.thumbnail-div div {
+  height: 216px;
+  width: 191px;
+}
 .thumbnail-shadow {
-    float: left;
-    height: 33px;
-    width: 100%;
+  float: left;
+  height: 33px;
+  width: 100%;
 }
 .sections-overlay {
-    background-image: url(../images/readmore-bg.png);
-    opacity: 0;
-    visibility: hidden;
-    background-position: 0px -167px;
+  background-image: url(../images/readmore-bg.png);
+  opacity: 0;
+  visibility: hidden;
+  background-position: 0px -167px;
 }
 
 .sections-overlay .zoom {
-     border: medium none;
-     margin: 165px 0 0 312px;
- }
+  border: medium none;
+  margin: 165px 0 0 312px;
+}
 .thumbnail-toolbar {
-    background-image: url(../images/readmore-bg.png);
-    color: #FFFFFF;
-    /* display: block; */
-    float: right;
-    font-size: 12px;
+  background-image: url(../images/readmore-bg.png);
+  color: #FFFFFF;
+  /* display: block; */
+  float: right;
+  font-size: 12px;
 
 }
 
-.delete {
-    margin-top: 40px;
-    margin-right: 0px;
-    /* margin: 70px 0 0 0px; */
+.thumbnail-toolbar.delete {
+  margin-top: 40px;
+  margin-right: 0px;
+/* margin: 70px 0 0 0px; */
 
 }
 
-.edit {
-    margin-top: 80px;
-    margin-right: -22px;
+.thumbnail-toolbar.edit {
+  margin-top: 80px;
+  margin-right: -22px;
 
-    /* margin: 47px 0 0 40px; */
+/* margin: 47px 0 0 40px; */
 }
-.contain {
-    margin-top: 120px;
-    margin-right: -25px;
-   /* margin: 100px 0 0 0px; */
-}
-
-
-/* site template  related */
-.redactor_toolbar li {
-	background: none !important;
-	padding: 3px 1px !important;
+.thumbnail-toolbar.contain {
+  margin-top: 120px;
+  margin-right: -25px;
+/* margin: 100px 0 0 0px; */
 }
