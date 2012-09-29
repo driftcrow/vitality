@@ -181,48 +181,20 @@ define([
                }
            });
 
-
-           Cake.Views.SelectItem = Backbone.View.extend({
-               template: "cake/selectitem",
-               tagName: "option",
-
-               initialize: function(){
-                   console.log(this.model);
-                   // this.model.on("change",this.render,this);
-
-               },
-
-
-               serialize: function(){
-                   return {model: this.model };
-               },
-
-
-           });
-
-           Cake.Views.SelectList = Backbone.View.extend({
+          Cake.Views.SelectList = Backbone.View.extend({
                template: "cake/selectlist",
-               el:$("#select-cake"),
+
                serialize: function(){
                    return {collection: this.collection};
                },
 
                beforeRender: function(){
-                   // console.log('before insert:'+this.el.innerHTML);
-                   this.collection.each(function(cake){
-                       cake.id = cake.get("_id");
-
-                       this.insertView("#select-item", new Cake.Views.SelectItem({
-                           model: cake
-                       }));
-                   },this);
-                   // console.log('after insert:'+this.model());
-
+                   console.log($(this.el));
                },
 
                initialize: function(){
                    this.collection = new Cake.Collection();
-
+                   this.collection.on("reset", this.render ,this);
                    this.collection.fetch();
                }
 
@@ -252,10 +224,7 @@ define([
                initialize: function(){
                    this.collection.on("reset", this.render ,this);
 
-                   // this.collection.on("fetch",function(){
-                   //     this.$("ul").parent().html("<img src='images/spinner.gif'");
-                   // },this);
-               }
+              }
 
 
            });

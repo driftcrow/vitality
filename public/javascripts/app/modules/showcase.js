@@ -216,7 +216,6 @@ define([
                },
 
                beforeRender: function(){
-                   this.setView("#select-cake", new Cake.Views.SelectList);
                },
 
                afterRender: function(){
@@ -224,6 +223,12 @@ define([
                },
 
                initialize:function(){
+                   this.cakes = new Cake.Collection();
+                   this.cakes.fetch();
+                   console.log(this.cakes);
+                   this.setView("#select-cake", new Cake.Views.SelectList({
+                       // collection: this.cakes
+                   }));
 
                }
            });

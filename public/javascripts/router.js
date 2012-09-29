@@ -66,6 +66,8 @@ define([
                addshowcase: function (){
                    this.views.editshowcases.model = new Showcase.Model();
                    app.layout.setView(".content-box-content", this.views.editshowcases);
+
+
                    this.views.editshowcases.render();
 
                },
@@ -73,6 +75,7 @@ define([
                    // this.reset();
                    this.views.editshowcases.model = app.model;
                    app.layout.setView(".content-box-content", this.views.editshowcases);
+                   // app.layout.setView("#select-cake", this.views.selectcake);
                    this.views.editshowcases.render();
                },
 
@@ -176,6 +179,7 @@ define([
                    this.views.login = new Site.Views.Login();
 
                    this.showcases = new Showcase.Collection();
+
                    this.views.showcases = new Showcase.Views.List({
                        collection: this.showcases
                    });
@@ -200,6 +204,9 @@ define([
 
                    });
 
+                   this.views.selectcake = new Cake.Views.SelectList({
+                       collection: this.cakes
+                   });
                    // topic
                    this.topics = new Topic.Collection();
                    this.views.topics = new Topic.Views.List({
