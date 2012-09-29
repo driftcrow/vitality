@@ -655,6 +655,9 @@ body#login {
   padding: 3px 1px !important;
 }
 
+.upload_box .redactor_box {
+  border: none;
+}
 /* chosen */
 .chzn-container ul li {
   background: none !important;

@@ -168,8 +168,7 @@ define([
                        air:true,
                        imageUpload: '/upload/image',
                        imageUploadCallback: function(obj,json){
-                           console.log('obj:'+obj);
-                           console.log('json:'+json);
+                           $('.upload-image').val(json.filelink);
                        }
 
                    });
