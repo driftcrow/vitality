@@ -31,17 +31,25 @@ Handlebars.registerHelper("getimgsrc", function(htmlstr) {
     }
     return arr;
 });
+
 Handlebars.registerHelper("debug", function(optionalValue) {
-    console.log("\nCurrent Context");
+    console.log("\nContext(this):");
     console.log("====================");
     console.log(this);
 
+    console.log("--------------------");
+
     if (arguments.length > 1) {
-        console.log("Value");
+        console.log("Value:");
         console.log("====================");
         console.log(optionalValue);
     }
 });
+
+Handlebars.registerHelper('checked', function(pValue){
+    return ( pValue ? "checked" : '');
+});
+
 
 // Handlebars.registerHelper('dateF', function(pDate){
 //     return new Handlebars.SafeString(pDate.getFullYear()+'-'+pDate.getMonth()+'-'+pDate.getDay());

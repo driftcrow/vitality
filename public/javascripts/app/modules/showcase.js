@@ -3,7 +3,7 @@ define([
     "backbone",
     "./cake"
     ,"plugins/jquerypp.custom"
-    ,"plugins/chosen.jquery.min"
+
 ],
        function(app, Backbone, Cake){
 
@@ -194,13 +194,16 @@ define([
 
                    if (!this.model.isNew()) this.model.url = "/api/showcases/"+this.model.get("_id");
                    console.log('save url:'+this.model.url);
+
                    this.model.save({
                        title: this.$('[name=title]').val(),
                        description: this.$('[name=description]').val(),
-                       cover: this.$('[name=cover]').val()
+                       cover: this.$('[name=cover]').val(),
+                       cakes: this.$('#chose-cakes').val(),
+                       publiced: this.$('[name=publiced]').is(':checked')
                    }, {
                        success:function(model, resp){
-                           console.log('good');
+                           console.log('resp');
                            app.router.navigate("admin/showcases",{trigger:true});
                        },
                        error: function(err){
@@ -216,20 +219,14 @@ define([
                },
 
                beforeRender: function(){
+                   this.setView("#select-cake", this.views.selectcake);
                },
-
                afterRender: function(){
-                   $('.chzn-select').chosen();
+                   $("#chose-cakes").val(this.model.get("cakes")).trigger("liszt:updated");
                },
 
                initialize:function(){
-                   this.cakes = new Cake.Collection();
-                   this.cakes.fetch();
-                   console.log(this.cakes);
-                   this.setView("#select-cake", new Cake.Views.SelectList({
-                       // collection: this.cakes
-                   }));
-
+                   this.views.selectcake = new Cake.Views.SelectList();
                }
            });
 

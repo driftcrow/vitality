@@ -8,8 +8,10 @@ var ShowcaseSchema = new Schema({
     description: { type: String },
     cover: { type: String },
     author_id: { type: String },
+    cakes: [ObjectId],
     share_with: [ObjectId],
     cooperator: [ObjectId],
+    publiced:{type: Boolean, default: false},
     cake_count: { type: Number, default: 0 },
     collect_count: { type: Number, default: 0 },
     create_at: { type: Date, default: Date.now }

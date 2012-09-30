@@ -1,5 +1,8 @@
-<select data-placeholder="选择展示厅内含栏目" class="chzn-select" style="width:400px;" multiple tabindex="3">
-  {{#each cakes}}
+<label>栏目</label>
+<select data-placeholder="选择栏目..." id="chose-cakes" class="chzn-select"
+        style="width:400px;" multiple tabindex="3">
+
+  {{#each collection.models}}
   <Option value="{{this.attributes._id}}">{{this.attributes.title}}</option>
   {{/each}}
 </select>

@@ -20,8 +20,9 @@ module.exports = function(app){
         showcase = new Models.Showcase({
             title: req.body.title,
             description: req.body.description,
-            cover: req.body.cover
-
+            cover: req.body.cover,
+            cakes: req.body.cakes,
+            publiced: req.body.publiced
         });
         showcase.save(function( err){
             if(!err){
@@ -53,6 +54,8 @@ module.exports = function(app){
             showcase.title = req.body.title;
             showcase.description = req.body.description;
             showcase.cover = req.body.cover;
+            showcase.cakes= req.body.cakes;
+            showcase.publiced= req.body.publiced;
 
             return showcase.save(function(err){
                 if (!err){

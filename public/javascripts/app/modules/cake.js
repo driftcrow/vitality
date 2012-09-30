@@ -4,7 +4,7 @@ define([
     "redactor",
     // ,"modules/post"
     ,"plugins/jquerypp.custom"
-
+    ,"plugins/chosen.jquery.min"
     ,"plugins/redactor.zh_cn"
 ],
        function(app, Backbone){
@@ -188,8 +188,12 @@ define([
                },
 
                beforeRender: function(){
-                   console.log($(this.el));
+                   console.log('before render');
                },
+              afterRender: function(){
+                  console.log('after render');
+                  $('.chzn-select').chosen();
+              },
 
                initialize: function(){
                    this.collection = new Cake.Collection();
