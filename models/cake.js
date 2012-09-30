@@ -9,6 +9,7 @@ var CakeSchema = new Schema({
     cover: { type: String },
     author_id: { type: String },
     showcases_id: [ObjectId],
+    publiced:{type: Boolean, default: false},
     topic_count: { type: Number, default: 0 },
     collect_count: { type: Number, default: 0 },
     create_at: { type: Date, default: Date.now }

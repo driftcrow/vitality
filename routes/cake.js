@@ -20,7 +20,8 @@ module.exports = function(app){
         cake = new Models.Cake({
             title: req.body.title,
             description: req.body.description,
-            cover: req.body.cover
+            cover: req.body.cover,
+            publiced: req.body.publiced
         });
         cake.save(function( err){
             if(!err){
@@ -52,6 +53,7 @@ module.exports = function(app){
             cake.title = req.body.title;
             cake.description = req.body.description;
             cake.cover = req.body.cover;
+            cake.publiced= req.body.publiced;
 
             return cake.save(function(err){
                 if (!err){

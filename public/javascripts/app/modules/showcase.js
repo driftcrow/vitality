@@ -3,7 +3,8 @@ define([
     "backbone",
     "./cake"
     ,"plugins/jquerypp.custom"
-
+    ,"plugins/chosen.jquery.min"
+    ,"plugins/redactor.zh_cn"
 ],
        function(app, Backbone, Cake){
 
@@ -49,7 +50,7 @@ define([
                    app.model = this.model;
 
                    this.$el.animate({
-                      "margin-top": "-=10px"
+                       "margin-top": "-=10px"
                    },'fast');
                    // this.$('img.thumbnail-shadow').css("visibility", "hidden");
 
@@ -67,7 +68,7 @@ define([
                hoverout:function(){
                    app.model = null;
                    this.$el.animate({
-                      "margin-top": "+=10px"
+                       "margin-top": "+=10px"
                    },'fast');
 
                    this.$('div.sections-overlay').animate({
@@ -116,7 +117,7 @@ define([
 
            });
            // just for preview
-         Showcase.Views.ItemPv = Backbone.View.extend({
+           Showcase.Views.ItemPv = Backbone.View.extend({
                template: "showcase/item",
                className:"thumbnail-wrap",
 
@@ -124,7 +125,7 @@ define([
                    app.model = this.model;
 
                    this.$el.animate({
-                      "margin-top": "-=10px"
+                       "margin-top": "-=10px"
                    },'fast');
                    // this.$('img.thumbnail-shadow').css("visibility", "hidden");
 
@@ -142,7 +143,7 @@ define([
                hoverout:function(){
                    app.model = null;
                    this.$el.animate({
-                      "margin-top": "+=10px"
+                       "margin-top": "+=10px"
                    },'fast');
 
                    this.$('div.sections-overlay').animate({
@@ -169,10 +170,10 @@ define([
 
                },
 
-             preview: function(){
-                 app.model = this.model;
-                 app.router.navigate("/showcases/"+this.model.get("_id"),true);
-             },
+               preview: function(){
+                   app.model = this.model;
+                   app.router.navigate("/showcases/"+this.model.get("_id"),true);
+               },
 
 
            });
@@ -182,11 +183,16 @@ define([
 
                events:{
                    "click .save": "save",
-                   "submit form": "save"
+                   "submit form": "save",
+                   "click #cover-image": "coverimage"
                },
 
                serialize: function(){
                    return {model: this.model };
+               },
+
+               coverimage: function(){
+                   $('.redactor_btn_image').click();
                },
 
                save: function(e){
@@ -223,6 +229,19 @@ define([
                },
                afterRender: function(){
                    $("#chose-cakes").val(this.model.get("cakes")).trigger("liszt:updated");
+
+                   // cover image input
+                   $('#cover-image').redactor({
+                       lang: 'zh_cn',
+                       airButtons: ['image'],
+                       air:true,
+                       imageUpload: '/upload/image',
+                       imageUploadCallback: function(obj,json){
+                           $('#cover-image').val(json.filelink);
+                       }
+
+                   });
+
                },
 
                initialize:function(){

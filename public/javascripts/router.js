@@ -67,7 +67,6 @@ define([
                    this.views.editshowcases.model = new Showcase.Model();
                    app.layout.setView(".content-box-content", this.views.editshowcases);
 
-
                    this.views.editshowcases.render();
 
                },

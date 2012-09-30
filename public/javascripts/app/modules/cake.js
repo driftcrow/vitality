@@ -25,7 +25,8 @@ define([
 
                defaults:{
                    "author_id": "",
-                   "cover": "images/cover/default.jpg"
+                   "cover": "images/cover/default.jpg",
+                   "publiced": false
                },
 
                initialize:function(){
@@ -140,7 +141,8 @@ define([
                    this.model.save({
                        title: this.$('[name=title]').val(),
                        description: this.$('[name=description]').val(),
-                       cover: this.$('[name=cover]').val()
+                       cover: this.$('[name=cover]').val(),
+                       publiced: this.$('[name=publiced]').is(':checked')
                    }, {
                        success:function(model, resp){
                            console.log('good');
@@ -155,7 +157,7 @@ define([
                },
 
                cleanup: function() {
-                   this.model.off(null, null, this);
+                   // this.model.off(null, null, this);
                },
 
                beforeRender: function(){

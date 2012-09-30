@@ -13,17 +13,15 @@
       <input class="text-input medium-input datepicker" type="text"
              id="medium-input" name="description" value="{{model.attributes.description}}" ></input>
       <span class="input-notification error png_bg">Error message</span> </p>
-    <p>
+    <p class ="upload_box">
       <label>图片</label>
-      <input class="text-input large-input" type="text"
-             id="large-input" name="cover" value="{{model.attributes.cover}}" ></input>
-      <a class="button" href="admin/showcases" value="浏览" />
+      <input class="text-input medium-input" type="text"
+             id="cover-image" name="cover" value="{{model.attributes.cover}}" ></input>
     </p>
     <p id="select-cake">
       <label>栏目</label>
     </p>
     <p>
-      {{debug model.attributes.publiced}}
       <input type="checkbox" name="publiced" {{checked model.attributes.publiced}} />
       是否公开本展示
     <p>
