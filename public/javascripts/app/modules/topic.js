@@ -2,11 +2,13 @@ define([
     "jquery",
     "app",
     "backbone",
+    "./cake",
     "redactor"
     ,"plugins/jquerypp.custom"
     ,"plugins/redactor.zh_cn"
+    ,"plugins/chosen.jquery.min"
 ],
-       function($,app, Backbone){
+       function($,app, Backbone, Cake){
 
            var Topic = app.module ();
 
@@ -106,6 +108,7 @@ define([
                    this.model.save({
                        title: this.$('[name=title]').val(),
                        content: this.$('[name=content]').val(),
+                       cakes: this.$('#chose-cakes').val(),
                        update_at: Date.now()
                    }, {
                        success:function(model, resp){
@@ -123,8 +126,12 @@ define([
                cleanup: function() {
                    // this.model.off(null, null, this);
                },
-
+               beforeRender: function(){
+                   this.setView("#select-cake", this.views.selectcake);
+               },
                afterRender: function(){
+                   $("#chose-cakes").val(this.model.get("cakes")).trigger("liszt:updated");
+
                    $('.wysiwyg').redactor({
                        lang: 'zh_cn',
                        buttons: ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|', 'unorderedlist', 'orderedlist', 'outdent', 'indent', '|', 'image', 'table', 'link', '|', 'fontcolor', 'backcolor', '|', 'alignleft', 'aligncenter', 'alignright', 'justify', '|', 'horizontalrule'],
@@ -133,6 +140,7 @@ define([
                },
 
                initialize:function(){
+                   this.views.selectcake = new Cake.Views.SelectList();
                }
            });
 

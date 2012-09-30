@@ -1,7 +1,8 @@
 define([
     "app",
     "backbone",
-    "./cake"
+    "./cake",
+    "redactor"
     ,"plugins/jquerypp.custom"
     ,"plugins/chosen.jquery.min"
     ,"plugins/redactor.zh_cn"

@@ -20,6 +20,7 @@ module.exports = function(app){
         topic = new Models.Topic({
             title: req.body.title,
             content: req.body.content,
+            cakes: req.body.cakes
         });
         topic.save(function( err){
             if(!err){
@@ -50,7 +51,7 @@ module.exports = function(app){
         return Models.Topic.findById(req.params.id, function(err, topic){
             topic.title = req.body.title;
             topic.content = req.body.content;
-            topic.images = req.body.images;
+            topic.cakes= req.body.cakes;
 
             return topic.save(function(err){
                 if (!err){
