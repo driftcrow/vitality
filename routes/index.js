@@ -18,6 +18,9 @@ module.exports = function (app){
     app.get ('/showcases', function(req, res){
         res.render('site',{title:config.sitename}) ;
     });
+    app.get ('/showcases/:id', function(req, res){
+        res.render('flipboard',{title:config.sitename}) ;
+    });
     // app.get ('/', site.index);
     // app.get ('/login', site.login);
     // app.post ('/login', site.login);

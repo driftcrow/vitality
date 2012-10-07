@@ -7,11 +7,11 @@ define([
     ,"modules/showcase"
     ,"modules/cake"
     ,"modules/topic"
-    // "modules/menu"
+    ,"modules/flipboard"
 
 ],
 
-       function(app,Site, Showcase, Cake, Topic) {
+       function(app,Site, Showcase, Cake, Topic, Flipboard) {
 
            // Defining the application router, you can attach sub routers here.
            var Router = Backbone.Router.extend({
@@ -32,6 +32,8 @@ define([
                    ,"login": 'login'
                    ,"logout": 'logout'
                    ,"showcases": 'showcases'
+
+                   ,"showcases/:id": "flipshowcase"
                },
 
                views: {},
@@ -165,6 +167,13 @@ define([
 
                },
 
+               // flipboard preview
+               flipshowcase: function(){
+                   app.layout.setView(".main", this.views.flipshowcase);
+                   // this.reset();
+                   this.views.flipshowcase.render();
+               },
+
                reset: function(){
                    if(this.showcases.length){
                        this.showcases.reset();
@@ -217,8 +226,13 @@ define([
 
                    this.views.edittopics = new Topic.Views.Edit({
 
+
                    });
 
+                   // flipboard
+                   this.views.flipshowcase = new Flipboard.Views.Showcase({
+
+                   });
 
                    app.useLayout("main");
                }

@@ -22,7 +22,8 @@ module.exports = function(app){
             description: req.body.description,
             cover: req.body.cover,
             cakes: req.body.cakes,
-            publiced: req.body.publiced
+            publiced: req.body.publiced,
+            author_id: req.body.author_id
         });
         showcase.save(function( err){
             if(!err){

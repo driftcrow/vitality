@@ -20,7 +20,8 @@ module.exports = function(app){
         topic = new Models.Topic({
             title: req.body.title,
             content: req.body.content,
-            cakes: req.body.cakes
+            cakes: req.body.cakes,
+            author_id: req.body.author_id
         });
         topic.save(function( err){
             if(!err){

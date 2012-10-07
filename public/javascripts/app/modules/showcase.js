@@ -24,7 +24,7 @@ define([
                url:"/api/showcases",
 
                defaults:{
-                   "author_id": "",
+                   "author_id":$.cookie('username'),
                    "cover": "images/cover/default.jpg"
                },
 
@@ -173,7 +173,7 @@ define([
 
                preview: function(){
                    app.model = this.model;
-                   app.router.navigate("/showcases/"+this.model.get("_id"),true);
+                   window.location ="/showcases/"+this.model.get("_id");
                },
 
 

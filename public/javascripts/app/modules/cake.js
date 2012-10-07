@@ -24,7 +24,7 @@ define([
                url:"/api/cakes",
 
                defaults:{
-                   "author_id": "",
+                   "author_id": $.cookie('username'),
                    "cover": "images/cover/default.jpg",
                    "publiced": false
                },

@@ -21,7 +21,8 @@ module.exports = function(app){
             title: req.body.title,
             description: req.body.description,
             cover: req.body.cover,
-            publiced: req.body.publiced
+            publiced: req.body.publiced,
+            author_id: req.body.author_id
         });
         cake.save(function( err){
             if(!err){
@@ -39,6 +40,17 @@ module.exports = function(app){
         return Models.Cake.findById( req.params.id, function(err, cake){
             if(!err){
                 return res.send(cake);
+            } else {
+                return console.log(err);
+            }
+        });
+    });
+
+    // get include topics
+    app.get('/api/cakes/:id/topics', function(req, res){
+        return Models.Topic.find({cakes: req.params.id},function( err, topics){
+            if(!err){
+                return res.send(topics);
             } else {
                 return console.log(err);
             }
