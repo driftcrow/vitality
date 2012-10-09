@@ -39,7 +39,14 @@ require.config({
         "plugins/jquerypp.custom": ["jquery"],
         "plugins/handlebars.helper": ["handlebars"],
         "plugins/redactor.zh_cn": ["redactor"],
-        "plugins/chosen.jquery.min": ["jquery"]
-    }
+        "plugins/chosen.jquery.min": ["jquery"],
+        "plugins/jquery.flips": ["jquery"],
+        "plugins/jquery.history": ["jquery"],
+        "plugins/jquery.tmpl.min": ["jquery"],
+        "plugins/jquerypp.touchSwipe": ["jquery"],
+        "plugins/core.string": ["jquery"]
+
+
+        }
 
 });

@@ -168,9 +168,16 @@ define([
                },
 
                // flipboard preview
-               flipshowcase: function(){
+               flipshowcase: function(id){
+                   // app.useLayout("site");
+                   var model = new Showcase.Model({url:"/api/showcases/"+id});
+                   model.fetch();
+                   console.log(model);
+                   this.views.flipshowcase = new Flipboard.Views.Showcase({model: model});
+
                    app.layout.setView(".main", this.views.flipshowcase);
-                   // this.reset();
+                   // app.layout.setView(".main", this.views.flipshowcase);
+
                    this.views.flipshowcase.render();
                },
 
@@ -230,9 +237,9 @@ define([
                    });
 
                    // flipboard
-                   this.views.flipshowcase = new Flipboard.Views.Showcase({
+                   // this.views.flipshowcase = new Flipboard.Views.Showcase({
 
-                   });
+                   // });
 
                    app.useLayout("main");
                }

@@ -93,7 +93,8 @@
 	padding-top: 20px;
 }
 .page.cover .front .content{
-	background: #ddd url(../images/cover.jpg) no-repeat center center;
+	/* background: #ddd url(../images/cover.jpg) no-repeat center center; */
+	background: #ddd  no-repeat center center;
 	background-size: cover;
 }
 .page.cover-back .back .content{
