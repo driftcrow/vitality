@@ -16,12 +16,10 @@ define([
                    if(!attrs.title){
                        return "标题不能为空！";
                    }
-                   if(!attrs.description){
-                       return "can't be empty!";
-                   }
                },
                idAttribute: "_id",
-               url:"/api/showcases",
+               // url:"/api/showcases",
+               urlRoot: "/api/showcases",
 
                defaults:{
                    "author_id":$.cookie('username'),
@@ -124,6 +122,7 @@ define([
 
                hoverin:function(){
                    app.model = this.model;
+
 
                    this.$el.animate({
                        "margin-top": "-=10px"

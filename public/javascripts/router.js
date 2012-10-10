@@ -58,6 +58,7 @@ define([
                },
 
                showcases: function(){
+                   console.log('showcase');
                    app.useLayout("site");
                    app.layout.setView(".main", this.views.showcasespv);
                    this.showcases.fetch();
@@ -169,14 +170,12 @@ define([
 
                // flipboard preview
                flipshowcase: function(id){
-                   // app.useLayout("site");
-                   var model = new Showcase.Model({url:"/api/showcases/"+id});
+                   app.useLayout("site");
+                   var model = new Showcase.Model({_id: id});
+                   console.log(model.url());
                    model.fetch();
-                   console.log(model);
                    this.views.flipshowcase = new Flipboard.Views.Showcase({model: model});
-
                    app.layout.setView(".main", this.views.flipshowcase);
-                   // app.layout.setView(".main", this.views.flipshowcase);
 
                    this.views.flipshowcase.render();
                },
@@ -189,7 +188,7 @@ define([
                },
 
                initialize: function(){
-                   _.bindAll(this, 'showcases');
+                   _.bindAll(this, 'showcases', 'flipshowcase');
 
                    this.views.login = new Site.Views.Login();
 

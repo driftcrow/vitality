@@ -1,6 +1,12 @@
-<div id="flip" class="container">
 
-  <div class="f-page f-cover" (style="background-image: url({{model.attributes.cover}})")>
+<div id="flip" class="container">
+{{debug model}}
+<style type="text/css">
+.page.cover .front .content{
+background-image: url({{model.attributes.cover}});
+}
+</style>
+  <div class="f-page f-cover" >
     <div class="cover-elements">
       <div class="logo">
 	Vitality
