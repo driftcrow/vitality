@@ -26,6 +26,7 @@ define([
 
 
                afterRender:function(){
+                   console.log('flip showcase afterrender');
                    // move node to body for clean structure(limit by layoutmanager)
                    $('#flip').detach().appendTo('body'); // FIXME:need better method
 
@@ -34,31 +35,62 @@ define([
 
                beforeRender: function(){
                    //insert cakepage views,manual paginating
-                   var nCakes = this.model.get('cakes').length;
-                   for(var i=0;i<nCakes/8;i++){
-                       for(var j=0;j<8;j++){
+                   // var nCakes = this.model.get('cakes').length();
+                   console.log('flip showcase beforerender');
+                   console.log(this.model);
+                   console.log(this.model.get('cakes'));
+                   // for(var i=0;i<nCakes;i++){
+
+                   //     var model = new Showcase.Model({_id: this.model.get('cakes')[i]});
+                   //     model.fetch();
+
+                   //     console.log(model.url());
+                   //     this.views.flipshowcase = new Flipboard.Views.Showcase({model: model});
+                   //     app.layout.setView(".main", this.views.flipshowcase);
 
 
-                       var model = new Showcase.Model({_id: this.model.get('cakes')[i]});
-                       model.fetch();
-
-                       console.log(model.url());
-                       this.views.flipshowcase = new Flipboard.Views.Showcase({model: model});
-                       app.layout.setView(".main", this.views.flipshowcase);
-
-                       }
-                   }
+                   // }
 
 
-                   for (var i =0 ; i<5 ;i++){
+                   for (var i =0 ; i<2 ;i++){
                        this.insertView('#flip', new Flipboard.Views.TopicPage());
                    }
+
+                   //insert cover back
+                   var view = new Backbone.View;
+                   view.el = view.make('div',{class: "f-page f-cover-back"});
+                   this.insertView('#flip', view);
                },
+
+
 
                initialize: function(){
                    console.log(this.model);
-
+                   // this.model.on("change",this.beforeRender,this);
                    this.model.on("change",this.render,this);
+                   // this.model.on("change",this.afterRender,this);
+                   console.log(this.model.get('cover'));
+                   var self = this;
+                   this.model.fetch({
+                           success:function(model,response){
+                               console.log('fetch success');
+                               console.log(model);
+                               // self.beforeRender();
+                               self.render();
+                               // model.trigger('change');
+                               console.log(model.get('cover'));
+
+                           },
+                       error:function(model,response){
+                           console.log('fetch');
+                           console.log(model.get('cover'));
+                           console.log(response);
+
+                       },
+
+                   });
+                   console.log(this.model.hasChanged());
+
                }
 
            });

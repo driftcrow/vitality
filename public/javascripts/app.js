@@ -26,10 +26,11 @@ define([
     // Allow LayoutManager to augment Backbone.View.prototype.
     manage: true,
     // manage: false,
-    paths: {
-      layout: "javascripts/app/templates/layouts/",
-      template: "javascripts/app/templates/"
-    },
+      prefix: "javascripts/app/templates/",
+    // paths: {
+    //   layout: "javascripts/app/templates/layouts/",
+    //   template: "javascripts/app/templates/"
+    // },
 
    fetch: function(path) {
       // Initialize done for use in async-mode

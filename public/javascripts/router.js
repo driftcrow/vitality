@@ -173,11 +173,16 @@ define([
                    app.useLayout("site");
                    var model = new Showcase.Model({_id: id});
                    console.log(model.url());
-                   model.fetch();
+                   // model.fetch({
+
+                   //     success:function(model,response){
+                   //         console.log(model.get('cover'));
+                   //     }
+                   // });
                    this.views.flipshowcase = new Flipboard.Views.Showcase({model: model});
                    app.layout.setView(".main", this.views.flipshowcase);
 
-                   this.views.flipshowcase.render();
+                   // this.views.flipshowcase.render();
                },
 
                reset: function(){
