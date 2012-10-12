@@ -277,6 +277,9 @@ define([
                            model: showcase
                        }));
                    },this);
+                   var view = new Backbone.View;
+                   view.el = view.make('div',{'style':'clear:both;'});
+                   this.insertView(view);
                },
 
                events: {
