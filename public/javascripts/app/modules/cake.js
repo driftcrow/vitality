@@ -190,11 +190,11 @@ define([
                },
 
                beforeRender: function(){
-                   console.log('before render');
+                   console.log('selectlist before render');
                },
               afterRender: function(){
-                  console.log('after render');
-                  $('.chzn-select').chosen();
+                  console.log('selectlist after render');
+                  // $('.chzn-select').chosen();
               },
 
                initialize: function(){

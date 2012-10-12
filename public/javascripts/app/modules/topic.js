@@ -105,6 +105,8 @@ define([
 
                    if (!this.model.isNew()) this.model.url = "/api/topics/"+this.model.get("_id");
                    console.log('save url:'+this.model.url);
+                   console.log(this.model);
+
                    this.model.save({
                        title: this.$('[name=title]').val(),
                        content: this.$('[name=content]').val(),
@@ -120,6 +122,7 @@ define([
                        }
 
                    },this);
+                   console.log(this.model);
 
                },
 
@@ -127,9 +130,13 @@ define([
                    // this.model.off(null, null, this);
                },
                beforeRender: function(){
+                   console.log('topic edit beforerender');
                    this.setView("#select-cake", this.views.selectcake);
                },
                afterRender: function(){
+                   console.log('topic edit afterrender');
+                   $('.chzn-select').chosen();
+
                    $("#chose-cakes").val(this.model.get("cakes")).trigger("liszt:updated");
 
                    $('.wysiwyg').redactor({
@@ -141,6 +148,7 @@ define([
 
                initialize:function(){
                    this.views.selectcake = new Cake.Views.SelectList();
+                   this.model.on('change',this.render,this);
                }
            });
 

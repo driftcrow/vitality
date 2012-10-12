@@ -84,6 +84,13 @@ define([
 
                },
 
+               beforeRender: function(){
+                   console.log('showcase item: before render');
+               },
+               afterRender: function(){
+                   console.log('showcase item:  after render');
+                   // $('.chzn-select').chosen();
+               },
 
                serialize: function(){
                    return {model: this.model };
@@ -200,6 +207,7 @@ define([
 
                    if (!this.model.isNew()) this.model.url = "/api/showcases/"+this.model.get("_id");
                    console.log('save url:'+this.model.url);
+                   var self = this;
 
                    this.model.save({
                        title: this.$('[name=title]').val(),
@@ -210,13 +218,13 @@ define([
                    }, {
                        success:function(model, resp){
                            console.log('resp');
+
                            app.router.navigate("admin/showcases",{trigger:true});
                        },
                        error: function(err){
                            console.log(err);
                        }
-
-                   },this);
+                   });
 
                },
 
@@ -228,6 +236,8 @@ define([
                    this.setView("#select-cake", this.views.selectcake);
                },
                afterRender: function(){
+                   $('.chzn-select').chosen();
+
                    $("#chose-cakes").val(this.model.get("cakes")).trigger("liszt:updated");
 
                    // cover image input
@@ -246,6 +256,8 @@ define([
 
                initialize:function(){
                    this.views.selectcake = new Cake.Views.SelectList();
+                   // this.model.on('change',this.render(),this);
+                   this.model.bind('change',this.render(),this);
                }
            });
 
@@ -258,7 +270,7 @@ define([
                },
 
                beforeRender: function(){
-
+                   console.log('showcase list: beforerender');
                    this.collection.each(function(showcase){
                        showcase.id = showcase.get("_id");
                        this.insertView( new Showcase.Views.Item({
@@ -272,7 +284,9 @@ define([
                },
 
                initialize: function(){
+                   this.collection.on("reset", this.beforeRender ,this);
                    this.collection.on("reset", this.render ,this);
+                   this.collection.on("reset", this.afterRender ,this);
 
                    // this.collection.on("fetch",function(){
                    //     this.$("ul").parent().html("<img src='images/spinner.gif'");

@@ -95,9 +95,13 @@ define([
                listshowcase: function(e){
                    app.layout.setView(".content-box-content", this.views.showcases);
                    // this.reset();
-                   this.showcases.fetch();
-                   this.views.showcases.render();
-
+                   var self= this;
+                   this.showcases.fetch({
+                       success: function(model,response){
+                           self.views.showcases.render();
+                       }}
+                   );
+                   // this.views.showcases.render();
 
                },
 
@@ -128,15 +132,16 @@ define([
 
                listcake: function(e){
                    app.layout.setView(".content-box-content", this.views.cakes);
-                   // this.reset();
-                   this.cakes.fetch();
-                   this.views.cakes.render();
-
-
+                   var self= this;
+                   this.cakes.fetch({
+                       success: function(model,response){
+                           self.views.cakes.render();
+                       }});
                },
                // topic
                addtopic: function (){
                    this.views.edittopics.model = new Topic.Model();
+
                    app.layout.setView(".content-box-content", this.views.edittopics);
                    this.views.edittopics.render();
 
@@ -161,11 +166,11 @@ define([
 
                listtopic: function(e){
                    app.layout.setView(".content-box-content", this.views.topics);
-                   // this.reset();
-                   this.topics.fetch();
-                   this.views.topics.render();
-
-
+                   var self= this;
+                   this.topics.fetch({
+                       success: function(model,response){
+                           self.views.topics.render();
+                       }});
                },
 
                // flipboard preview
@@ -207,7 +212,7 @@ define([
                    });
 
                    this.views.editshowcases = new Showcase.Views.Edit({
-
+                       model:new Showcase.Model()
                    });
 
                    // cake
@@ -236,8 +241,7 @@ define([
                    // });
 
                    this.views.edittopics = new Topic.Views.Edit({
-
-
+                       model: new Topic.Model()
                    });
 
                    // flipboard
