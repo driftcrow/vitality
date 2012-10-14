@@ -20,7 +20,7 @@ require.config({
         jquery: "libs/jquery-1.8.2.min",
         lodash: "libs/lodash",
         backbone: "libs/backbone",
-        handlebars: "libs/handlebars-1.0.0.beta.6",
+        handlebars: "libs/handlebars-1.0.rc.1",
         redactor: "libs/redactor.min"
     },
 

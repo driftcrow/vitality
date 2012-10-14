@@ -23,17 +23,22 @@ Handlebars.registerHelper('trimS', function(passedString, start, length , nprefi
     return new Handlebars.SafeString(theString);
 });
 
-Handlebars.registerHelper("getimgsrc", function(htmlstr) {
+Handlebars.registerHelper("getimgsrc", function(htmlstr,single) {
     var reg=/<img.+?src=('|")?([^'"]+)('|")?(?:\s+|>)/gim;
     var arr = [];
     while(tem=reg.exec(htmlstr)){
         arr.push(tem[2]);
     }
-    return arr;
+
+    if(single)
+        return arr[0]
+    else
+        return arr;
 });
 
-Handlebars.registerHelper("debug", function(optionalValue) {
-    console.log("\nContext(this):");
+Handlebars.registerHelper("debug", function(optionalValue,description) {
+    console.log(description);
+    console.log("\nCurrent Context(this):");
     console.log("====================");
     console.log(this);
 
@@ -59,3 +64,90 @@ Handlebars.registerHelper('checked', function(pValue){
 Handlebars.registerHelper('dateF', function(dt) {
     return (dt.getMonth()+1) + '/' + dt.getDate() + '/' + dt.getFullYear() + ' ' + (dt.getHours()+1) + ':'+dt.getMinutes();
 });
+
+
+// a iterate over a specific portion of a list.
+// usage: {{#slice items offset="1" limit="5"}}{{name}}{{/slice}} : items 1 thru 6
+// usage: {{#slice items limit="10"}}{{name}}{{/slice}} : items 0 thru 9
+// usage: {{#slice items offset="3"}}{{name}}{{/slice}} : items 3 thru context.length
+// defaults are offset=0, limit=5
+// todo: combine parameters into single string like python or ruby slice ("start:length" or "start,length")
+Handlebars.registerHelper('slice', function(context, block) {
+  var ret = "",
+      offset = parseInt(block.hash.offset) || 0,
+      limit = parseInt(block.hash.limit) || 5,
+      i = (offset < context.length) ? offset : 0,
+      j = ((limit + offset) < context.length) ? (limit + offset) : context.length;
+
+  for(i,j; i<j; i++) {
+    ret += block(context[i]);
+  }
+
+  return ret;
+});
+
+
+
+
+//  return a comma-serperated list from an iterable object
+// usage: {{#toSentance tags}}{{name}}{{/toSentance}}
+Handlebars.registerHelper('toSentance', function(context, block) {
+  var ret = "";
+  for(var i=0, j=context.length; i<j; i++) {
+    ret = ret + block(context[i]);
+    if (i<j-1) {
+      ret = ret + ", ";
+    };
+  }
+  return ret;
+});
+
+
+
+//  format an ISO date using Moment.js
+//  http://momentjs.com/
+//  moment syntax example: moment(Date("2011-07-18T15:50:52")).format("MMMM YYYY")
+//  usage: {{dateFormat creation_date format="MMMM YYYY"}}
+Handlebars.registerHelper('dateFormat', function(context, block) {
+  if (window.moment) {
+    var f = block.hash.format || "MMM Do, YYYY";
+    return moment(Date(context)).format(f);
+  }else{
+    return context;   //  moment plugin not available. return data as is.
+  };
+});
+
+
+// page a list for specification number of per page
+// usage: {{#page items page=5}}{{name}}{{/page}}
+// defaults are page=5
+// todo:
+Handlebars.registerHelper('page', function(context, options) {
+    var fn = options.fn, inverse = options.inverse;
+    var ret = "", data;
+
+    var nPage = parseInt(options.hash.page) || 5; // list element per page
+
+    if (options.data) {
+        data = Handlebars.createFrame(options.data);
+    }
+
+    if(context && context.length > 0) {
+        for(var i=0, j=context.length; i<j; i++) {
+            if (data) { data.index = i,
+                        data.pIndex = i%nPage,
+                        data.pStart=i%nPage?false:true,
+                        data.pEnd=(i%nPage===0 && i!=0),
+                        data.end=(i===(j-1))}
+            ret = ret + fn(context[i], { data: data });
+        }
+    } else {
+        ret = inverse(this);
+    }
+    return ret;
+});
+
+
+var topic_tmpl = [["w-25 h-70","w-50 h-70 box-b-l box-b-r","w-25 h-70","w-50 h-30 box-b-r title-top","w-50 h-30 title-top"],
+                  ["w-30 h-60 box-b-r title-top","w-70 h-60 box-img-left title-top","w-40 h-40 box-img-left box-b-r title-top","w-30 h-40 box-b-r title-top","w-30 h-40 title-top"]
+                 ];

@@ -21,7 +21,7 @@ define([
                    }
                },
                idAttribute: "_id",
-               url:"/api/cakes",
+               urlRoot:"/api/cakes",
 
                defaults:{
                    "author_id": $.cookie('username'),
