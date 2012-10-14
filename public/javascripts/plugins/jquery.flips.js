@@ -566,11 +566,30 @@
 
             } );
 
+            this.$flipPages.find('.box.cake').on('click.flips', function(event){
+                var $cake = $(this);
+                var cakeid = $(this).children('[name=id]').val();
+
+                var template,html;
+
+                // compile template
+                $.ajax('/javascripts/app/templates/flipboard/topicpage.html').then(function(data){
+                    console.log(data);
+                    template = Handlebars.compile(data);
+                });
+
+                $.getJSON('/api/cakes/'+cakeid+'/topics').then(function(data){
+                    html = template({topics:data});
+                });
+                console.log(template);
+                console.log(html);
+
+            });
             // topic box display
             this.$flipPages.find( '.box.topic' ).on( 'click.flips', function( event ) {
 
                 var $box                        = $(this),
-                $boxClose		= $( '<span class="box-close">close</span>' ),
+                $boxClose		= $( '<span class="box-close">关闭</span>' ),
                 transitionProp	= {
                     speed			: 450,
                     timingfunction	: 'linear'

@@ -9,6 +9,7 @@
   <div class="box cake w-25 h-50">
     <div class="img-cont " style="background-image:url({{this.attributes.cover}})"></div>
     <h3>{{this.attributes.title}}</h3>
+    <input type="hidden" value={{this.attributes._id}} name="id" />
   </div>
   {{/each}}
 </div>
