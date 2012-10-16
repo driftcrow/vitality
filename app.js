@@ -33,7 +33,10 @@ app.configure(function(){
     app.use(express.methodOverride());
     app.use(app.router);
     app.use(express.static(path.join(__dirname, 'public')));
-
+    // app.use(function(req,res,next){   //for catch all action
+    //     console.log(req.url)
+    //     next()
+    // });
     app.use('/upload', express.static(config.upload_dir, { maxAge: maxAge }));
     app.use('/user_data', express.static(path.join(__dirname,'public','user_data'), { maxAge: maxAge}));
 });
@@ -41,6 +44,7 @@ app.configure(function(){
 app.configure('development', function(){
     app.use(express.errorHandler());
 });
+
 
 // routers
 router(app);

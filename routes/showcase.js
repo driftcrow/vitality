@@ -1,9 +1,21 @@
 var Models = require('../models');
+var requireLogin = require('./help').requireLogin;
 
 module.exports = function(app){
-    // list
-    app.get('/api/showcases', function(req, res){
-        return Models.Showcase.find(function( err, showcases){
+    // lists of all public
+    app.get('/api/showcases/public', function(req, res){
+        return Models.Showcase.find({publiced:true},function( err, showcases){
+            if(!err){
+                return res.send(showcases);
+            } else {
+                return console.log(err);
+            }
+        });
+    });
+
+    // list just mine
+    app.get('/api/showcases', requireLogin,function(req, res){
+        return Models.Showcase.find({author_id:req.cookies.username},function( err, showcases){
             if(!err){
                 return res.send(showcases);
             } else {
@@ -13,7 +25,7 @@ module.exports = function(app){
     });
 
     // create new
-    app.post('/api/showcases', function(req, res){
+    app.post('/api/showcases', requireLogin, function(req, res){
         var showcase;
         console.log("POST: ");
         console.log(req.body);
@@ -70,8 +82,9 @@ module.exports = function(app){
     });
 
     // delete id
-    app.delete('/api/showcases/:id',function(req,res){
+    app.delete('/api/showcases/:id',requireLogin,function(req,res){
         return Models.Showcase.findById( req.params.id, function(err, showcase){
+            if(showcase.author_id != req.cookies.username){return res.send("权限不对",406)};
             return showcase.remove(function(err){
                 if(!err){
                     console.log('removed');

@@ -58,10 +58,8 @@ define([
                },
 
                showcases: function(){
-                   console.log('showcase');
                    app.useLayout("site");
                    app.layout.setView(".main", this.views.showcasespv);
-                   this.showcases.fetch();
                    this.views.showcasespv.render();
                },
 
@@ -208,7 +206,6 @@ define([
                        collection: this.showcases
                    });
                    this.views.showcasespv = new Showcase.Views.ListPv({
-                       collection: this.showcases
                    });
 
                    this.views.editshowcases = new Showcase.Views.Edit({

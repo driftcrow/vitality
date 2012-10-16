@@ -222,8 +222,10 @@ define([
 
                            app.router.navigate("admin/showcases",{trigger:true});
                        },
-                       error: function(err){
-                           console.log(err);
+                       error: function(model,error){
+                           if(error.status === 403){
+                               window.location = '/login';
+                           }
                        }
                    });
 
@@ -288,9 +290,7 @@ define([
                },
 
                initialize: function(){
-                   this.collection.on("reset", this.beforeRender ,this);
                    this.collection.on("reset", this.render ,this);
-                   this.collection.on("reset", this.afterRender ,this);
 
                    // this.collection.on("fetch",function(){
                    //     this.$("ul").parent().html("<img src='images/spinner.gif'");
@@ -322,6 +322,9 @@ define([
                },
 
                initialize: function(){
+                   this.collection = new Showcase.Collection();
+                   this.collection.url = '/api/showcases/public';
+                   this.collection.fetch();
                    this.collection.on("reset", this.render ,this);
 
                    // this.collection.on("fetch",function(){

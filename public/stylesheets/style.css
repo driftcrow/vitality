@@ -565,6 +565,7 @@ form input[type="radio"] {
   padding: 2px 0 2px 22px;
   background-color: transparent;
   margin: 0 0 0 5px;
+  display: none;
 }
 
 /* Notification for login page */
