@@ -110,7 +110,7 @@ define([
 
                    this.model.save({
                        title: this.$('[name=title]').val(),
-                       content: this.$('[name=content]').val(),
+                       content: this.$('[name=content]').getCode(),
                        cakes: this.$('#chose-cakes').val(),
                        update_at: Date.now()
                    }, {

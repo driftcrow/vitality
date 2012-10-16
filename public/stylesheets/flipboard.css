@@ -246,6 +246,10 @@ a.f-ref{
 	background-position: top center;
 	background-size: cover;
 }
+
+.box.box-expanded .img-cont{
+  display: none !important;
+}
 .img-1{
 	background-image: url(../images/1.jpg);
 }
@@ -312,6 +316,10 @@ a.f-ref{
 	display: block;
 	position: relative;
 	padding-bottom: 30px;
+}
+
+.box div.real{
+  display:none;
 }
 .w-25{ width: 25%; }
 .w-30{ width: 30%; }

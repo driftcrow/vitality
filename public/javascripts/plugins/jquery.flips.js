@@ -654,7 +654,7 @@
                     speed			: 450,
                     timingfunction	: 'linear'
                 },
-                $overlay		= $( '<div class="overlay">close</div>' ).css( {
+                $overlay		= $( '<div class="overlay">关闭</div>' ).css( {
                     'z-index'				: 9998,
                     '-webkit-transition'    : 'opacity ' + transitionProp.speed + 'ms ' + transitionProp.timingfunction,
                     '-moz-transition'               : 'opacity ' + transitionProp.speed + 'ms ' + transitionProp.timingfunction
@@ -675,7 +675,7 @@
                     'overflow-y'		: 'auto',
                     '-webkit-transition': 'all ' + transitionProp.speed + 'ms ' + transitionProp.timingfunction,
                     '-moz-transition': 'all ' + transitionProp.speed + 'ms ' + transitionProp.timingfunction
-                } )
+                } ).children().hide().end().children('h3').show().end().children('div.real').show().end()
                     .insertAfter( $overlay )
                     .end()
                     .append( $boxClose.on( 'click.flips', function( event ) {
