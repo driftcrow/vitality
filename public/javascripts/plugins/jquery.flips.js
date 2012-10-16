@@ -588,13 +588,13 @@
                 _self.$el.children('div.page.topics').remove();
 
                 $.getJSON('/api/cakes/'+cakeid+'/topics').then(function(data){
-                    html = template({topics:data});
+                    // html = template({topics:data});
 
                     // html.appendTo(_self.$el);
-                    $(template({topics:data})).appendTo(_self.$el);
+                    $(template({topics:data,cake:$cake.children('h3').text()})).appendTo(_self.$el);
                     // layout topics
                     _self.topicPagesCount = _self.$el.children('div.f-page.f-topics').length;
-                    console.log("topicPC:"+ _self.topicPagesCount);
+
                     _self.$topicpages = _self.$el.children('div.f-page.f-topics');
                     _self.pagesCount = _self.cakePagesCount + _self.topicPagesCount +2;
                     for(var i = 0; i< _self.topicPagesCount; i++){
@@ -602,7 +602,7 @@
                         pageData	= {
                             theClass				: 'page topics',
                             theContentFront			: $page.html(),
-                            theContentBack			: ( i !== _self.toppicPagesCount ) ? _self.$topicpages.eq( i + 1 ).html() : '',
+                            theContentBack			: ( i !== _self.toppicPagesCount ) ? _self.$topicpages.eq( i ).html() : '',
                             theStyle				: 'z-index: ' + ( _self.pagesCount - i ) + ';left: ' + ( _self.windowProp.width / 2 ) + 'px;',
                             theContentStyleFront	: 'width:' + _self.windowProp.width + 'px;',
                             theContentStyleBack		: 'width:' + _self.windowProp.width + 'px;'

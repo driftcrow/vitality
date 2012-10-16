@@ -5,6 +5,7 @@ define([
     "./cake",
     "redactor"
     ,"plugins/jquerypp.custom"
+    ,"plugins/jquery.menu"
     ,"plugins/redactor.zh_cn"
     ,"plugins/chosen.jquery.min"
 ],

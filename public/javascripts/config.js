@@ -41,6 +41,7 @@ require.config({
         "plugins/redactor.zh_cn": ["redactor"],
         "plugins/chosen.jquery.min": ["jquery"],
         "plugins/jquery.flips": ["jquery"],
+        "plugins/jquery.menu": ["jquery"],
         "plugins/jquery.history": ["jquery"],
         "plugins/jquery.tmpl.min": ["jquery"],
         "plugins/jquerypp.touchSwipe": ["jquery"],

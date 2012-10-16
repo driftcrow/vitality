@@ -8,7 +8,6 @@ block head
     link(rel='stylesheet', href='stylesheets/redactor.css')
     link(rel='stylesheet', href='stylesheets/chosen.css')
 
-
 block content
       #sidebar
         #sidebar-wrapper
@@ -23,61 +22,37 @@ block content
           //
              Sidebar Profile links
           #profile-links
-            | Hello,
-            a(href='#', title='Edit your profile') 865171
-            | , you have
-            a(href='#messages', rel='modal', title='3 Messages') 3 Messages
-            br
-            br
-            a(href='#', title='View the Site') View the Site
-            | |
-            a(href='logout', title='退出') 退出
+
           ul#main-nav
             //
                Accordion Menu
             li
-              a.nav-top-item.no-submenu(href='/admin')
-                //
-                   Add the class "no-submenu" to menu items with no sub menu
-                | 信息板
-            li
-              a.nav-top-item(href='admin/showcases')  展示厅
+              a.nav-top-item.current(href='admin/showcases')  展示厅
               ul
                 li
-                  a(href='admin/showcases/add') 创建
+                  a.current(href='admin/showcases') 管理
                 li
-                  a(href='admin/showcases/manager') 管理
+                  a(href='admin/showcases/add') 创建
             li
               a.nav-top-item(href='admin/cakes')  专栏
               ul
                 li
-                  a(href='admin/cakes/add') 创建
-                li
                   a(href='admin/cakes') 管理
+                li
+                  a(href='admin/cakes/add') 创建
             li
-              a.nav-top-item.current(href='admin/topics')
-                //
-                   Add the class "current" to current menu item
+              a.nav-top-item(href='admin/topics')
                 | 页面
               ul
                 li
+                  a(href='admin/topics') 管理
+                li
                   a(href='admin/topics/add') 创建
-                li
-                  a.current(href='admin/topics') 管理
             li
-              a.nav-top-item(href='#')  资源
+              a.nav-top-item  系统
               ul
                 li
-                  a(href='#') 管理
-            li
-              a.nav-top-item(href='#')  系统
-              ul
-                li
-                  a(href='#') 设置
-                li
-                  a(href='#') 用户
-                li
-                  a(href='#') 日志
+                  a(href='logout') 退出
           //
              End #main-nav
           #messages(style='display: none;')
@@ -138,55 +113,8 @@ block content
         //
            Page Head
 
-        h2 Welcome
-          strong Vitality
+        h2 欢迎使用
 
-        p#page-intro What would you like to do?
-        ul.shortcut-buttons-set
-          li
-            a.shortcut-button(href='#')
-              span
-                img(src='images/icons/pencil_48.png', alt='icon')
-                br
-                | Write an Article
-          li
-            a.shortcut-button(href='#')
-              span
-                img(src='images/icons/paper_content_pencil_48.png', alt='icon')
-                br
-                | Create Page
-          li
-            a.shortcut-button(href='#')
-              span
-                img(src='images/icons/image_add_48.png', alt='icon')
-                br
-                | Upload an Image
-          li
-            a.shortcut-button(href='#')
-              span
-                img(src='images/icons/clock_48.png', alt='icon')
-                br
-                | Add an Event
-          li
-            a.shortcut-button(href='#messages', rel='modal')
-              span
-                img(src='images/icons/comment_48.png', alt='icon')
-                br
-                | Open Modal
-          li
-            a.shortcut-button(href='#')
-              span
-                img(src='images/icons/image_add_48.png', alt='icon')
-                br
-                | Upload an Image
-          li
-            a.shortcut-button(href='#')
-              span
-                img(src='images/icons/clock_48.png', alt='icon')
-                br
-                | Add an Event
-        //
-           End .shortcut-buttons-set
         .clear
 
         #main(role="main")
@@ -201,3 +129,4 @@ block content
             a(href='mailto:liubin@0745.hunan-l.tax.cn')|  Liubin
             |   |
             a(href='#') Top
+

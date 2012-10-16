@@ -4,6 +4,7 @@ define([
     "redactor",
     // ,"modules/post"
     ,"plugins/jquerypp.custom"
+    ,"plugins/jquery.menu"
     ,"plugins/chosen.jquery.min"
     ,"plugins/redactor.zh_cn"
 ],
