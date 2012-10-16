@@ -1,6 +1,5 @@
-{{debug topics}}
 {{#page topics page=5}}
-{{debug title}}
+
 {{#if @pEnd}}
 </div>
 {{/if}}
@@ -16,10 +15,10 @@
 {{/if}}
 
   <div class="box topic w-25 h-50">
-    <div class="img-cont " style="background-image:url({{! getimgsrc
+    <div class="img-cont " style="background-image:url({{getimgsrc
     content 1}})"></div>
     <h3>{{title}}</h3>
-    <p>{{! toText content}}</p>
+    <p>{{toText content}}</p>
   </div>
 {{#if @end}}
 </div>

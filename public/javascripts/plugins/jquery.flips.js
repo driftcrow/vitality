@@ -41,6 +41,8 @@
             this.options            = $.extend( true, {}, $.Flips.defaults, options );
             this.$pages			= this.$el.children( 'div.f-page' );
             this.pagesCount		= this.$pages.length;
+            this.cakePagesCount		= this.$el.children('div.f-page.f-cakes').length;
+            this.topicPagesCount	= this.$el.children('div.f-page.f-topic').length;
             this.History		= window.History;
             this.currentPage	= this.options.current;
             this._validateOpts();
@@ -167,6 +169,11 @@
 
                 }
                 else {
+                    if(i <= this.cakePagesCount){
+                        pageData.theClass += ' cakes';
+                    } else if(i < this.pagesCount - 2 ){
+                        pageData.theClass += ' topics';
+                    }
 
                     pageData.theContentStyleFront += 'left:-' + ( this.windowProp.width / 2 ) + 'px';
 
@@ -578,11 +585,64 @@
                     template = Handlebars.compile(data);
                 });
 
+                _self.$el.children('div.page.topics').remove();
+
                 $.getJSON('/api/cakes/'+cakeid+'/topics').then(function(data){
                     html = template({topics:data});
+
+                    // html.appendTo(_self.$el);
+                    $(template({topics:data})).appendTo(_self.$el);
+                    // layout topics
+                    _self.topicPagesCount = _self.$el.children('div.f-page.f-topics').length;
+                    console.log("topicPC:"+ _self.topicPagesCount);
+                    _self.$topicpages = _self.$el.children('div.f-page.f-topics');
+                    _self.pagesCount = _self.cakePagesCount + _self.topicPagesCount +2;
+                    for(var i = 0; i< _self.topicPagesCount; i++){
+                        var $page = _self.$topicpages.eq( i );
+                        pageData	= {
+                            theClass				: 'page topics',
+                            theContentFront			: $page.html(),
+                            theContentBack			: ( i !== _self.toppicPagesCount ) ? _self.$topicpages.eq( i + 1 ).html() : '',
+                            theStyle				: 'z-index: ' + ( _self.pagesCount - i ) + ';left: ' + ( _self.windowProp.width / 2 ) + 'px;',
+                            theContentStyleFront	: 'width:' + _self.windowProp.width + 'px;',
+                            theContentStyleBack		: 'width:' + _self.windowProp.width + 'px;'
+                        };
+                        pageData.theContentStyleFront += 'left:-' + ( _self.windowProp.width / 2 ) + 'px';
+                        // if(i === _self.toppicPagesCount-1){pageData.theClass += ' last'};
+
+                        $('#topicTmpl').tmpl(pageData).appendTo(_self.$el);
+
+                        if(i === 0){
+                            // last cake page back change with topic first
+                            var $lastBack = $('> div.back',_self.$el);
+                            var $lastCakePage = _self.$el.children('div.page.cakes').eq(_self.cakePagesCount -1);
+                            console.log($lastCakePage);
+                            $lastCakePage.children('.back').remove();
+                            $lastBack.appendTo($lastCakePage);
+                        }
+
+                        if(i===_self.topicPagesCount-1){
+                            var $lastTopicPage = _self.$el.children('div.page.topics').eq(i);
+                            $('.page.cover-back').children('.back').appendTo($lastTopicPage);
+                            $('.page.cover-back').remove();
+                            $lastTopicPage.addClass('cover-back').removeClass('topics');
+                        }
+                        var $lastTopicPage = _self.$el.children('div.page.topics').eq(i-1);
+                        var $lastBack = $('> div.back',_self.$el);
+                        if($lastBack) $lastBack.appendTo($lastTopicPage);
+
+                    }
+
+                    _self.$el.children('div.f-page').remove();
+                    _self.$flipPages		= _self.$el.children( 'div.page' );
+                    _self.flipPagesCount	= _self.$flipPages.length;
+                    _self.currentPage	= _self.cakePagesCount;
+
+                    _self._adjustLayout( ( _self.state === undefined ) ? _self.currentPage : _self.state );
+                    _self._loadEvents();
+                    _self._goto();
                 });
-                console.log(template);
-                console.log(html);
+
 
             });
             // topic box display
