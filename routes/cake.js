@@ -1,9 +1,21 @@
 var Models = require('../models');
+var requireLogin = require('./help').requireLogin;
 
 module.exports = function(app){
-    // list
-    app.get('/api/cakes', function(req, res){
-        return Models.Cake.find(function( err, cakes){
+    // lists of all public but mine
+    app.get('/api/cakes/public',function(req, res){
+        return Models.Cake.find({$and:[{publiced:true},{author_id:{$ne:req.cookies.username}}]},function( err, cakes){
+            if(!err){
+                return res.send(cakes);
+            } else {
+                return console.log(err);
+            }
+        });
+    });
+
+    // list just mine
+    app.get('/api/cakes', requireLogin,function(req, res){
+        return Models.Cake.find({author_id: req.cookies.username},function( err, cakes){
             if(!err){
                 return res.send(cakes);
             } else {
@@ -13,7 +25,7 @@ module.exports = function(app){
     });
 
     // create new
-    app.post('/api/cakes', function(req, res){
+    app.post('/api/cakes', requireLogin, function(req, res){
         var cake;
         console.log("POST: ");
         console.log(req.body);
@@ -58,15 +70,14 @@ module.exports = function(app){
     });
 
     // update
-    app.put('/api/cakes/:id', function(req, res){
-        console.log(req.params.id);
-        console.log(req.params);
+    app.put('/api/cakes/:id',requireLogin, function(req, res){
         return Models.Cake.findById(req.params.id, function(err, cake){
             cake.title = req.body.title;
             cake.description = req.body.description;
             cake.cover = req.body.cover;
             cake.publiced= req.body.publiced;
 
+            if(cake.author_id != req.cookies.username){return res.send("权限不对",406)};
             return cake.save(function(err){
                 if (!err){
                     console.log('updated');
@@ -79,8 +90,9 @@ module.exports = function(app){
     });
 
     // delete id
-    app.delete('/api/cakes/:id',function(req,res){
+    app.delete('/api/cakes/:id',requireLogin,function(req,res){
         return Models.Cake.findById( req.params.id, function(err, cake){
+            if(cake.author_id != req.cookies.username){return res.send("权限不对",406)};
             return cake.remove(function(err){
                 if(!err){
                     console.log('removed');

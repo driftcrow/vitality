@@ -149,11 +149,13 @@ define([
                            console.log('good');
                            app.router.navigate("admin/cakes",{trigger:true});
                        },
-                       error: function(err){
-                           console.log(err);
+                       error: function(model,error){
+                           if(error.status === 403){
+                               window.location = '/login';
+                           }
                        }
 
-                   },this);
+                   });
 
                },
 
@@ -184,10 +186,11 @@ define([
            });
 
           Cake.Views.SelectList = Backbone.View.extend({
-               template: "cake/selectlist",
+              template: "cake/selectlist",
 
                serialize: function(){
-                   return {collection: this.collection};
+                   return {collection: this.collection,
+                          pCollection: this.pCollection};
                },
 
                beforeRender: function(){
@@ -195,13 +198,18 @@ define([
                },
               afterRender: function(){
                   console.log('selectlist after render');
-                  // $('.chzn-select').chosen();
+
               },
 
                initialize: function(){
                    this.collection = new Cake.Collection();
-                   this.collection.on("reset", this.render ,this);
+                   this.pCollection = new Cake.Collection();
+                   this.pCollection.url = '/api/cakes/public';
                    this.collection.fetch();
+                   if(this.options.publiced)this.pCollection.fetch();
+
+                   this.collection.on("reset", this.render ,this);
+                   this.pCollection.on("reset", this.render ,this);
                }
 
            });

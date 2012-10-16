@@ -2,7 +2,15 @@
 <select data-placeholder="选择栏目..." id="chose-cakes" class="chzn-select"
         style="width:400px;" multiple tabindex="3">
 
+  <optgroup label="自建栏目">
   {{#each collection.models}}
   <Option value="{{this.attributes._id}}">{{this.attributes.title}}</option>
   {{/each}}
+  </optgroup>
+
+  <optgroup label="公开栏目">
+  {{#each pCollection.models}}
+  <Option value="{{this.attributes._id}}">{{this.attributes.title}}--{{this.attributes.author_id}}</option>
+  {{/each}}
+  </optgroup>
 </select>

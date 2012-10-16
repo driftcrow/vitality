@@ -1,9 +1,10 @@
 var Models = require('../models');
+var requireLogin = require('./help').requireLogin;
 
 module.exports = function(app){
-    // list
-    app.get('/api/topics', function(req, res){
-        return Models.Topic.find(function( err, topics){
+    // list of mine
+    app.get('/api/topics',requireLogin, function(req, res){
+        return Models.Topic.find({author_id:req.cookies.username},function( err, topics){
             if(!err){
                 return res.send(topics);
             } else {
@@ -13,10 +14,8 @@ module.exports = function(app){
     });
 
     // create new
-    app.post('/api/topics', function(req, res){
+    app.post('/api/topics', requireLogin,function(req, res){
         var topic;
-        console.log("POST: ");
-        console.log(req.body);
         topic = new Models.Topic({
             title: req.body.title,
             content: req.body.content,
@@ -46,13 +45,15 @@ module.exports = function(app){
     });
 
     // update
-    app.put('/api/topics/:id', function(req, res){
+    app.put('/api/topics/:id',requireLogin, function(req, res){
         console.log(req.params.id);
         console.log(req.params);
         return Models.Topic.findById(req.params.id, function(err, topic){
             topic.title = req.body.title;
             topic.content = req.body.content;
             topic.cakes= req.body.cakes;
+
+            if(topic.author_id != req.cookies.username){return res.send("权限不对",406)};
 
             return topic.save(function(err){
                 if (!err){
@@ -66,8 +67,9 @@ module.exports = function(app){
     });
 
     // delete id
-    app.delete('/api/topics/:id',function(req,res){
+    app.delete('/api/topics/:id',requireLogin,function(req,res){
         return Models.Topic.findById( req.params.id, function(err, topic){
+            if(topic.author_id != req.cookies.username){return res.send("权限不对",406)};
             return topic.remove(function(err){
                 if(!err){
                     console.log('removed');

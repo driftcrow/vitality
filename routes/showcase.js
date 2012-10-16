@@ -60,7 +60,7 @@ module.exports = function(app){
     });
 
     // update
-    app.put('/api/showcases/:id', function(req, res){
+    app.put('/api/showcases/:id', requireLogin, function(req, res){
         console.log(req.params.id);
         console.log(req.params);
         return Models.Showcase.findById(req.params.id, function(err, showcase){
@@ -69,6 +69,8 @@ module.exports = function(app){
             showcase.cover = req.body.cover;
             showcase.cakes= req.body.cakes;
             showcase.publiced= req.body.publiced;
+
+            if(showcase.author_id != req.cookies.username){return res.send("权限不对",406)};
 
             return showcase.save(function(err){
                 if (!err){

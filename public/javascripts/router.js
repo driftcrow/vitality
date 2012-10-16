@@ -226,7 +226,6 @@ define([
                    });
 
                    this.views.selectcake = new Cake.Views.SelectList({
-                       collection: this.cakes
                    });
                    // topic
                    this.topics = new Topic.Collection();

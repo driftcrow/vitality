@@ -118,11 +118,12 @@ define([
                            console.log('good');
                            app.router.navigate("admin/topics",{trigger:true});
                        },
-                       error: function(err){
-                           console.log(err);
+                       error: function(model,error){
+                           if(error.status === 403){
+                               window.location = '/login';
+                           }
                        }
-
-                   },this);
+                   });
                    console.log(this.model);
 
                },
