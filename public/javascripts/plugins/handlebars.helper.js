@@ -36,6 +36,30 @@ Handlebars.registerHelper("getimgsrc", function(htmlstr,single) {
         return arr;
 });
 
+Handlebars.registerHelper("disHtml", function(html,options) {
+    var fn = options.fn, inverse = options.inverse;
+    var reg=/<img.+?src=('|")?([^'"]+)('|")?(?:\s+|>)/gim;
+    var arr = [];
+    while(tem=reg.exec(html)){
+        arr.push(tem[2]);
+    }
+    var ret = "", data;
+    var text=  html.replace(/<\/?[^<>]+>/g,'');
+
+    if (options.data) {
+        data = Handlebars.createFrame(options.data);
+    }
+
+
+    if (data) { data.hasimg = arr[0]?true:false,
+                data.coverimg = arr[0],
+                data.imgs = arr,
+                data.text = text,
+                data.html = html
+              }
+    return fn(html, { data: data });
+});
+
 Handlebars.registerHelper("debug", function(optionalValue,description) {
     console.log(description);
     console.log("\nCurrent Context(this):");
@@ -124,9 +148,19 @@ Handlebars.registerHelper('dateFormat', function(context, block) {
 // todo:
 Handlebars.registerHelper('page', function(context, options) {
     var fn = options.fn, inverse = options.inverse;
-    var ret = "", data;
-
+    var ret = "", data,pagetmpl=[];
+    var tmpl = options.hash.tmpl || [];                 // tmpl is array like[[],[]..]
     var nPage = parseInt(options.hash.page) || 5; // list element per page
+    var pageCount =Math.ceil(context.length/nPage);
+
+    if(tmpl){
+        for(var i = 0; i < pageCount;i++){
+            pagetmpl[i] = parseInt(Math.random()*(tmpl.length));
+        }
+    }
+    console.log(tmpl);
+    console.log(pagetmpl);
+
 
     if (options.data) {
         data = Handlebars.createFrame(options.data);
@@ -135,10 +169,15 @@ Handlebars.registerHelper('page', function(context, options) {
     if(context && context.length > 0) {
         for(var i=0, j=context.length; i<j; i++) {
             if (data) { data.index = i,
+                        data.page = parseInt(i/nPage),
                         data.pIndex = i%nPage,
                         data.pStart=i%nPage?false:true,
                         data.pEnd=(i%nPage===0 && i!=0),
-                        data.end=(i===(j-1))}
+                        data.end=(i===(j-1)),
+
+                        data.tmpl = tmpl[pagetmpl[data.page]]?tmpl[pagetmpl[data.page]][data.pIndex]:''
+                        // data.tmpl = tmpl[data.page][data.pIndex]
+                      }
             ret = ret + fn(context[i], { data: data });
         }
     } else {

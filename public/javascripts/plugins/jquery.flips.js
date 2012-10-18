@@ -583,15 +583,21 @@
                 $.ajax('/javascripts/app/templates/flipboard/topicpage.html').then(function(data){
                     console.log(data);
                     template = Handlebars.compile(data);
+                    console.log(template);
                 });
 
-                _self.$el.children('div.page.topics').remove();
+                _self.$el.find('div.page.topics').remove();
 
                 $.getJSON('/api/cakes/'+cakeid+'/topics').then(function(data){
                     // html = template({topics:data});
 
+                    var topic_tmpl = [["w-25 h-70","w-50 h-70 box-b-l box-b-r","w-25 h-70","w-50 h-30 box-b-r title-top","w-50 h-30 title-top"],
+                                      ["w-30 h-60 box-b-r title-top","w-70 h-60 box-img-left title-top","w-40 h-40 box-img-left box-b-r title-top","w-30 h-40 box-b-r title-top","w-30 h-40 title-top"]
+                                     ];
+
                     // html.appendTo(_self.$el);
-                    $(template({topics:data,cake:$cake.children('h3').text()})).appendTo(_self.$el);
+                    // console.log($(template({topics:data,cake:$cake.children('h3').text(),tTmpl:topic_tmpl})));
+                    $(template({topics:data,cake:$cake.children('h3').text(),tTmpl:topic_tmpl})).appendTo(_self.$el);
                     // layout topics
                     _self.topicPagesCount = _self.$el.children('div.f-page.f-topics').length;
 
@@ -611,7 +617,7 @@
                         // if(i === _self.toppicPagesCount-1){pageData.theClass += ' last'};
 
                         $('#topicTmpl').tmpl(pageData).appendTo(_self.$el);
-
+            console.log($('#topicTmpl').tmpl(pageData));
                         if(i === 0){
                             // last cake page back change with topic first
                             var $lastBack = $('> div.back',_self.$el);
@@ -640,7 +646,7 @@
 
                     _self._adjustLayout( ( _self.state === undefined ) ? _self.currentPage : _self.state );
                     _self._loadEvents();
-                    _self._goto();
+                    // _self._goto();
                 });
 
 

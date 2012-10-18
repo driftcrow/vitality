@@ -1,5 +1,5 @@
-{{#page topics page=5}}
-
+{{debug tTmpl 'tmpl arr'}}
+{{#page topics  tmpl=tTmpl page=5}}
 {{#if @pEnd}}
 </div>
 {{/if}}
@@ -7,17 +7,22 @@
 {{#if @pStart}}
 <div class="f-page f-topics">
   <div class="f-title">
-    <a href="#">栏目</a>
+    <a href="#">{{! 栏目}}</a>
     <h2>{{../../cake}}</h2>
     <a href="#"></a>
   </div>
 {{/if}}
 
-  <div class="box topic w-25 h-50">
-    <div class="img-cont " style="background-image:url({{getimgsrc content 1}})"></div>
-    <h3>{{title}}</h3>
-    <p>{{toText content}}</p>
-    <div class='real'>{{{content}}}</div>
+  <div class="box topic {{@tmpl}}">
+    {{#disHtml content}}
+    {{#if @hasimg}}
+    <div class="img-cont " style="background-image:url({{@coverimg}})"></div>
+    {{/if}}
+
+    <h3>{{../title}}</h3>
+    <p>{{@text}}</p>
+    <div class='real'>{{{@html}}}</div>
+    {{/disHtml}}
   </div>
 {{#if @end}}
 </div>
