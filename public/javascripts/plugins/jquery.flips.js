@@ -580,7 +580,7 @@
                 var template,html;
 
                 // compile template
-                $.ajax('/javascripts/app/templates/flipboard/topicpage.html').then(function(data){
+                $.ajax({url:'/javascripts/app/templates/flipboard/topicpage.html',async: false}).then(function(data){
                     console.log(data);
                     template = Handlebars.compile(data);
                     console.log(template);
@@ -642,11 +642,11 @@
                     _self.$el.children('div.f-page').remove();
                     _self.$flipPages		= _self.$el.children( 'div.page' );
                     _self.flipPagesCount	= _self.$flipPages.length;
-                    _self.currentPage	= _self.cakePagesCount;
+                    // _self.currentPage	= _self.cakePagesCount;
 
                     _self._adjustLayout( ( _self.state === undefined ) ? _self.currentPage : _self.state );
                     _self._loadEvents();
-                    // _self._goto();
+                    _self._goto();
                 });
 
 
