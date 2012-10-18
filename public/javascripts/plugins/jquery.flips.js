@@ -617,12 +617,12 @@
                         // if(i === _self.toppicPagesCount-1){pageData.theClass += ' last'};
 
                         $('#topicTmpl').tmpl(pageData).appendTo(_self.$el);
-            console.log($('#topicTmpl').tmpl(pageData));
+
                         if(i === 0){
                             // last cake page back change with topic first
                             var $lastBack = $('> div.back',_self.$el);
                             var $lastCakePage = _self.$el.children('div.page.cakes').eq(_self.cakePagesCount -1);
-                            console.log($lastCakePage);
+
                             $lastCakePage.children('.back').remove();
                             $lastBack.appendTo($lastCakePage);
                         }
