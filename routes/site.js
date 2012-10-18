@@ -11,16 +11,13 @@ module.exports = function(app){
         ,passwd = req.param('passwd');
         console.log(req.body);
         console.log(username);
-        var cookie=djz.login(username, passwd); // FIXME:asyc mode
-        console.log(cookie);
-        if(cookie){
-            res.send({'username':username});
-            // res.cookie(cookie);
-            // res.redirect('admin/index');
-        } else {
-            // res.redirect('/login');
-            res.send('');
-        }
+        djz.login(username, passwd,function(error,cookie){
+            if(!error){
+                res.send({'username':username,'session':cookie});
+            }else {
+                res.send('',406);
+            }
+        }); // FIXME:asyc mode
     });
 
     app.post('/upload/image', function(req, res, next){

@@ -17,9 +17,8 @@ var options = {
     }
 };
 
-exports.login = function(name, passwd){
+exports.login = function(name, passwd, callback){
     var body = 'userName='+name+'&password='+passwd;
-
 
     var req = http.request(options, function(res){
         res.setEncoding('utf8');
@@ -27,11 +26,11 @@ exports.login = function(name, passwd){
             if(res.statusCode == 302){
                 console.log("login success with:"+name);
                 login_cookies=res.headers["set-cookie"][0].split(';')[0];
-                console.log(cookies);
-                return login_cookie;
+                console.log(login_cookies);
+                return callback('',login_cookies);
             }else {
                 console.log("login error with:"+name);
-                return '';
+                return callback('login error','');
             }
             console.log(res.statusCode);
             console.log("HEAD:"+JSON.stringify(res.headers));
