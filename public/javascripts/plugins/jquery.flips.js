@@ -588,7 +588,7 @@
 
                 _self.$el.find('div.page.topics').remove();
 
-                $.getJSON('/api/cakes/'+cakeid+'/topics').then(function(data){
+                $.ajax({url:'/api/cakes/'+cakeid+'/topics',dataType:'json',async:false }).then(function(data){
                     // html = template({topics:data});
 
                     var topic_tmpl = [["w-25 h-70","w-50 h-70 box-b-l box-b-r","w-25 h-70","w-50 h-30 box-b-r title-top","w-50 h-30 title-top"],
@@ -645,6 +645,8 @@
                     // _self.currentPage	= _self.cakePagesCount;
 
                     _self._adjustLayout( ( _self.state === undefined ) ? _self.currentPage : _self.state );
+                    _self.$flipPages.find('.box').unbind(); // remove before bind func
+                    $( window ).unbind();
                     _self._loadEvents();
                     _self._goto();
                 });
