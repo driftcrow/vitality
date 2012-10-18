@@ -10,7 +10,8 @@
 ** image upload should complete callback and choose setting
 
 ** add forever and auto refresh bundle
-
+   
+** auto fullscreen showcase
 
 * Problem 
 ** DONE template default empty value displayed with "/"(change to handbar?)
@@ -21,11 +22,14 @@ html language write error
 
 
 
+** djz login error cause break(conside use deployment)
+** image file upload size limit and chose file
+** 
 
 * Emacs configuration:
 
 * TODO :
 ** DONE Project manager not config
 ** js2-mode not comfortable ,consist change to js3-mode,problem is swank-js whether support it...
-
+** hotkey (super C-^) not effect in mintty
 
