@@ -95,7 +95,7 @@ define([
                    });
                    app.cake = this.cakes.first();
 
-                   this.views.cakes = new Flipboard.Views.Cakes({collection:this.cakes,showcase:this.model.get('title')});
+                   this.views.cakes = new Flipboard.Views.Cakes({collection:this.cakes,showcase:this.model});
                    this.views.topics = new Flipboard.Views.Topics();
                }
 
@@ -109,7 +109,7 @@ define([
                },
                serialize: function(){
                    return {cakes: this.collection.toJSON(),
-                          showcase: this.options.showcase};
+                          showcase: this.options.showcase.toJSON()};
                },
 
                afterRender:function(){
