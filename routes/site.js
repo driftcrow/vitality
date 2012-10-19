@@ -38,6 +38,10 @@ module.exports = function(app){
                 return next(err);
             }
             var filename = Date.now() + '_' + file.name;
+            // console.log(file.size);
+            if(file.size >3000000){
+                return res.send({status: 'forbidden',message:'file too large'});
+            }
             var savepath = path.resolve(path.join(userDir, filename));
             if (savepath.indexOf(path.resolve(userDir)) !== 0) {
                 return res.send({status: 'forbidden'});
