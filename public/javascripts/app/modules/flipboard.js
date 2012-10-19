@@ -174,11 +174,15 @@ define([
            });
 
            Flipboard.Views.Topics = Backbone.View.extend({
-               template: "flipboard/topics",
+               template: "flipboard/topicpage",
+               topic_tmpl : [["w-25 h-70","w-50 h-70 box-b-l box-b-r","w-25 h-70","w-50 h-30 box-b-r title-top","w-50 h-30 title-top"],
+                                 ["w-30 h-60 box-b-r title-top","w-70 h-60 box-img-left title-top","w-40 h-40 box-img-left box-b-r title-top","w-30 h-40 box-b-r title-top","w-30 h-40 title-top"]
+                                ],
 
                serialize: function(){
-                   return {collection: this.collection,
-                          cake: app.cake};
+                   return {topics: this.collection.toJSON(),
+                          cake: app.cake.get('title'),
+                          tTmpl: topic_tmpl};
                },
 
                events:{
@@ -197,16 +201,15 @@ define([
                },
 
                updateTopics:function(){
-                   console.log('updateTopics');
+
                    this.collection.url= '/api/cakes/'+app.cake.get('_id')+"/topics";
-                   console.log(this.collection);
+
                    this.collection.fetch({
                        success:function(collection,response){
-                           console.log('topic fetch success');
+
                        },
                        error:function(collection,response){
-                           console.log('topic fetch error');
-                           console.log('response');
+
                        }
                    })
 

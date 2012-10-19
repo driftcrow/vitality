@@ -1,4 +1,4 @@
-var fs = require('fs');
+var fs = require('fs-extra');
 var path = require('path');
 var ndir = require('ndir');
 
@@ -39,11 +39,19 @@ module.exports = function(app){
             if (savepath.indexOf(path.resolve(userDir)) !== 0) {
                 return res.send({status: 'forbidden'});
             }
-
-            fs.rename(file.path, savepath, function (err) {
+            // difference disk bug ,use fs-extra cp & rm instead
+            // fs.rename(file.path, savepath, function (err) {
+            //     if (err) {
+            //         return next(err);
+            //     }
+            //     var url = '/upload/' + uid + '/' + encodeURIComponent(filename);
+            //     res.send(JSON.stringify({ filelink : url }));
+            // });
+            fs.copy(file.path, savepath, function (err) {
                 if (err) {
                     return next(err);
                 }
+                fs.remove(file.path);
                 var url = '/upload/' + uid + '/' + encodeURIComponent(filename);
                 res.send(JSON.stringify({ filelink : url }));
             });

@@ -158,9 +158,6 @@ Handlebars.registerHelper('page', function(context, options) {
             pagetmpl[i] = parseInt(Math.random()*(tmpl.length));
         }
     }
-    console.log(tmpl);
-    console.log(pagetmpl);
-
 
     if (options.data) {
         data = Handlebars.createFrame(options.data);
