@@ -48,7 +48,6 @@ define([
                    // insert cakes view
                    this.insertView('#flip',this.views.cakes);
 
-
                    // for (var i =0 ; i<10 ;i++){
                        // this.insertView('#flip', new Flipboard.Views.TopicPage());
                    // }
@@ -69,11 +68,7 @@ define([
                    // this.model.on("change",this.beforeRender,this);
                    // this.model.on("change",this.render,this);
                    // this.model.on("change",this.afterRender,this);
-                   console.log(this.model.get('cover'));
-                   console.log('flip showcase beforerender');
-
                    this.cakes = new Cake.Collection();
-
 
                    var self = this;
                    this.model.fetch({
@@ -99,75 +94,34 @@ define([
                        async:false // for app.cake
                    });
                    app.cake = this.cakes.first();
-                   console.log(app.cake.get('_id'));
-                   this.views.cakes = new Flipboard.Views.Cakes({collection:this.cakes});
+
+                   this.views.cakes = new Flipboard.Views.Cakes({collection:this.cakes,showcase:this.model.get('title')});
                    this.views.topics = new Flipboard.Views.Topics();
                }
 
            });
 
-           Flipboard.Views.Cakes = Backbone.View.extend({
-               template: "flipboard/cakes",
+          Flipboard.Views.Cakes = Backbone.View.extend({
+               template: "flipboard/cakepage",
 
                events:{
-                   "click .cake": "changecake"
+
                },
                serialize: function(){
-                   return {collection: this.collection };
+                   return {cakes: this.collection.toJSON(),
+                          showcase: this.options.showcase};
                },
 
                afterRender:function(){
-
+                   console.log(this.$el);
                },
 
                changecake: function(){
                    // app.cake = this.cakes.first();
-                   console.log('change cake');
+
                },
                initialize: function(){
                    this.collection.on('reset',this.render,this);
-                   $('.cake').bind('click','changecake');
-               }
-
-           });
-
-           Flipboard.Views.CakePage = Backbone.View.extend({
-               template: "flipboard/cakepage",
-               className: 'f-page',
-               idName: 'f-cakes',
-
-               events:{
-
-               },
-               serialize: function(){
-                   return {collection: this.collection };
-               },
-
-               afterRender:function(){
-
-               },
-
-               initialize: function(){
-                   this.collection.on('reset',this.render,this);
-               }
-
-           });
-
-
-           Flipboard.Views.TopicPage = Backbone.View.extend({
-               // template: "flipboard/topicpage"+(Math.floor(Math.random()* (5))+1),
-               template: "flipboard/topicpage",
-               className: 'f-page',
-
-               serialize: function(){
-                   return {collection: this.collection};
-               },
-
-               events:{
-
-               },
-
-               afterRender:function(){
 
                }
 
@@ -191,7 +145,6 @@ define([
 
                afterRender:function(){
                    console.log('afterrender topics:::');
-                   console.log(this.$el);
 
                },
 
