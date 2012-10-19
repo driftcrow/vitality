@@ -645,6 +645,7 @@
                     // _self.currentPage	= _self.cakePagesCount;
 
                     _self._adjustLayout( ( _self.state === undefined ) ? _self.currentPage : _self.state );
+                    _self.getState();
                     _self.$flipPages.find('.box').unbind(); // remove before bind func
                     $( window ).unbind();
                     _self._loadEvents();
