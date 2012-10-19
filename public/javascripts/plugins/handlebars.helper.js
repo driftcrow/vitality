@@ -169,8 +169,8 @@ Handlebars.registerHelper('page', function(context, options) {
                         data.page = parseInt(i/nPage),
                         data.pIndex = i%nPage,
                         data.pStart=i%nPage?false:true,
-                        data.pEnd=(i%nPage===0 && i!=0),
-                        data.end=(i===(j-1)),
+                        data.pEnd=(i%nPage === 0 && i!=0),
+                        data.end=(i === (j-1)),
 
                         data.tmpl = tmpl[pagetmpl[data.page]]?tmpl[pagetmpl[data.page]][data.pIndex]:''
                         // data.tmpl = tmpl[data.page][data.pIndex]
