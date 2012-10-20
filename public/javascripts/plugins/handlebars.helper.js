@@ -2,6 +2,11 @@ Handlebars.registerHelper('toText',function(passedString){
     var text=  passedString.replace(/<\/?[^<>]+>/g,'');
     return new Handlebars.SafeString( text);
 });
+
+Handlebars.registerHelper('getUrl',function(){
+    var url= window.location.pathname;
+    return (url.slice(-1)==='/'?url.slice(0,-1):url);
+});
 // if nprefix=1 then don't add prefix'
 Handlebars.registerHelper('trimS', function(passedString, start, length , nprefix){
     var mlength = length,preS='',tailS='';
