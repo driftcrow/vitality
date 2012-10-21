@@ -45,9 +45,22 @@ define([
                views: {},
 
                index: function() {
+                   console.log('index');
                    app.useLayout("site").render();
                    app.layout.setView(".main", this.views.home);
                    this.views.home.render();
+
+               },
+               about: function() {
+                   app.useLayout("site").render();
+                   app.layout.setView(".main", this.views.about);
+                   this.views.about.render();
+
+               },
+               faq: function() {
+                   app.useLayout("site").render();
+                   app.layout.setView(".main", this.views.faq);
+                   this.views.faq.render();
 
                },
 
@@ -214,7 +227,10 @@ define([
                    _.bindAll(this, 'showcases', 'flipshowcase');
 
                    this.views.login = new Site.Views.Login();
-                   this.views.home  = new Site.Views.Login({id:""});
+                   this.views.home  = new Site.Views.Login({id:"50836aeb1e40021e53000038"});
+                   // this.views.home  = new Site.Views.Topic({id:"507f57b83d89f7cc6b00000f"});
+                   this.views.about  = new Site.Views.Topic({id:"50836af21e40021e53000039"});
+                   this.views.faq = new Site.Views.Topic({id:"50836afa1e40021e5300003a"});
 
                    this.showcases = new Showcase.Collection();
 

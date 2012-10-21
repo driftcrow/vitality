@@ -39,10 +39,18 @@ define([
                template: "site/topic" ,
 
                serialize: function(){
-                   return {modle: this.model};
+                   return {model: this.model};
+               },
+               afterRender:function(){
+                   console.log('topic render after');
+               },
+
+               beforeRender:function(){
+                   console.log('topic render before');
                },
 
                initialize:function(){
+                   console.log(this.options);
                    this.model = new Topic.Model({_id:this.options.id});
                    this.model.fetch();
                    this.model.on('change',this.render,this);
