@@ -8,10 +8,11 @@ define([
     ,"modules/cake"
     ,"modules/topic"
     ,"modules/flipboard"
+    ,"modules/admin"
 
 ],
 
-       function(app,Site, Showcase, Cake, Topic, Flipboard) {
+       function(app,Site, Showcase, Cake, Topic, Flipboard, Admin) {
 
            // Defining the application router, you can attach sub routers here.
            var Router = Backbone.Router.extend({
@@ -28,10 +29,15 @@ define([
                    "admin/topics": 'listtopic',
                    "admin/topics/add": 'addtopic',
                    "admin/topics/:id/edit": 'edittopic',
-                   "admin/topics/:id/delete": 'deletetopic'
+                   "admin/topics/:id/delete": 'deletetopic',
+
+                   "admin/transfer":'transfer'
+
                    ,"login": 'login'
                    ,"logout": 'logout'
                    ,"showcases": 'showcases'
+                   ,"about": 'about'
+                   ,"faq": 'faq'
 
                    ,"showcases/:id": "flipshowcase"
                },
@@ -40,6 +46,8 @@ define([
 
                index: function() {
                    app.useLayout("site").render();
+                   app.layout.setView(".main", this.views.home);
+                   this.views.home.render();
 
                },
 
@@ -55,6 +63,13 @@ define([
                    // $.removeCookie('username',{path: '/'});
                    $.cookie('username', null,{path: '/'});
                    window.location = '/login';
+               },
+
+               transfer:function(){
+
+                   app.layout.setView(".content-box-content", this.views.transfer);
+
+                   this.views.transfer.render();
                },
 
                showcases: function(){
@@ -199,6 +214,7 @@ define([
                    _.bindAll(this, 'showcases', 'flipshowcase');
 
                    this.views.login = new Site.Views.Login();
+                   this.views.home  = new Site.Views.Login({id:""});
 
                    this.showcases = new Showcase.Collection();
 
@@ -240,10 +256,9 @@ define([
                        model: new Topic.Model()
                    });
 
-                   // flipboard
-                   // this.views.flipshowcase = new Flipboard.Views.Showcase({
+                   this.views.transfer = new Admin.Views.Transfer({
 
-                   // });
+                   });
 
                    app.useLayout("main");
                }

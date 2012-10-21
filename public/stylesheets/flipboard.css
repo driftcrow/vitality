@@ -247,37 +247,21 @@ a.f-ref{
 	background-size: cover;
 }
 
+.img-thumb{
+	height: 90%;
+	width: 90%;
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-size: 100% 100%;
+}
+
+.cake h3{
+  text-align: center;
+}
 .box.box-expanded .img-cont{
   display: none !important;
 }
-.img-1{
-	background-image: url(../images/1.jpg);
-}
-.img-2{
-	background-image: url(../images/2.jpg);
-	height: 60%;
-}
-.img-3{
-	background-image: url(../images/3.jpg);
-}
-.img-4{
-	background-image: url(../images/4.jpg);
-}
-.img-5{
-	background-image: url(../images/5.jpg);
-}
-.img-6{
-	background-image: url(../images/6.jpg);
-}
-.img-7{
-	background-image: url(../images/7.jpg);
-}
-.img-8{
-	background-image: url(../images/8.jpg);
-}
-.img-9{
-	background-image: url(../images/9.jpg);
-}
+
 .box h3{
 	padding: 10px 0px;
 	margin: 0;

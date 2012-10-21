@@ -32,6 +32,6 @@ exports.config = {
     // 话题列表显示的话题数量
     list_topic_count: 20,
 
-    // admin 可删除话题，编辑标签，设某人为达人
-    admins: { admin: true }
+    // admin
+    admins: ['14492','14552']
 };

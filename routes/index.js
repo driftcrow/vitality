@@ -1,12 +1,11 @@
 var config = require('../config').config;
-var sign = require ('./sign');
 var site = require ('./site');
 var showcase = require ('./showcase');
 var cake = require ('./cake');
 var topic = require ('./topic');
 var static = require ('./static');
 var Models = require('../models');
-
+var help = require('./help');
 
 module.exports = function (app){
     app.get ('/', function(req, res){
@@ -42,7 +41,7 @@ module.exports = function (app){
 
     // default route by backbone
     app.get('/admin/*', function(req, res){
-        res.render('admin', {title: config.sitename });
+        res.render('admin', {title: config.sitename,user:{id:req.cookies.username,isAdmin:help.isAdmin(req,res)} });
     });
     // app.get('/*', function(req, res){
     //     res.render('admin', {title: config.sitename });

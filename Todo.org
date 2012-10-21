@@ -12,7 +12,8 @@
 ** add forever and auto refresh bundle
    
 ** auto fullscreen showcase
-
+   
+** use chrome --kiosk cml running in fullscreen 
 * Problem 
 ** DONE template default empty value displayed with "/"(change to handbar?)
 template compile can't recognize <input /> but <input></input>

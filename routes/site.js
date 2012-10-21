@@ -1,6 +1,8 @@
 var fs = require('fs-extra');
 var path = require('path');
 var ndir = require('ndir');
+var Models = require('../models');
+var requireAdmin = require('./help').requireAdmin;
 
 var config = require('../config').config;
 var djz =require('./djz');
@@ -60,5 +62,30 @@ module.exports = function(app){
                 res.send(JSON.stringify({ filelink : url }));
             });
         });
+    });
+
+    app.post('/api/transfer',requireAdmin, function(req,res,next){
+        var source = req.param('source'),
+        target = req.param('target');
+
+        Models.Showcase.update({author_id:source},{author_id:target},function(err,numberAffected,raw){
+            if(err){ console.log(err);
+                     res.send(500,{error:'数据更新错误'});
+                   };
+            Models.Cake.update({author_id:source},{author_id:target},function(err,numberAffected,raw){
+                if(err){ console.log(err);
+                         res.send(500,{error:'数据更新错误'});
+                       };
+                Models.Topic.update({author_id:source},{author_id:target},function(err,numberAffected,raw){
+                    if(err){ console.log(err);
+                             res.send(500,{error:'数据更新错误'});
+                           };
+                    res.send('数据转移成功');
+                });
+
+            });
+
+        });
+
     });
 };

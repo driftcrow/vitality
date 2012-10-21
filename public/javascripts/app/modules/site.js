@@ -1,9 +1,10 @@
 define([
     "app"
     ,"backbone"
+    ,"./topic"
     ,"plugins/jquerypp.custom"
 ],
-       function(app, Backbone){
+       function(app, Backbone, Topic){
            var Site = app.module();
 
            Site.Views.Login = Backbone.View.extend({
@@ -33,6 +34,22 @@ define([
                    });
                }
            });
+
+           Site.Views.Topic = Backbone.View.extend({
+               template: "site/topic" ,
+
+               serialize: function(){
+                   return {modle: this.model};
+               },
+
+               initialize:function(){
+                   this.model = new Topic.Model({_id:this.options.id});
+                   this.model.fetch();
+                   this.model.on('change',this.render,this);
+               }
+           });
+
+
 
            return Site;
        });
