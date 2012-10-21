@@ -124,13 +124,9 @@ define([
                            }
                        }
                    });
-                   console.log(this.model);
 
                },
 
-               cleanup: function() {
-                   // this.model.off(null, null, this);
-               },
                beforeRender: function(){
                    console.log('topic edit beforerender');
                    this.setView("#select-cake", this.views.selectcake);

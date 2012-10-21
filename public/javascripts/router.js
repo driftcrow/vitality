@@ -36,6 +36,8 @@ define([
                    ,"login": 'login'
                    ,"logout": 'logout'
                    ,"showcases": 'showcases'
+                   ,"about": 'about'
+                   ,"faq": 'faq'
 
                    ,"showcases/:id": "flipshowcase"
                },
@@ -44,6 +46,8 @@ define([
 
                index: function() {
                    app.useLayout("site").render();
+                   app.layout.setView(".main", this.views.home);
+                   this.views.home.render();
 
                },
 
@@ -210,6 +214,7 @@ define([
                    _.bindAll(this, 'showcases', 'flipshowcase');
 
                    this.views.login = new Site.Views.Login();
+                   this.views.home  = new Site.Views.Login({id:""});
 
                    this.showcases = new Showcase.Collection();
 
