@@ -1,5 +1,7 @@
 Handlebars.registerHelper('toText',function(passedString){
     var text=  passedString.replace(/<\/?[^<>]+>/g,'');
+    // var text = $(passedString).find("img").remove().html();
+
     return new Handlebars.SafeString( text);
 });
 
@@ -49,7 +51,8 @@ Handlebars.registerHelper("disHtml", function(html,options) {
         arr.push(tem[2]);
     }
     var ret = "", data;
-    var text=  html.replace(/<\/?[^<>]+>/g,'');
+    // var text=  html.replace(/<\/?[^<>]+>/g,'');
+    var text=  $('<div>').html(html).find('img').remove().end().html();
 
     if (options.data) {
         data = Handlebars.createFrame(options.data);

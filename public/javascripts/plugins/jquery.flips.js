@@ -685,7 +685,8 @@
                     'overflow-y'		: 'auto',
                     '-webkit-transition': 'all ' + transitionProp.speed + 'ms ' + transitionProp.timingfunction,
                     '-moz-transition': 'all ' + transitionProp.speed + 'ms ' + transitionProp.timingfunction
-                } ).children().hide().end().children('h3').show().end().children('div.real').show().end()
+                } ).removeClass('box-img-left').find('div.text').remove().end()
+                // } ).children().hide().end().children('h3').show().end().children('div.real').show().end()
                     .insertAfter( $overlay )
                     .end()
                     .append( $boxClose.on( 'click.flips', function( event ) {
