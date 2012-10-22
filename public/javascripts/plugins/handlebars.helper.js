@@ -48,8 +48,12 @@ Handlebars.registerHelper("disHtml", function(html,options) {
     var reg=/<img.+?src=('|")?([^'"]+)('|")?(?:\s+|>)/gim;
     var arr = [];
     while(tem=reg.exec(html)){
-        arr.push(tem[2]);
+        // ignore '111','222','000' file
+        var ign = /_[0-9]{3}./gi;
+        if(! ign.test(tem[2])){
+        arr.push(tem[2]);}
     }
+
     var ret = "", data;
     // var text=  html.replace(/<\/?[^<>]+>/g,'');
     var text=  $('<div>').html(html).find('img').remove().end().html();
