@@ -45,7 +45,7 @@ define([
                template: "topic/item",
                tagName:"tr",
 
-              initialize: function(){
+               initialize: function(){
                    this.model.on("change",this.render,this);
 
                },
@@ -132,10 +132,6 @@ define([
                    this.setView("#select-cake", this.views.selectcake);
                },
                afterRender: function(){
-                   console.log('topic edit afterrender');
-                   $('.chzn-select').chosen();
-
-                   $("#chose-cakes").val(this.model.get("cakes")).trigger("liszt:updated");
 
                    var instance = CKEDITOR.instances["vtTopic"];
                    if(instance)
@@ -144,27 +140,36 @@ define([
                    }
                    $('#vtTopic').ckeditor(function(){
 
-                      },{
+                   },{
                        toolbar: 'MyToolbar',
-                          skin: 'v2',
-                          height:'280px',
-                          language: 'zh-cn',
-                          toolbar_MyToolbar:[
-                              ['NewPage','Preview'],
-                              ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Scayt'],
-                              ['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
-                              ['Image','Table','HorizontalRule','SpecialChar','PageBreak'],
-                              '/',
-                              ['Styles','Format'],
-                              ['Bold','Italic','Strike'],
-                              ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
-                              ['Link','Unlink','Anchor'],
-                              ['Maximize','-']
-                          ],
-                          filebrowserImageUploadUrl:'/upload/image',
-                          filebrowserWindowWidth: 500,
-                          filebrowserWindowHeight:  650
+                       skin: 'v2',
+                       height:'400px',
+                       language: 'zh-cn',
+                       toolbar_MyToolbar:[
+                           ['NewPage','Preview'],
+                           ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Scayt'],
+                           ['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
+                           ['Image','Table','HorizontalRule','SpecialChar','PageBreak'],
+                           // '/',
+                           ['Styles','Format'],
+                           ['Bold','Italic','Strike'],
+                           ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
+                           [ 'JustifyLeft' , 'JustifyCenter' , 'JustifyRight' , 'JustifyBlock' ],
+                           ['Link','Unlink','Anchor'],
+                           ['Maximize','-']
+                       ],
+                       filebrowserImageUploadUrl:'/upload/files',
+                       // filebrowserImageBrowseUrl : '/browser/files',
+                       // filebrowserUploadUrl : '/uploader/upload.php',
+                       filebrowserWindowWidth: 500,
+                       filebrowserWindowHeight:  650
                    });
+
+                   console.log('topic edit afterrender');
+                   $('.chzn-select').chosen();
+
+                   $("#chose-cakes").val(this.model.get("cakes")).trigger("liszt:updated");
+
 
                },
 
