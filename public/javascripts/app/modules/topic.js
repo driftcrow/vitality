@@ -3,10 +3,9 @@ define([
     "app",
     "backbone",
     "./cake",
-    "redactor"
+    "ckeditor-jquery"
     ,"plugins/jquerypp.custom"
     ,"plugins/jquery.menu"
-    ,"plugins/redactor.zh_cn"
     ,"plugins/chosen.jquery.min"
 ],
        function($,app, Backbone, Cake){
@@ -46,7 +45,7 @@ define([
                template: "topic/item",
                tagName:"tr",
 
-              initialize: function(){
+               initialize: function(){
                    this.model.on("change",this.render,this);
 
                },
@@ -110,7 +109,8 @@ define([
 
                    this.model.save({
                        title: this.$('[name=title]').val(),
-                       content: this.$('[name=content]').getCode(),
+                       content: CKEDITOR.instances["vtTopic"].getData(),
+                       // content: this.$('[name=content]').getCode(),
                        cakes: this.$('#chose-cakes').val(),
                        update_at: Date.now()
                    }, {
@@ -132,16 +132,45 @@ define([
                    this.setView("#select-cake", this.views.selectcake);
                },
                afterRender: function(){
+
+                   var instance = CKEDITOR.instances["vtTopic"];
+                   if(instance)
+                   {
+                       CKEDITOR.remove(instance);
+                   }
+                   $('#vtTopic').ckeditor(function(){
+
+                   },{
+                       toolbar: 'MyToolbar',
+                       skin: 'v2',
+                       height:'400px',
+                       language: 'zh-cn',
+                       toolbar_MyToolbar:[
+                           ['NewPage','Preview'],
+                           ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Scayt'],
+                           ['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
+                           ['Image','Table','HorizontalRule','SpecialChar','PageBreak'],
+                           // '/',
+                           ['Styles','Format'],
+                           ['Bold','Italic','Strike'],
+                           ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
+                           [ 'JustifyLeft' , 'JustifyCenter' , 'JustifyRight' , 'JustifyBlock' ],
+                           ['Link','Unlink','Anchor'],
+                           ['Maximize','-']
+                       ],
+                       filebrowserImageUploadUrl:'/upload/files',
+                       // filebrowserImageBrowseUrl : '/browser/files',
+                       // filebrowserUploadUrl : '/uploader/upload.php',
+                       filebrowserWindowWidth: 500,
+                       filebrowserWindowHeight:  650
+                   });
+
                    console.log('topic edit afterrender');
                    $('.chzn-select').chosen();
 
                    $("#chose-cakes").val(this.model.get("cakes")).trigger("liszt:updated");
 
-                   $('.wysiwyg').redactor({
-                       lang: 'zh_cn',
-                       buttons: ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|', 'unorderedlist', 'orderedlist', 'outdent', 'indent', '|', 'image', 'table', 'link', '|', 'fontcolor', 'backcolor', '|', 'alignleft', 'aligncenter', 'alignright', 'justify', '|', 'horizontalrule'],
-                       imageUpload: '/upload/image'
-                   });
+
                },
 
                initialize:function(){

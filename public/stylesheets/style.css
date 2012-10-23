@@ -668,3 +668,7 @@ body#login {
 .chzn-container .chzn-results .highlighted {
    background-color: #3875d7 !important;
 }
+
+table.cke_editor tbody tr{
+  Background: none !important;
+}

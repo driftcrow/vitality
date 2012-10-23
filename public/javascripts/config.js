@@ -21,7 +21,9 @@ require.config({
         lodash: "libs/lodash",
         backbone: "libs/backbone",
         handlebars: "libs/handlebars-1.0.rc.1",
-        redactor: "libs/redactor.min"
+        redactor: "libs/redactor.min",
+        'ckeditor-core': "libs/ckeditor/ckeditor",
+        'ckeditor-jquery': "libs/ckeditor/adapters/jquery"
     },
 
     shim: {
@@ -33,6 +35,14 @@ require.config({
 
         handlebars: {
             exports: 'Handlebars'
+        },
+
+        'ckeditor-core':{
+            exports: "Ckeditor"
+        },
+
+        'ckeditor-jquery':{
+            deps:['jquery','ckeditor-core']
         },
         // Backbone.LayoutManager depends on Backbone.
         "plugins/backbone.layoutmanager": ["backbone"],
