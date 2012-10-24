@@ -622,6 +622,10 @@
                             // last cake page back change with topic first
                             var $lastBack = $('> div.back',_self.$el);
                             var $lastCakePage = _self.$el.children('div.page.cakes').eq(_self.cakePagesCount -1);
+                            // splite first page cake with coverback node
+                            if($lastCakePage.hasClass('cover-back')){
+                                $lastCakePage.clone().insertAfter($lastCakePage).removeClass('cakes').end();
+                                $lastCakePage.removeClass('cover-back').end();}
 
                             $lastCakePage.children('.back').remove();
                             $lastBack.appendTo($lastCakePage);

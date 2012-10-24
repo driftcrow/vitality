@@ -260,7 +260,7 @@ define([
                initialize:function(){
                    this.views.selectcake = new Cake.Views.SelectList({publiced:true});
                    // this.model.on('change',this.render(),this);
-                   this.model.bind('change',this.render(),this);
+                   this.model.on('change',this.render,this);
                }
            });
 
