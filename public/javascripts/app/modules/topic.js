@@ -146,7 +146,7 @@ define([
                        height:'400px',
                        language: 'zh-cn',
                        toolbar_MyToolbar:[
-                           ['NewPage','Preview'],
+                           ['NewPage','Preview','Source'],
                            ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Scayt'],
                            ['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
                            ['Image','Table','HorizontalRule','SpecialChar','PageBreak'],
