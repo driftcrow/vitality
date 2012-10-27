@@ -672,3 +672,8 @@ body#login {
 table.cke_editor tbody tr{
   Background: none !important;
 }
+
+tr.myDragClass td {
+    color: yellow;
+    background-color: black;
+}
