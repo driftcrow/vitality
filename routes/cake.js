@@ -60,7 +60,7 @@ module.exports = function(app){
 
     // get include topics
     app.get('/api/cakes/:id/topics', function(req, res){
-        return Models.Topic.find({cakes: req.params.id},function( err, topics){
+        return Models.Topic.find({cakes: req.params.id}).sort({'order':-1}).exec(function( err, topics){
             if(!err){
                 return res.send(topics);
             } else {
