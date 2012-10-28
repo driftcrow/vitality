@@ -7,6 +7,7 @@ define([
     ,"plugins/jquerypp.custom"
     ,"plugins/jquery.menu"
     ,"plugins/chosen.jquery.min"
+    ,"plugins/jquery.tablednd.min"
 ],
        function($,app, Backbone, Cake){
 
@@ -47,9 +48,11 @@ define([
 
                initialize: function(){
                    this.model.on("change",this.render,this);
-
                },
 
+               beforeRender: function(){
+                   $(this.el).attr('data-order',this.model.get('order'));
+               },
 
                serialize: function(){
                    return {model: this.model };
@@ -128,7 +131,7 @@ define([
                },
 
                beforeRender: function(){
-                   console.log('topic edit beforerender');
+
                    this.setView("#select-cake", this.views.selectcake);
                },
                afterRender: function(){
@@ -166,7 +169,7 @@ define([
                        filebrowserWindowHeight:  650
                    });
 
-                   console.log('topic edit afterrender');
+
                    $('.chzn-select').chosen();
 
                    $("#chose-cakes").val(this.model.get("cakes")).trigger("liszt:updated");
@@ -184,6 +187,8 @@ define([
            Topic.Views.List = Backbone.View.extend({
                template: "topic/list",
                tagName: "table",
+               id: "Topics",
+
                serialize: function(){
                    return {collection: this.collection};
                },
@@ -193,13 +198,37 @@ define([
                    this.collection.each(function(topic){
                        topic.id = topic.get("_id");
                        this.insertView( new Topic.Views.Item({
-                           model: topic
+                           model: topic,
+                           id: topic.id
                        }));
                    },this);
                },
 
                events: {
 
+               },
+
+               afterRender: function(){
+                   var _self = this;
+                   $("#Topics").tableDnD({
+                       onDragClass: "myDragClass",
+                       onDrop:function(table,row){
+                           var now = new Date(),
+                           preOrder = parseInt($(row).prev().attr('data-order'))? parseInt($(row).prev().attr('data-order')):now.valueOf(),
+                           nextOrder = parseInt($(row).next().attr('data-order'))? parseInt($(row).next().attr('data-order')):0;
+
+                           var norder = (preOrder + nextOrder)/2;
+                           console.log(norder);
+
+                           $.ajax({
+                               url:'/api/topics/'+row.id+'/update-order',
+                               type: 'PUT',
+                               data:{id:row.id,order:norder}
+                           }).done(function(msg){
+                               $(row).attr('data-order',norder);
+                           });
+                       }
+                   });
                },
 
                initialize: function(){

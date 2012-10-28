@@ -581,9 +581,7 @@
 
                 // compile template
                 $.ajax({url:'/javascripts/app/templates/flipboard/topicpage.html',async: false}).then(function(data){
-                    console.log(data);
                     template = Handlebars.compile(data);
-                    console.log(template);
                 });
 
                 _self.$el.find('div.page.topics').remove();
@@ -646,15 +644,27 @@
                     _self.$el.children('div.f-page').remove();
                     _self.$flipPages		= _self.$el.children( 'div.page' );
                     _self.flipPagesCount	= _self.$flipPages.length;
-                    // _self.currentPage	= _self.cakePagesCount;
 
-                    _self._adjustLayout( ( _self.state === undefined ) ? _self.currentPage : _self.state );
+                    // _self._adjustLayout( ( _self.state === undefined ) ? _self.currentPage : _self.state );
 
                     _self.$flipPages.find('.box').unbind(); // remove before bind func
                     // $( window ).unbind();
                     _self._loadEvents();
-                    _self._getState();
+                    // _self._getState();
+                    // _self._goto();
+
+                    _self.currentPage	= _self.cakePagesCount+1;
+                    _self.state = _self.currentPage;
+                    _self._saveState();
+
                     _self._goto();
+                    if( !_self.isAnimating ) {
+
+                        _self._adjustLayout( _self.currentPage );
+
+                    }
+
+
                 });
 
 

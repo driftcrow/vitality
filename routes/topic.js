@@ -4,7 +4,7 @@ var requireLogin = require('./help').requireLogin;
 module.exports = function(app){
     // list of mine
     app.get('/api/topics',requireLogin, function(req, res){
-        return Models.Topic.find({author_id:req.cookies.username},function( err, topics){
+        return Models.Topic.find({author_id:req.cookies.username}).sort({'order':-1}).exec(function( err, topics){
             if(!err){
                 return res.send(topics);
             } else {
@@ -46,8 +46,6 @@ module.exports = function(app){
 
     // update
     app.put('/api/topics/:id',requireLogin, function(req, res){
-        console.log(req.params.id);
-        console.log(req.params);
         return Models.Topic.findById(req.params.id, function(err, topic){
             topic.title = req.body.title;
             topic.content = req.body.content;
@@ -58,6 +56,23 @@ module.exports = function(app){
             return topic.save(function(err){
                 if (!err){
                     console.log('updated');
+                } else {
+                    console.log(err);
+                }
+                return res.send(topic);
+            });
+        });
+    });
+
+    // update-order
+    app.put('/api/topics/:id/update-order',requireLogin, function(req, res){
+        return Models.Topic.findById(req.params.id, function(err, topic){
+            topic.order = req.body.order;
+            if(topic.author_id != req.cookies.username){return res.send("权限不对",406)};
+
+            return topic.save(function(err){
+                if (!err){
+                    console.log('updated-order');
                 } else {
                     console.log(err);
                 }

@@ -11,6 +11,7 @@ var TopicSchema = new Schema({
     reply_count: { type: Number, default: 0 },
     visit_count: { type: Number, default: 0 },
     collect_count: { type: Number, default: 0 },
+    order:{type: Number, default: Date.now.valueOf()},
     create_at: { type: Date, default: Date.now },
     update_at: { type: Date, default: Date.now },
     last_reply: { type: ObjectId },

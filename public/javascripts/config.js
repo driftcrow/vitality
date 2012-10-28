@@ -55,6 +55,7 @@ require.config({
         "plugins/jquery.history": ["jquery"],
         "plugins/jquery.tmpl.min": ["jquery"],
         "plugins/jquerypp.touchSwipe": ["jquery"],
+        "plugins/jquery.tablednd.min": ["jquery"],
         "plugins/core.string": ["jquery"]
 
 
