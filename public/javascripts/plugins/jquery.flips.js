@@ -700,7 +700,17 @@
                     '-webkit-transition': 'all ' + transitionProp.speed + 'ms ' + transitionProp.timingfunction,
                     '-moz-transition': 'all ' + transitionProp.speed + 'ms ' + transitionProp.timingfunction
                 } ).removeClass('box-img-left').find('div.text').remove().end()
-                // } ).children().hide().end().children('h3').show().end().children('div.real').show().end()
+                    .swipe({
+                        click:function(event){
+                            var $box = $('body .box');
+                            if(event.y > $(window).height()/2){ // scroll down
+                                $box.animate({scrollTop:$box.scrollTop()+$(window).height()});
+                            } else {
+                                $box.animate({scrollTop:$box.scrollTop()-$(window).height()});
+                            }
+
+                        }
+                    })
                     .insertAfter( $overlay )
                     .end()
                     .append( $boxClose.on( 'click.flips', function( event ) {
